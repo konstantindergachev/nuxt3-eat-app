@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* time: 01:36:57 speed: 1.46 Head Manager*/
+
+* {
+  outline: 1px dashed #f4f4f4;
+}
