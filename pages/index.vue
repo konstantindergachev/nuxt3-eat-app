@@ -1,6 +1,6 @@
 <template>
   <section class="container flex justify-between space-x-10 mt-32">
-    <div class="space-y-8 pt-32">
+    <div class="w-6/12 space-y-8 pt-32">
       <h4 class="uppercase text-xs">fresh fruit for you</h4>
       <h1 class="uppercase text-Green text-6xl font-bold leading-14">
         Eat as<br />
@@ -23,6 +23,66 @@
         </button>
       </div>
     </div>
-    <div><img src="/images/main_product.png" alt="Basket with fruits" /></div>
+    <div class="w-6/12"><img src="/images/main_product.png" alt="Basket with fruits" /></div>
+  </section>
+  <section class="container flex justify-between space-x-10 mt-32">
+    <div class="w-6/12"><img src="/images/product11.png" alt="Product 11" /></div>
+    <div class="w-6/12 space-y-8 pt-32">
+      <div class="flex space-x-4">
+        <h1 class="text-Black text-3xl font-bold leading-14">
+          Eat a banana for a<br />
+          healthy snack
+        </h1>
+        <img src="/images/leath.png" alt="Leath" />
+      </div>
+      <p class="max-w-xl text-Black opacity-70">
+        You should eat at least five serves of vegetables and two serves of fruit each day. Choose
+        different colours and varieties.
+      </p>
+      <div class="w-full">
+        <ul class="flex flex-wrap">
+          <li class="flex justify-between items-center mb-10 order-1 space-x-4">
+            <span
+              class="uppercase text-Green text-3xl font-bold leading-14 shadow-md rounded-full px-1.5"
+              >1</span
+            >
+            <div>
+              <h3 class="uppercase text-Green text-6xl font-bold leading-14">150+</h3>
+              <p class="capitalize">global franchises</p>
+            </div>
+          </li>
+          <li class="flex justify-between items-center mb-10 order-3 space-x-4">
+            <span
+              class="uppercase text-Green text-3xl font-bold leading-14 shadow-md rounded-full px-1.5"
+              >2</span
+            >
+            <div>
+              <h3 class="uppercase text-Green text-6xl font-bold leading-14">100%</h3>
+              <p class="capitalize">organic product</p>
+            </div>
+          </li>
+          <li class="flex justify-between items-center mb-10 order-2 space-x-4">
+            <span
+              class="block ml-12 uppercase text-Green text-3xl font-bold leading-14 shadow-md rounded-full px-1.5"
+              >3</span
+            >
+            <div>
+              <h3 class="uppercase text-Green text-6xl font-bold leading-14">97%</h3>
+              <p class="capitalize">happy customer</p>
+            </div>
+          </li>
+          <li class="flex justify-between items-center mb-10 order-4 space-x-4">
+            <span
+              class="block ml-12 uppercase text-Green text-3xl font-bold leading-14 shadow-md rounded-full px-1.5"
+              >4</span
+            >
+            <div>
+              <h3 class="uppercase text-Green text-6xl font-bold leading-14">10m+</h3>
+              <p class="capitalize">monthly sales</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </section>
 </template>
