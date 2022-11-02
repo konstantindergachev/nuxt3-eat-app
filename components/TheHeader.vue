@@ -5,7 +5,7 @@
     </NuxtLink>
     <Navbar />
     <button
-      class="bg-Green text-White hover:bg-White hover:text-Green rounded-tr-large rounded-bl-large px-3 py-1"
+      class="bg-Green text-White hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large px-3 py-1"
     >
       sign up
     </button>
