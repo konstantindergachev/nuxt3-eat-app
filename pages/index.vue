@@ -43,7 +43,7 @@
         <ul class="flex flex-wrap">
           <li class="flex justify-between items-center mb-10 order-1 space-x-4">
             <span
-              class="uppercase text-Green text-3xl font-bold leading-14 shadow-md rounded-full px-1.5"
+              class="uppercase text-Green text-3xl font-bold leading-14 shadow-md rounded-full py-1 w-11 text-center"
               >1</span
             >
             <div>
@@ -53,7 +53,7 @@
           </li>
           <li class="flex justify-between items-center mb-10 order-3 space-x-4">
             <span
-              class="uppercase text-Green text-3xl font-bold leading-14 shadow-md rounded-full px-1.5"
+              class="uppercase text-Green text-3xl font-bold leading-14 shadow-md rounded-full py-1 w-11 text-center"
               >2</span
             >
             <div>
@@ -63,7 +63,7 @@
           </li>
           <li class="flex justify-between items-center mb-10 order-2 space-x-4">
             <span
-              class="block ml-12 uppercase text-Green text-3xl font-bold leading-14 shadow-md rounded-full px-1.5"
+              class="block ml-12 uppercase text-Green text-3xl font-bold leading-14 shadow-md rounded-full py-1 w-11 text-center"
               >3</span
             >
             <div>
@@ -73,7 +73,7 @@
           </li>
           <li class="flex justify-between items-center mb-10 order-4 space-x-4">
             <span
-              class="block ml-12 uppercase text-Green text-3xl font-bold leading-14 shadow-md rounded-full px-1.5"
+              class="block ml-12 uppercase text-Green text-3xl font-bold leading-14 shadow-md rounded-full py-1 w-11 text-center"
               >4</span
             >
             <div>
@@ -83,6 +83,42 @@
           </li>
         </ul>
       </div>
+    </div>
+  </section>
+  <section class="container flex justify-between space-x-10 mt-32">
+    <div class="w-6/12">
+      <h1 class="text-Black text-3xl font-bold leading-14 mb-10">
+        Our purpose is to deliver<br />
+        fresh fruit to you
+      </h1>
+      <p class="max-w-xl text-Black opacity-70">
+        Fruits and vegetables contain many vitamins and minerals that are good for your health.
+        These include vitamins
+      </p>
+    </div>
+    <div class="w-6/12">
+      <ul class="flex flex-col">
+        <li class="flex items-center mb-10 order-1 space-x-8">
+          <span
+            class="uppercase text-Green text-3xl font-bold leading-14 shadow-md rounded-full py-1 w-11 text-center"
+            >1</span
+          >
+          <div>
+            <h3 class="text-Black text-2xl font-bold leading-14">Order Your Fruit</h3>
+            <p class="text-Black opacity-70">A serve of fruit is about one medium piece</p>
+          </div>
+        </li>
+        <li class="flex items-center mb-10 order-3 space-x-8">
+          <span
+            class="uppercase text-Green text-3xl font-bold leading-14 shadow-md rounded-full py-1 w-11 text-center"
+            >2</span
+          >
+          <div>
+            <h3 class="text-Black text-2xl font-bold leading-14">Delivery and Pickup</h3>
+            <p class="text-Black opacity-70">A serve of vegetables is about one cup of raw</p>
+          </div>
+        </li>
+      </ul>
     </div>
   </section>
 </template>
