@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout>
-    <NuxtPage />
+    <NuxtPage :key="$route.fullPath" />
     <a href="#" @click="view('home')">Home</a>
     <a href="#" @click="view('counter')">Counter</a>
     <LazyHomeWelcome v-if="page === 'home'" />

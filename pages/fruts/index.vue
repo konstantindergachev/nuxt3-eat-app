@@ -13,7 +13,7 @@
 
           <p>{{ prod.name }}</p>
           <NuxtLink
-            :to="'/product/' + prod.id"
+            :to="'/fruts/' + prod.id"
             class="px-2 bg-green-500 text-white rounded-md justify-self-center"
             >Details</NuxtLink
           >
