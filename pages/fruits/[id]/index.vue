@@ -1,10 +1,10 @@
 <template>
   <div>
     <Head>
-      <Title>EatApp - Product</Title>
+      <Title>EatApp - Fruit</Title>
     </Head>
 
-    <h1 class="text-center mt-20 uppercase">Product</h1>
+    <h1 class="text-center mt-20 uppercase">Fruit</h1>
     <div class="flex justify-center w-full mt-20">
       <div class="shadow-lg border rounded-lg text-center">
         <div><img :src="product.img" :alt="product.name" /></div>

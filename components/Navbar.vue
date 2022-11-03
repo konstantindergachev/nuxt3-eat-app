@@ -13,10 +13,10 @@
       >about us</NuxtLink
     >
     <NuxtLink
-      to="/fruts"
+      to="/fruits"
       activeClass="border-b-2 border-b-Green"
       class="border-transparent border-b-2 hover:border-b-Green"
-      >fruts</NuxtLink
+      >fruits</NuxtLink
     >
     <NuxtLink
       to="/pricing"
