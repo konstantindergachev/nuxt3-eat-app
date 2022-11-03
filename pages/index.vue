@@ -130,7 +130,29 @@
       </div>
     </div>
   </section>
+  <section class="container grid grid-cols-3 gap-4 mt-20">
+    <div
+      v-for="prod in topThreeProducts"
+      :key="prod.id"
+      class="grid shadow-lg border rounded-lg text-center p-10"
+    >
+      <div><img :src="prod.img" :alt="prod.name" /></div>
+
+      <h1 class="text-3xl capitalize mb-4">{{ prod.name }}</h1>
+      <span class="block text-Yellow text-3xl mb-4">&#9733; &#9733; &#9733; &#9733; &#9733;</span>
+      <h3 class="text-Green text-3xl font-bold mb-10">${{ prod.price }} kg</h3>
+      <p class="opacity-70 mb-10">
+        {{ prod.description }}
+      </p>
+      <button
+        class="bg-Green text-White hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large px-3 py-1 justify-self-center h-10"
+      >
+        Buy Now
+      </button>
+    </div>
+  </section>
 </template>
 <script setup>
 const products = useProducts();
+const topThreeProducts = products.value.filter((product, idx) => idx <= 2 && product);
 </script>
