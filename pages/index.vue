@@ -121,4 +121,16 @@
       </ul>
     </div>
   </section>
+  <section class="container grid grid-cols-3 mt-10">
+    <div v-for="prod in products" :key="prod.id">
+      <div class="grid grid-cols-1">
+        <div class="flex justify-center items-center">
+          <img :src="prod.img" :alt="prod.name" class="h-80" />
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
+<script setup>
+const products = useProducts();
+</script>
