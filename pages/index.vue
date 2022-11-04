@@ -151,6 +151,24 @@
       </button>
     </div>
   </section>
+  <section class="container flex justify-around items-center space-x-10 mt-32 shadow-lg rounded-lg">
+    <img src="/images/product10.png" alt="Product 10" />
+    <div class="space-y-8">
+      <h1 class="text-Black text-3xl font-bold leading-14">Subscribe Newsletter</h1>
+      <p class="max-w-xl text-Black opacity-70">
+        Vegetables are available in many varieties and can be classified into biological groups or
+        ‘families’, including:
+      </p>
+      <div class="w-full">
+        <input type="text" placeholder="Enter your mail" class="shadow-lg border rounded-lg p-2" />
+        <button
+          class="bg-Green text-White hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-md px-3 py-1 justify-self-center h-10 ml-4"
+        >
+          Send
+        </button>
+      </div>
+    </div>
+  </section>
 </template>
 <script setup>
 const products = useProducts();
