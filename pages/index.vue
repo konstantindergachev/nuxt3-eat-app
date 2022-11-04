@@ -151,7 +151,9 @@
       </button>
     </div>
   </section>
-  <section class="container flex justify-around items-center space-x-10 mt-32 shadow-lg rounded-lg">
+  <section
+    class="container flex justify-around items-center space-x-10 mt-32 mb-12 shadow-lg rounded-lg"
+  >
     <img src="/images/product10.png" alt="Product 10" />
     <div class="space-y-8">
       <h1 class="text-Black text-3xl font-bold leading-14">Subscribe Newsletter</h1>
