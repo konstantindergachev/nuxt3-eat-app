@@ -6,11 +6,16 @@
 
     <h1 class="text-center mt-20 uppercase">Fruit</h1>
     <div class="flex justify-center w-full mt-20">
-      <div class="shadow-lg border rounded-lg text-center">
+      <div class="shadow-lg border rounded-lg text-center p-10">
         <div><img :src="product.img" :alt="product.name" /></div>
 
-        <h1 class="text-3xl">{{ product.name }}</h1>
-        <button class="px-2 bg-green-500 text-white rounded-md" @click="addToCart">Buy Now</button>
+        <h1 class="text-3xl capitalize mb-4">{{ product.name }}</h1>
+        <button
+          class="bg-Green text-White hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large px-3 py-1 justify-self-center h-10"
+          @click="addToCart"
+        >
+          Buy Now
+        </button>
       </div>
     </div>
   </div>
