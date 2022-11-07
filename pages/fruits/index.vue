@@ -4,7 +4,7 @@
       <Title>EatApp - Fruits</Title>
     </Head>
     <h1 class="text-center mt-20 uppercase">Fruits</h1>
-    <div class="grid grid-cols-4 gap-4 mt-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-10">
       <div
         v-for="prod in products"
         :key="prod.id"
