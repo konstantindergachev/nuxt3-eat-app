@@ -5,16 +5,20 @@
     </Head>
     <h1 class="text-center mt-20 uppercase">Fruits</h1>
     <div class="grid grid-cols-4 gap-4 mt-10">
-      <div v-for="prod in products" :key="prod.id" class="shadow-lg border rounded-lg text-center">
+      <div
+        v-for="prod in products"
+        :key="prod.id"
+        class="shadow-lg border rounded-lg text-center p-10"
+      >
         <div class="grid grid-cols-1">
-          <div class="flex justify-center items-center">
+          <div>
             <img :src="prod.img" :alt="prod.name" class="h-80" />
           </div>
 
-          <p>{{ prod.name }}</p>
+          <p class="opacity-70 mb-10">{{ prod.name }}</p>
           <NuxtLink
             :to="'/fruits/' + prod.id"
-            class="px-2 bg-green-500 text-white rounded-md justify-self-center"
+            class="bg-Green text-White hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large px-3 py-1 justify-self-center h-10"
             >Details</NuxtLink
           >
         </div>
