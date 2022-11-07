@@ -1,12 +1,14 @@
 <template>
-  <section class="container flex justify-between space-x-10 mt-32">
-    <div class="w-6/12 space-y-8 pt-32">
+  <section
+    class="container flex flex-col-reverse justify-center md:flex-row lg:justify-between lg:space-x-10 mt-14 md:mt-32"
+  >
+    <div class="w-full text-center lg:w-6/12 space-y-8 pt-14 md:pt-32">
       <h4 class="uppercase text-xs">fresh fruit for you</h4>
       <h1 class="uppercase text-Green text-6xl font-bold leading-14">
         Eat as<br />
         you want
       </h1>
-      <p class="max-w-xl text-Black opacity-70">
+      <p class="text-Black opacity-70">
         Fruit and vegetables should be an important part of your daily diet. They are naturally good
         and contain vitamins and minerals that can help to keep you healthy.
       </p>
@@ -23,25 +25,29 @@
         </button>
       </div>
     </div>
-    <div class="w-6/12"><img src="/images/main_product.png" alt="Basket with fruits" /></div>
+    <div class="w-full lg:w-6/12">
+      <img src="/images/main_product.png" alt="Basket with fruits" />
+    </div>
   </section>
-  <section class="container flex justify-between space-x-10 mt-32">
-    <div class="w-6/12"><img src="/images/product11.png" alt="Product 11" /></div>
-    <div class="w-6/12 space-y-8 pt-32">
-      <div class="flex space-x-4">
-        <h1 class="text-Black text-3xl font-bold leading-14">
+  <section class="container flex flex-col lg:flex-row justify-between lg:space-x-10 mt-14 md:mt-32">
+    <div class="w-full lg:w-6/12">
+      <img src="/images/product11.png" alt="Product 11" />
+    </div>
+    <div class="w-full lg:w-6/12 space-y-8 pt-14 md:pt-32">
+      <div class="flex lg:space-x-4">
+        <h1 class="text-Black text-3xl font-bold leading-14 text-center md:text-left">
           Eat a banana for a<br />
           healthy snack
         </h1>
-        <img src="/images/leath.png" alt="Leath" />
+        <img src="/images/leath.png" alt="Leath" class="hidden md:block" />
       </div>
-      <p class="max-w-xl text-Black opacity-70">
+      <p class="lg:max-w-xl text-Black opacity-70 text-center md:text-left">
         You should eat at least five serves of vegetables and two serves of fruit each day. Choose
         different colours and varieties.
       </p>
       <div class="w-full">
         <ul class="flex flex-wrap">
-          <li class="flex justify-between items-center mb-10 order-1 space-x-4">
+          <li class="flex justify-between items-center mb-10 order-1 space-x-24 md:space-x-4">
             <span
               class="uppercase text-Green text-3xl font-bold leading-14 shadow-md rounded-full py-1 w-11 text-center"
               >1</span
@@ -51,7 +57,7 @@
               <p class="capitalize">global franchises</p>
             </div>
           </li>
-          <li class="flex justify-between items-center mb-10 order-3 space-x-4">
+          <li class="flex justify-between items-center mb-10 order-3 space-x-24 md:space-x-4">
             <span
               class="uppercase text-Green text-3xl font-bold leading-14 shadow-md rounded-full py-1 w-11 text-center"
               >2</span
@@ -61,9 +67,9 @@
               <p class="capitalize">organic product</p>
             </div>
           </li>
-          <li class="flex justify-between items-center mb-10 order-2 space-x-4">
+          <li class="flex justify-between items-center mb-10 order-2 space-x-24 md:space-x-4">
             <span
-              class="block ml-12 uppercase text-Green text-3xl font-bold leading-14 shadow-md rounded-full py-1 w-11 text-center"
+              class="block md:ml-12 uppercase text-Green text-3xl font-bold leading-14 shadow-md rounded-full py-1 w-11 text-center"
               >3</span
             >
             <div>
@@ -71,9 +77,9 @@
               <p class="capitalize">happy customer</p>
             </div>
           </li>
-          <li class="flex justify-between items-center mb-10 order-4 space-x-4">
+          <li class="flex justify-between items-center mb-10 order-4 space-x-24 md:space-x-4">
             <span
-              class="block ml-12 uppercase text-Green text-3xl font-bold leading-14 shadow-md rounded-full py-1 w-11 text-center"
+              class="block md:ml-12 uppercase text-Green text-3xl font-bold leading-14 shadow-md rounded-full py-1 w-11 text-center"
               >4</span
             >
             <div>
@@ -85,22 +91,22 @@
       </div>
     </div>
   </section>
-  <section class="container flex justify-between space-x-10 mt-32">
-    <div class="w-6/12">
+  <section class="container flex flex-col lg:flex-row justify-between lg:space-x-10 mt-14 md:mt-32">
+    <div class="w-full mb-10 text-center lg:text-left lg:w-6/12">
       <h1 class="text-Black text-3xl font-bold leading-14 mb-10">
         Our purpose is to deliver<br />
         fresh fruit to you
       </h1>
-      <p class="max-w-xl text-Black opacity-70">
+      <p class="lg:max-w-xl text-Black opacity-70">
         Fruits and vegetables contain many vitamins and minerals that are good for your health.
         These include vitamins
       </p>
     </div>
-    <div class="w-6/12">
-      <ul class="flex flex-col">
-        <li class="flex items-center mb-10 order-1 space-x-8">
+    <div class="w-full lg:w-6/12">
+      <ul class="flex flex-col md:flex-row lg:flex-col">
+        <li class="flex items-center mb-10 order-1 space-x-2 md:space-x-4">
           <span
-            class="uppercase text-Green text-3xl font-bold leading-14 shadow-md rounded-full py-1 w-11 text-center"
+            class="uppercase text-Green text-3xl font-bold leading-14 shadow-md rounded-full md:py-1 w-11 text-center"
             >1</span
           >
           <div>
@@ -108,9 +114,9 @@
             <p class="text-Black opacity-70">A serve of fruit is about one medium piece</p>
           </div>
         </li>
-        <li class="flex items-center mb-10 order-3 space-x-8">
+        <li class="flex items-center mb-10 order-3 space-x-2 md:space-x-4">
           <span
-            class="uppercase text-Green text-3xl font-bold leading-14 shadow-md rounded-full py-1 w-11 text-center"
+            class="uppercase text-Green text-3xl font-bold leading-14 shadow-md rounded-full md:py-1 w-11 text-center"
             >2</span
           >
           <div>
@@ -121,7 +127,7 @@
       </ul>
     </div>
   </section>
-  <section class="container grid grid-cols-3 mt-10">
+  <section class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10">
     <div v-for="prod in products" :key="prod.id">
       <div class="grid grid-cols-1">
         <div class="flex justify-center items-center">
@@ -130,7 +136,7 @@
       </div>
     </div>
   </section>
-  <section class="container grid grid-cols-3 gap-4 mt-20">
+  <section class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-14 md:mt-20">
     <div
       v-for="prod in topThreeProducts"
       :key="prod.id"
@@ -152,19 +158,21 @@
     </div>
   </section>
   <section
-    class="container flex justify-around items-center space-x-10 mt-32 mb-12 shadow-lg rounded-lg"
+    class="container flex flex-col md:flex-row justify-around items-center md:space-x-10 mt-14 md:mt-32 mb-12 shadow-lg rounded-lg p-4"
   >
     <img src="/images/product10.png" alt="Product 10" />
-    <div class="space-y-8">
-      <h1 class="text-Black text-3xl font-bold leading-14">Subscribe Newsletter</h1>
-      <p class="max-w-xl text-Black opacity-70">
+    <div class="space-y-8 pb-10">
+      <h1 class="text-Black text-3xl font-bold leading-14 text-center md:text-left">
+        Subscribe Newsletter
+      </h1>
+      <p class="max-w-xl text-Black opacity-70 text-center md:text-left">
         Vegetables are available in many varieties and can be classified into biological groups or
         ‘families’, including:
       </p>
       <div class="w-full">
         <input type="text" placeholder="Enter your mail" class="shadow-lg border rounded-lg p-2" />
         <button
-          class="bg-Green text-White hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-md px-3 py-1 justify-self-center h-10 ml-4"
+          class="bg-Green text-White hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-md px-3 py-1 justify-self-center h-10 lg:ml-4"
         >
           Send
         </button>

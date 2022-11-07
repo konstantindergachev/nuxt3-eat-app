@@ -1,15 +1,15 @@
 <template>
-  <footer class="container flex justify-between items-stretch gap-10 h-full">
-    <div class="flex flex-col w-1/2">
+  <footer class="container flex flex-col md:flex-row justify-between items-stretch gap-10 h-full">
+    <div class="flex flex-col items-center w-full md:w-1/2">
       <NuxtLink to="/" class="mb-8">
         <img src="/images/logo.png" alt="logo" />
       </NuxtLink>
-      <p class="opacity-70">
+      <p class="opacity-70 text-center md:text-left">
         Lorem ipsum dolor sit amet, consectetur adipin elit. A eleifend tristique condimentum
         vestibulum, ornare tortor viverra.
       </p>
     </div>
-    <div class="flex flex-col w-1/5">
+    <div class="flex flex-col items-center w-full md:w-1/5">
       <h4 class="text-Black text-2xl font-bold leading-14 mb-8 capitalize">company</h4>
       <ul class="capitalize opacity-70">
         <NuxtLink to="/about"><li class="mb-2">about us</li></NuxtLink>
@@ -17,7 +17,7 @@
         <NuxtLink to="/contact"><li>contact us</li></NuxtLink>
       </ul>
     </div>
-    <div class="flex flex-col w-1/5">
+    <div class="flex flex-col items-center w-full md:w-1/5">
       <h4 class="text-Black text-2xl font-bold leading-14 mb-8 capitalize">news</h4>
       <ul class="capitalize opacity-70">
         <NuxtLink to="/features"><li class="mb-2">features</li></NuxtLink>
@@ -25,7 +25,7 @@
         <NuxtLink to="/help"><li>help</li></NuxtLink>
       </ul>
     </div>
-    <div class="flex flex-col w-1/5">
+    <div class="flex flex-col items-center w-full md:w-1/5">
       <h4 class="text-Black text-2xl font-bold leading-14 mb-8 capitalize">socials</h4>
       <ul class="flex">
         <a href="#">
@@ -45,6 +45,8 @@
         </a>
       </ul>
     </div>
-    <div><img src="/images/product12.png" alt="Product 12" /></div>
+    <div class="flex flex-col items-center">
+      <img src="/images/product12.png" alt="Product 12" />
+    </div>
   </footer>
 </template>
