@@ -181,6 +181,6 @@
   </section>
 </template>
 <script setup>
-const products = useProducts();
-const topThreeProducts = products.value.filter((product, idx) => idx <= 2 && product);
+const { data } = await useLazyFetch('http://localhost:3000/api/fruits');
+const topThreeProducts = data.value.fruits.filter((product, idx) => idx <= 2 && product);
 </script>

@@ -22,10 +22,11 @@
 </template>
 
 <script setup>
-const products = useProducts();
+const { data } = await useFetch('http://localhost:3000/api/fruits');
+const products = data.value.fruits;
 const route = useRoute();
 
-const product = products.value.find((product) => {
+const product = products.find((product) => {
   if (product.id === route.params.id) {
     return product;
   }

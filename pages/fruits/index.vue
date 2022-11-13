@@ -27,5 +27,6 @@
   </div>
 </template>
 <script setup>
-const products = useProducts();
+const { data } = await useFetch('http://localhost:3000/api/fruits');
+const products = data.value.fruits;
 </script>
