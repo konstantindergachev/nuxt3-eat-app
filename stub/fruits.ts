@@ -1,4 +1,4 @@
-const fruits = [
+export const fruits = [
   {
     id: '1',
     name: 'apple',
@@ -106,7 +106,3 @@ const fruits = [
     popular: 1,
   },
 ];
-
-export default defineEventHandler((event) => {
-  return { fruits };
-});

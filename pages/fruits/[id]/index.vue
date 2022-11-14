@@ -7,9 +7,13 @@
     <h1 class="text-center mt-20 uppercase">Fruit</h1>
     <div class="flex justify-center w-full mt-20">
       <div class="shadow-lg border rounded-lg text-center p-10">
-        <div><img :src="product.img" :alt="product.name" /></div>
+        <div class="flex justify-center"><img :src="product.img" :alt="product.name" /></div>
 
         <h1 class="text-3xl capitalize mb-4">{{ product.name }}</h1>
+        <p class="opacity-70 mb-10">{{ product.description }}</p>
+        <p class="mb-10">
+          Price: <span class="opacity-70">$ {{ product.price }}</span>
+        </p>
         <button
           class="bg-Green text-White hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large px-3 py-1 justify-self-center h-10"
           @click="addToCart"
@@ -22,15 +26,14 @@
 </template>
 
 <script setup>
-const { data } = await useFetch('http://localhost:3000/api/fruits');
-const products = data.value.fruits;
 const route = useRoute();
 
-const product = products.find((product) => {
-  if (product.id === route.params.id) {
-    return product;
-  }
-});
+const { data, refresh } = await useFetch(() => `/api/fruit?fruitId=${route.params.id}`);
+
+if (route.params.id !== data.value.fruit.id) {
+  refresh();
+}
+const product = computed(() => data.value.fruit);
 
 const cart = useCart();
 const addToCart = () => {
