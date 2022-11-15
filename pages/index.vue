@@ -127,15 +127,6 @@
       </ul>
     </div>
   </section>
-  <section class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10">
-    <div v-for="prod in products" :key="prod.id">
-      <div class="grid grid-cols-1">
-        <div class="flex justify-center items-center">
-          <img :src="prod.img" :alt="prod.name" class="h-80" />
-        </div>
-      </div>
-    </div>
-  </section>
   <section class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-14 md:mt-20">
     <div
       v-for="prod in topThreeProducts"
@@ -180,7 +171,9 @@
     </div>
   </section>
 </template>
-<script setup>
-const { data } = await useLazyFetch('http://localhost:3000/api/fruits');
-const topThreeProducts = data.value.fruits.filter((product, idx) => idx <= 2 && product);
+<script setup lang="ts">
+import { IFruits } from '../interfaces/fruits';
+
+const { data } = await useLazyFetch<IFruits>('http://localhost:3000/api/fruits');
+const topThreeProducts = data.value?.fruits.filter((product, idx) => idx <= 2 && product);
 </script>
