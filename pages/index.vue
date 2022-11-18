@@ -13,16 +13,14 @@
         and contain vitamins and minerals that can help to keep you healthy.
       </p>
       <div class="space-x-10">
-        <button
-          class="bg-Green text-White hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large capitalize px-3 py-1"
+        <UIButton
+          className="bg-Green text-White hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large capitalize px-3 py-1"
+          >{{ 'add to cart' }}</UIButton
         >
-          add to cart
-        </button>
-        <button
-          class="bg-White text-Green hover:bg-Green hover:text-White border-solid border-2 border-Green rounded-tr-large rounded-bl-large capitalize px-3 py-1"
+        <UIButton
+          className="bg-White text-Green hover:bg-Green hover:text-White border-solid border-2 border-Green rounded-tr-large rounded-bl-large capitalize px-3 py-1"
+          >{{ 'learn more' }}</UIButton
         >
-          learn more
-        </button>
       </div>
     </div>
     <div class="w-full lg:w-6/12">
@@ -141,11 +139,10 @@
       <p class="opacity-70 mb-10">
         {{ prod.description }}
       </p>
-      <button
-        class="bg-Green text-White hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large px-3 py-1 justify-self-center h-10"
+      <UIButton
+        className="bg-Green text-White capitalize hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large px-3 py-1 justify-self-center h-10"
+        >{{ 'buy now' }}</UIButton
       >
-        Buy Now
-      </button>
     </div>
   </section>
   <section
@@ -162,11 +159,10 @@
       </p>
       <div class="w-full">
         <input type="text" placeholder="Enter your mail" class="shadow-lg border rounded-lg p-2" />
-        <button
-          class="bg-Green text-White hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-md px-3 py-1 justify-self-center h-10 lg:ml-4"
+        <UIButton
+          className="bg-Green text-White capitalize hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-md px-3 py-1 justify-self-center h-10 lg:ml-4"
+          >{{ 'send' }}</UIButton
         >
-          Send
-        </button>
       </div>
     </div>
   </section>

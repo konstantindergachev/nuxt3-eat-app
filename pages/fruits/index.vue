@@ -16,10 +16,10 @@
           </div>
 
           <p class="opacity-70 mb-10">{{ prod.name }}</p>
-          <NuxtLink
-            :to="'/fruits/' + prod.id"
-            class="bg-Green text-White hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large px-3 py-1 justify-self-center h-10"
-            >Details</NuxtLink
+          <UIButton
+            className="bg-Green text-White capitalize hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large px-3 py-1 justify-self-center h-10"
+            :path="`/fruits/${prod.id}`"
+            >{{ 'details' }}</UIButton
           >
         </div>
       </div>
