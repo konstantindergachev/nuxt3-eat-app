@@ -126,11 +126,7 @@
     </div>
   </section>
   <section class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-14 md:mt-20">
-    <div
-      v-for="prod in topThreeProducts"
-      :key="prod.id"
-      class="grid shadow-lg border rounded-lg text-center p-10"
-    >
+    <UICard v-for="prod in topThreeProducts" :key="prod.id">
       <div><img :src="prod.img" :alt="prod.name" /></div>
 
       <h1 class="text-3xl capitalize mb-4">{{ prod.name }}</h1>
@@ -143,7 +139,7 @@
         className="bg-Green text-White capitalize hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large px-3 py-1 justify-self-center h-10"
         >{{ 'buy now' }}</UIButton
       >
-    </div>
+    </UICard>
   </section>
   <section
     class="container flex flex-col md:flex-row justify-around items-center md:space-x-10 mt-14 md:mt-32 mb-12 shadow-lg rounded-lg p-4"
