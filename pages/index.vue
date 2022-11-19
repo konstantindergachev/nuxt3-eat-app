@@ -128,7 +128,7 @@
   <section class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-14 md:mt-20">
     <UICard v-for="prod in topThreeProducts" :key="prod.id">
       <UIImage :imgSrc="prod.img" :imgName="prod.name" />
-      <h1 class="text-3xl capitalize mb-4">{{ prod.name }}</h1>
+      <UITitle>{{ prod.name }}</UITitle>
       <span class="block text-Yellow text-3xl mb-4">&#9733; &#9733; &#9733; &#9733; &#9733;</span>
       <h3 class="text-Green text-3xl font-bold mb-10">${{ prod.price }} kg</h3>
       <p class="opacity-70 mb-10">
