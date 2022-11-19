@@ -130,7 +130,8 @@
       <UIImage :imgSrc="prod.img" :imgName="prod.name" />
       <UITitle>{{ prod.name }}</UITitle>
       <UIStar> &#9733; &#9733; &#9733; &#9733; &#9733; </UIStar>
-      <h3 class="text-Green text-3xl font-bold mb-10">${{ prod.price }} kg</h3>
+      <UISubtitle> ${{ prod.price }} kg </UISubtitle>
+
       <p class="opacity-70 mb-10">
         {{ prod.description }}
       </p>
