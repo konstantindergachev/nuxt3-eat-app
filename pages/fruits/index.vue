@@ -5,24 +5,17 @@
     </Head>
     <h1 class="text-center mt-20 uppercase">Fruits</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-10">
-      <div
-        v-for="prod in products"
-        :key="prod.id"
-        class="shadow-lg border rounded-lg text-center p-10"
-      >
+      <UICard v-for="prod in products" :key="prod.id">
         <div class="grid grid-cols-1">
-          <div>
-            <img :src="prod.img" :alt="prod.name" class="h-80" />
-          </div>
-
-          <p class="opacity-70 mb-10">{{ prod.name }}</p>
+          <UIImage :imgSrc="prod.img" :imgName="prod.name" className="h-80" />
+          <UIText>{{ prod.name }}</UIText>
           <UIButton
             className="bg-Green text-White capitalize hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large px-3 py-1 justify-self-center h-10"
             :path="`/fruits/${prod.id}`"
             >{{ 'details' }}</UIButton
           >
         </div>
-      </div>
+      </UICard>
     </div>
   </div>
 </template>
