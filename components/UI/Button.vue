@@ -4,6 +4,6 @@
     <slot />
   </button>
 </template>
-<script setup>
-const { className, onClick, path } = defineProps(['className', 'onClick', 'path']);
+<script setup lang="ts">
+const { className, path, onClick } = defineProps(['className', 'path', 'onClick']);
 </script>
