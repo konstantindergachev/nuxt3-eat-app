@@ -5,22 +5,19 @@
     </Head>
 
     <h1 class="text-center mt-20 uppercase">Fruit</h1>
-    <div class="flex justify-center w-full mt-20">
-      <div class="shadow-lg border rounded-lg text-center p-10">
-        <div class="flex justify-center"><img :src="product?.img" :alt="product?.name" /></div>
-
-        <h1 class="text-3xl capitalize mb-4">{{ product?.name }}</h1>
-        <p class="opacity-70 mb-10">{{ product?.description }}</p>
-        <p class="mb-10">
-          Price: <span class="opacity-70">$ {{ product?.price }}</span>
-        </p>
-        <UIButton
-          className="bg-Green text-White capitalize hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large px-3 py-1 justify-self-center h-10"
-          :onClick="addToCart"
-          >{{ 'buy now' }}</UIButton
-        >
-      </div>
-    </div>
+    <UICard>
+      <UIImage :imgSrc="product?.img" :imgName="product?.name" className="flex justify-center" />
+      <UITitle>{{ product?.name }}</UITitle>
+      <UIText>{{ product?.description }}</UIText>
+      <p class="mb-10">
+        Price: <span class="opacity-70">$ {{ product?.price }}</span>
+      </p>
+      <UIButton
+        className="bg-Green text-White capitalize hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large px-3 py-1 justify-self-center h-10"
+        :onClick="addToCart"
+        >{{ 'buy now' }}</UIButton
+      >
+    </UICard>
   </div>
 </template>
 

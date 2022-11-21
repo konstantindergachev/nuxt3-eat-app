@@ -1,5 +1,5 @@
 <template>
-  <div><img :src="imgSrc" :alt="imgName" :class="className" /></div>
+  <div :class="className"><img :src="imgSrc" :alt="imgName" /></div>
 </template>
 <script setup>
 const { imgSrc, imgName, className } = defineProps(['imgSrc', 'imgName', 'className']);
