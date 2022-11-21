@@ -5,5 +5,7 @@
   </button>
 </template>
 <script setup lang="ts">
-const { className, path, onClick } = defineProps(['className', 'path', 'onClick']);
+import { IButton } from '../../interfaces/button';
+
+const { className, path, onClick }: IButton = defineProps(['className', 'path', 'onClick']);
 </script>

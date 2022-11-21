@@ -2,5 +2,7 @@
   <div :class="className"><img :src="imgSrc" :alt="imgName" /></div>
 </template>
 <script setup lang="ts">
-const { imgSrc, imgName, className } = defineProps(['imgSrc', 'imgName', 'className']);
+import { IImage } from '../../interfaces/image';
+
+const { imgSrc, imgName, className }: IImage = defineProps(['imgSrc', 'imgName', 'className']);
 </script>
