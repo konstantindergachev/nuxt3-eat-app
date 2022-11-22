@@ -151,18 +151,37 @@
         ‘families’, including:
       </p>
       <div class="w-full">
-        <input type="text" placeholder="Enter your mail" class="shadow-lg border rounded-lg p-2" />
-        <UIButton
-          className="bg-Green text-White capitalize hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-md px-3 py-1 justify-self-center h-10 lg:ml-4"
-          >{{ 'send' }}</UIButton
-        >
+        <form @submit.prevent="handleNewsletter">
+          <input
+            type="email"
+            name="user_email"
+            v-model="form.email"
+            placeholder="Enter your mail"
+            class="shadow-lg border rounded-lg p-2"
+          />
+          <UIButton
+            type="submit"
+            className="bg-Green text-White capitalize hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-md px-3 py-1 justify-self-center h-10 lg:ml-4"
+            >{{ 'send' }}</UIButton
+          >
+        </form>
       </div>
     </div>
   </section>
 </template>
 <script setup lang="ts">
 import { IFruits } from '../interfaces/fruits';
+import { INewsletter } from '../interfaces/nesletter';
 
 const { data } = await useLazyFetch<IFruits>('http://localhost:3000/api/fruits');
 const topThreeProducts = data.value?.fruits.filter((product, idx) => idx <= 2 && product);
+
+const form = reactive<INewsletter>({
+  email: '',
+});
+
+const handleNewsletter = async () => {
+  const { body } = await $fetch('/api/newsletter', { method: 'post', body: { email: form.email } });
+  console.log('body', body); //FIXME:
+};
 </script>
