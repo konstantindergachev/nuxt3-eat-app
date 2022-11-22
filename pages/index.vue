@@ -173,7 +173,7 @@
 import { IFruits } from '../interfaces/fruits';
 import { INewsletter } from '../interfaces/nesletter';
 
-const { data } = await useLazyFetch<IFruits>('http://localhost:3000/api/fruits');
+const { data } = await useLazyFetch<IFruits>('/api/fruits');
 const topThreeProducts = data.value?.fruits.filter((product, idx) => idx <= 2 && product);
 
 const form = reactive<INewsletter>({
@@ -182,6 +182,7 @@ const form = reactive<INewsletter>({
 
 const handleNewsletter = async () => {
   const { body } = await $fetch('/api/newsletter', { method: 'post', body: { email: form.email } });
+  form.email = '';
   console.log('body', body); //FIXME:
 };
 </script>

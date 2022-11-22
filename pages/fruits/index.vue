@@ -22,6 +22,6 @@
 <script setup lang="ts">
 import { IFruits } from '../../interfaces/fruits';
 
-const { data } = await useFetch<IFruits>('http://localhost:3000/api/fruits');
+const { data } = await useFetch<IFruits>('/api/fruits');
 const products = data.value?.fruits;
 </script>
