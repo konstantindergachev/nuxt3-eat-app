@@ -152,12 +152,13 @@
       </p>
       <div class="w-full">
         <form @submit.prevent="handleNewsletter">
-          <input
+          <UIInput
             type="email"
             name="user_email"
-            v-model="form.email"
             placeholder="Enter your mail"
             class="shadow-lg border rounded-lg p-2"
+            @update:modelValue="getEmail"
+            :modelValue="form.email"
           />
           <UIButton
             type="submit"
@@ -180,9 +181,12 @@ const form = reactive<INewsletter>({
   email: '',
 });
 
+const getEmail = (value: string) => {
+  form.email = value;
+};
+
 const handleNewsletter = async () => {
-  const { body } = await $fetch('/api/newsletter', { method: 'post', body: { email: form.email } });
+  await $fetch('/api/newsletter', { method: 'post', body: { email: form.email } });
   form.email = '';
-  console.log('body', body); //FIXME:
 };
 </script>
