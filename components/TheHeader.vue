@@ -5,9 +5,13 @@
     </NuxtLink>
     <Navbar />
     <UIButton
+      v-if="route.path !== '/signup'"
       className="bg-Green text-White hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large px-3 py-1"
       path="/signup"
       >{{ 'sign up' }}</UIButton
     >
   </header>
 </template>
+<script setup>
+const route = useRoute();
+</script>
