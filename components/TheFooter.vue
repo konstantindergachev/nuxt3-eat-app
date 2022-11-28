@@ -1,5 +1,5 @@
 <template>
-  <footer class="container flex flex-col md:flex-row justify-between items-stretch gap-10 h-full">
+  <footer class="container flex flex-col md:flex-row justify-between items-stretch gap-10">
     <div class="flex flex-col items-center w-full md:w-1/2">
       <NuxtLink to="/" class="mb-8">
         <img src="/images/logo.png" alt="logo" />
