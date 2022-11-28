@@ -1,7 +1,7 @@
 <template>
   <div>
     <Head><Title>EatApp - Nuxtjs</Title></Head>
-    <h1 class="text-center my-20 uppercase">Sign up</h1>
+    <h1 class="text-center mt-10 mb-10 uppercase">Sign up</h1>
     <form @submit.prevent="handleSignup" class="grid max-w-xl mx-auto">
       <UIInput
         type="text"
@@ -39,6 +39,10 @@
         type="submit"
         className="bg-Green text-White capitalize hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-md px-3 py-1 justify-self-center h-10 lg:ml-4"
         >{{ 'send' }}</UIButton
+      >
+      <span class="text-center mt-10"
+        >If you have an account, than
+        <NuxtLink to="/signin" class="text-Green capitalize"> sign in </NuxtLink></span
       >
     </form>
   </div>
