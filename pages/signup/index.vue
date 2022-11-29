@@ -48,7 +48,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ISignup } from '../../interfaces/signup';
+import { ISignup } from '@/interfaces/signup';
 
 const form = reactive<ISignup>({
   fullname: '',

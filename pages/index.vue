@@ -171,8 +171,8 @@
   </section>
 </template>
 <script setup lang="ts">
-import { IFruits } from '../interfaces/fruits';
-import { INewsletter } from '../interfaces/nesletter';
+import { IFruits } from '@/interfaces/fruits';
+import { INewsletter } from '@/interfaces/nesletter';
 
 const { data } = await useLazyFetch<IFruits>('/api/fruits');
 const topThreeProducts = data.value?.fruits.filter((product, idx) => idx <= 2 && product);

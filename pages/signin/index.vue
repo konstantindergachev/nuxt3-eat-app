@@ -29,7 +29,7 @@
   </form>
 </template>
 <script setup lang="ts">
-import { ISignin } from '../../interfaces/signin';
+import { ISignin } from '@/interfaces/signin';
 
 const form = reactive<ISignin>({
   email: '',

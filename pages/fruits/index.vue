@@ -20,7 +20,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { IFruits } from '../../interfaces/fruits';
+import { IFruits } from '@/interfaces/fruits';
 
 const { data } = await useFetch<IFruits>('/api/fruits');
 const products = data.value?.fruits;

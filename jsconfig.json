@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/interfaces": ["/interfaces"],
+      "@/constants": ["/constants"],
+      "@/components/*": ["/components/*"],
+      "@/layouts/*": ["/layouts/*"]
+    }
+  }
+}

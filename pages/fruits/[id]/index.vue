@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { IFruit } from '../../../interfaces/fruits';
+import { IFruit } from '@/interfaces/fruits';
 const route = useRoute();
 
 const { data, refresh } = await useFetch<IFruit>(() => `/api/fruit?fruitId=${route.params.id}`);
