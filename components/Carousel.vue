@@ -1,6 +1,6 @@
 <template>
-  <div class="flex justify-center">
-    <div class="relative overflow-hidden carousel-inner">
+  <div class="flex justify-center max-w-screen-xl">
+    <div class="relative overflow-hidden w-full h-[50rem]">
       <CarouselIndicators
         v-if="indicators"
         :total="slidesTotal"
@@ -124,10 +124,6 @@ onBeforeUnmount(() => {
 });
 </script>
 <style scoped>
-.carousel-inner {
-  width: 1392px;
-  height: 708px;
-}
 .slide-in-enter-active,
 .slide-in-leave-active,
 .slide-out-enter-active,
