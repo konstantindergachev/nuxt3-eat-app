@@ -26,7 +26,7 @@
               <UIStar> &#9733; &#9733; &#9733; &#9733; &#9733; </UIStar>
             </div>
             <div class="w-full lg:w-6/12 flex justify-center items-center">
-              <img :src="slide.url" :alt="slide.title" />
+              <img :src="slide.url" :alt="slide.title" class="h-96" />
             </div>
           </section>
         </transition>
