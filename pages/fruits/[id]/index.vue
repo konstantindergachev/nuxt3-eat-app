@@ -10,7 +10,8 @@
       <UITitle>{{ product?.name }}</UITitle>
       <UIText>{{ product?.description }}</UIText>
       <p class="mb-10">
-        Price: <span class="opacity-70">$ {{ product?.price }}</span>
+        Price:
+        <span class="opacity-70">{{ product && moneyFormat('en-US', 'USD', product.price) }}</span>
       </p>
       <UIButton
         className="bg-Green text-White capitalize hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large px-3 py-1 justify-self-center h-10"
@@ -23,6 +24,7 @@
 
 <script setup lang="ts">
 import { IFruit } from '@/interfaces/fruits';
+import { moneyFormat } from '@/utils';
 const route = useRoute();
 
 const { data, refresh } = await useFetch<IFruit>(() => `/api/fruit?fruitId=${route.params.id}`);

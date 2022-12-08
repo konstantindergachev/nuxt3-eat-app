@@ -130,7 +130,7 @@
       <UIImage :imgSrc="prod.img" :imgName="prod.name" />
       <UITitle>{{ prod.name }}</UITitle>
       <UIStar> &#9733; &#9733; &#9733; &#9733; &#9733; </UIStar>
-      <UISubtitle> ${{ prod.price }} kg </UISubtitle>
+      <UISubtitle> {{ moneyFormat('en-US', 'USD', prod.price) }} kg </UISubtitle>
       <UIText>{{ prod.description }}</UIText>
       <UIButton
         className="bg-Green text-White capitalize hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large px-3 py-1 justify-self-center h-10"
@@ -173,6 +173,7 @@
 <script setup lang="ts">
 import { IFruits } from '@/interfaces/fruits';
 import { INewsletter } from '@/interfaces/nesletter';
+import { moneyFormat } from '@/utils';
 
 const { data } = await useLazyFetch<IFruits>('/api/fruits');
 const topThreeProducts = data.value?.fruits.filter((product, idx) => idx <= 2 && product);
