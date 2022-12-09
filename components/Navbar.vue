@@ -7,22 +7,22 @@
       >menu</NuxtLink
     >
     <NuxtLink
-      to="/about"
-      activeClass="border-b-2 border-b-Green"
-      class="border-transparent border-b-2 hover:border-b-Green"
-      >about us</NuxtLink
-    >
-    <NuxtLink
       to="/fruits"
       activeClass="border-b-2 border-b-Green"
       class="border-transparent border-b-2 hover:border-b-Green"
       >fruits</NuxtLink
     >
     <NuxtLink
-      to="/pricing"
+      to="/review"
       activeClass="border-b-2 border-b-Green"
       class="border-transparent border-b-2 hover:border-b-Green"
-      >pricing</NuxtLink
+      >review</NuxtLink
+    >
+    <NuxtLink
+      to="/about"
+      activeClass="border-b-2 border-b-Green"
+      class="border-transparent border-b-2 hover:border-b-Green"
+      >about us</NuxtLink
     >
   </nav>
 </template>

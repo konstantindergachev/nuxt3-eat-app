@@ -1,14 +1,18 @@
 <template>
-  <div class="relative w-full">
-    <Head>
-      <Title>EatApp - About</Title>
-    </Head>
-    <Carousel :slides="slides" :interval="3000" controls indicators />
+  <div>
+    <Head><Title>EatApp - About us</Title></Head>
+    <h1>About page</h1>
   </div>
 </template>
-<script setup lang="ts">
-import { ISlides } from '@/interfaces/about';
-
-const { data } = await useFetch<ISlides>('/api/about');
-const slides = data.value?.slides;
+<script setup>
+const url = 'https://reqres.in/api/users/2';
+onMounted(async () => {
+  const { data, error } = await useFetch(url);
+  if (data.value) {
+    console.log('data', data.value.data); //FIXME: remove me
+  } else {
+    console.log('error', error.value); //FIXME: remove me
+  }
+});
 </script>
+<!-- time: 02:23:20 speed: 1.46 part: 3 Kinds of Middleware -->
