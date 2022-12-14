@@ -1,6 +1,6 @@
-import { fruits } from '../../stub/fruits';
-import { IFruits } from '../../interfaces/fruits';
+import { fruits } from '@/stub/fruits';
+import { IFruit } from '@/interfaces/fruits';
 
-export default defineEventHandler((event): IFruits => {
-  return { fruits };
+export default defineEventHandler((event): IFruit[] => {
+  return fruits;
 });

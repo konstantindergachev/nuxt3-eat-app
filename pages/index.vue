@@ -171,12 +171,12 @@
   </section>
 </template>
 <script setup lang="ts">
-import { IFruits } from '@/interfaces/fruits';
+import { IFruit } from '@/interfaces/fruits';
 import { INewsletter } from '@/interfaces/nesletter';
 import { moneyFormat } from '@/utils';
 
-const { data } = await useLazyFetch<IFruits>('/api/fruits');
-const topThreeProducts = data.value?.fruits.filter((product, idx) => idx <= 2 && product);
+const { data } = await useLazyFetch<IFruit[]>('/api/fruits');
+const topThreeProducts = data.value?.filter((product, idx) => idx <= 2 && product);
 
 const form = reactive<INewsletter>({
   email: '',

@@ -5,10 +5,10 @@
     </Head>
 
     <h1 class="text-center mt-20 uppercase">Fruit</h1>
-    <UICard>
-      <UIImage :imgSrc="product?.img" :imgName="product?.name" className="flex justify-center" />
-      <UITitle>{{ product?.name }}</UITitle>
-      <UIText>{{ product?.description }}</UIText>
+    <UICard v-if="product">
+      <UIImage :imgSrc="product.img" :imgName="product.name" className="flex justify-center" />
+      <UITitle>{{ product.name }}</UITitle>
+      <UIText>{{ product.description }}</UIText>
       <p class="mb-10">
         Price:
         <span class="opacity-70">{{ product && moneyFormat('en-US', 'USD', product.price) }}</span>
@@ -29,10 +29,10 @@ const route = useRoute();
 
 const { data, refresh } = await useFetch<IFruit>(() => `/api/fruit?fruitId=${route.params.id}`);
 
-if (data.value?.fruit && route.params.id !== data.value.fruit.id) {
+if (data.value && route.params.id !== data.value.id) {
   refresh();
 }
-const product = computed(() => data.value?.fruit && data.value.fruit);
+const product = computed(() => data.value && data.value);
 
 const cart = useCart();
 const addToCart = () => {
