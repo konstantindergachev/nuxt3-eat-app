@@ -1,0 +1,32 @@
+<template>
+  <section
+    class="container flex flex-col-reverse justify-center md:flex-row lg:justify-between lg:space-x-10 mt-14 md:mt-32"
+  >
+    <Head>
+      <Title>EatApp - Menu</Title>
+    </Head>
+
+    <div class="w-full lg:w-6/12">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3591.830659433388!2d-80.33514939999999!3d25.8091602!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9b9630abc89e5%3A0x2fb49261ffb15a81!2s8484%20NW%2036th%20St%2C%20Doral%2C%20FL%2033166%2C%20USA!5e0!3m2!1sen!2sua!4v1671108689807!5m2!1sen!2sua"
+        style="border: 0"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        class="w-[42rem] h-[28rem] max-w-full"
+      ></iframe>
+    </div>
+
+    <div class="w-full text-center lg:w-6/12 space-y-8 pt-6 md:pt-24">
+      <h1 class="text-Black text-3xl font-bold leading-14">Location</h1>
+      <ul class="flex flex-col md:flex-row lg:flex-col">
+        <li class="flex items-center mb-10 order-1 space-x-2 md:space-x-4">Doral</li>
+        <li class="flex items-center mb-10 order-1 space-x-2 md:space-x-4">8484 NW 36th St</li>
+        <li class="flex items-center mb-10 order-1 space-x-2 md:space-x-4">(305) 463-7788</li>
+        <li class="flex items-center mb-10 order-1 space-x-2 md:space-x-4">
+          <span>SUNDAY - THURSDAY 11AM - 10PM</span>
+          <span>FRIDAY - SATURDAY 11AM - 11PM</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+</template>
