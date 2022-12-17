@@ -3,7 +3,7 @@
     class="container flex flex-col-reverse justify-center md:flex-row lg:justify-between lg:space-x-10 mt-14 md:mt-32"
   >
     <Head>
-      <Title>EatApp - Menu</Title>
+      <Title>EatApp - Location</Title>
     </Head>
 
     <div class="w-full lg:w-6/12">
@@ -18,15 +18,23 @@
 
     <div class="w-full text-center lg:w-6/12 space-y-8 pt-6 md:pt-24">
       <h1 class="text-Black text-3xl font-bold leading-14">Location</h1>
-      <ul class="flex flex-col md:flex-row lg:flex-col">
-        <li class="flex items-center mb-10 order-1 space-x-2 md:space-x-4">Doral</li>
-        <li class="flex items-center mb-10 order-1 space-x-2 md:space-x-4">8484 NW 36th St</li>
-        <li class="flex items-center mb-10 order-1 space-x-2 md:space-x-4">(305) 463-7788</li>
+      <ul v-if="location" class="flex flex-col md:flex-row lg:flex-col">
+        <li class="flex items-center mb-10 order-1 space-x-2 md:space-x-4">{{ location.city }}</li>
         <li class="flex items-center mb-10 order-1 space-x-2 md:space-x-4">
-          <span>SUNDAY - THURSDAY 11AM - 10PM</span>
-          <span>FRIDAY - SATURDAY 11AM - 11PM</span>
+          {{ location.address }}
+        </li>
+        <li class="flex items-center mb-10 order-1 space-x-2 md:space-x-4">{{ location.phone }}</li>
+        <li class="flex items-center mb-10 order-1 space-x-2 md:space-x-4">
+          <span class="uppercase">{{ location.hours.weekend }}</span>
+          <span class="uppercase">{{ location.hours.casual }}</span>
         </li>
       </ul>
     </div>
   </section>
 </template>
+<script setup lang="ts">
+import { ILocation } from '@/interfaces/location';
+
+const { data } = await useFetch<ILocation>('/api/location');
+const location = data.value;
+</script>
