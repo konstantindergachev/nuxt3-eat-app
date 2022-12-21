@@ -3,6 +3,7 @@
     :title="banner?.title"
     :subtitle="banner?.subtitle"
     :description="banner?.description"
+    :img="banner?.img"
   />
   <Recommendation />
   <Delivery />
