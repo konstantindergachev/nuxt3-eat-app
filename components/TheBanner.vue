@@ -3,14 +3,12 @@
     class="container flex flex-col-reverse justify-center md:flex-row lg:justify-between lg:space-x-10 mt-14 md:mt-32"
   >
     <div class="w-full text-center lg:w-6/12 space-y-8 pt-14 md:pt-32">
-      <h4 class="uppercase text-xs">fresh fruit for you</h4>
+      <h4 class="uppercase text-xs">{{ title }}</h4>
       <h1 class="uppercase text-Green text-6xl font-bold leading-14">
-        Eat as<br />
-        you want
+        {{ subtitle }}
       </h1>
       <p class="text-Black opacity-70">
-        Fruit and vegetables should be an important part of your daily diet. They are naturally good
-        and contain vitamins and minerals that can help to keep you healthy.
+        {{ description }}
       </p>
       <div class="space-x-10">
         <UIButton
@@ -28,3 +26,7 @@
     </div>
   </section>
 </template>
+<script setup lang="ts">
+import { IBanner } from '@/interfaces/thebanner';
+const { title, subtitle, description }: IBanner = defineProps(['title', 'subtitle', 'description']);
+</script>
