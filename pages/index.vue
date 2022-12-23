@@ -12,7 +12,11 @@
     :img="recommendation?.img"
     :characteristic="recommendation?.characteristic"
   />
-  <Delivery />
+  <Delivery
+    :title="delivery?.title"
+    :description="delivery?.description"
+    :rules="delivery?.rules"
+  />
   <TheTop :topThreeProducts="topThreeProducts" />
   <Newsletter />
 </template>
@@ -20,9 +24,11 @@
 import { IBanner } from '@/interfaces/thebanner';
 import { IFruit } from '@/interfaces/fruits';
 import { IRecommendation } from '@/interfaces/recommendation';
+import { IDelivery } from '@/interfaces/delivery';
 
 const { data: banner } = await useLazyFetch<IBanner>('/api/banner');
 const { data: recommendation } = await useLazyFetch<IRecommendation>('/api/recommendation');
+const { data: delivery } = await useLazyFetch<IDelivery>('/api/delivery');
 
 const { data } = await useLazyFetch<IFruit[]>('/api/fruits');
 const topThreeProducts = data.value?.filter((product, idx) => idx <= 2 && product);
