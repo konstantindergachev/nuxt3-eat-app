@@ -4,12 +4,11 @@
   >
     <img src="/images/product10.png" alt="Product 10" />
     <div class="space-y-8 pb-10">
-      <h1 class="text-Black text-3xl font-bold leading-14 text-center md:text-left">
-        Subscribe Newsletter
+      <h1 class="text-Black text-3xl font-bold leading-14 text-center md:text-left capitalize">
+        {{ title }}
       </h1>
       <p class="max-w-xl text-Black opacity-70 text-center md:text-left">
-        Vegetables are available in many varieties and can be classified into biological groups or
-        ‘families’, including:
+        {{ description }}
       </p>
       <div class="w-full">
         <form @submit.prevent="handleNewsletter">
@@ -32,9 +31,10 @@
   </section>
 </template>
 <script setup lang="ts">
-import { INewsletter } from '@/interfaces/nesletter';
+import { INewsletter, INewsletterForm } from '@/interfaces/newsletter';
 
-const form = reactive<INewsletter>({
+const { title, description }: INewsletter = defineProps(['title', 'description']);
+const form = reactive<INewsletterForm>({
   email: '',
 });
 
