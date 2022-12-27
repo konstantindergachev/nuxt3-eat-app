@@ -34,5 +34,10 @@ const navigation: INavigation[] = [
     path: '/location',
     title: 'location',
   },
+  {
+    id: '5',
+    path: '/basket',
+    title: 'basket',
+  },
 ];
 </script>
