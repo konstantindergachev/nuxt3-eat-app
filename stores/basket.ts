@@ -6,6 +6,11 @@ export const useStoreBasket = defineStore('basket', {
   state: () => {
     return { basket };
   },
+  getters: {
+    getBasket(state) {
+      return state.basket;
+    },
+  },
   actions: {
     addToBasket(product: IFruit) {
       this.basket.push(product);
