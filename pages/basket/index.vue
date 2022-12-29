@@ -36,9 +36,11 @@
 <script setup lang="ts">
 import { useStoreBasket } from '@/stores/basket';
 import { moneyFormat } from '@/utils';
-
 const storeBasket = useStoreBasket();
-const basket = storeBasket.getBasket;
+
+const basket = computed(() => {
+  return storeBasket.getBasket;
+});
 
 const remove = (productId: string) => {
   storeBasket.deleteFromBasket(productId);
