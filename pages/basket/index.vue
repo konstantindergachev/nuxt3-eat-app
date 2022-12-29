@@ -22,12 +22,13 @@
             onClick="increase"
             >{{ '+' }}</UIButton
           >
+          <UIButton
+            type="button"
+            className=" bg-red-500 text-White capitalize hover:bg-White hover:text-red-500 border-solid border-2 border-red-500 rounded-md px-3 lg:ml-4 cursor-pointer"
+            :onClick="() => remove(product.id)"
+            >{{ '&#10005;' }}</UIButton
+          >
         </div>
-        <UIButton
-          className=" bg-red-500 text-White capitalize hover:bg-White hover:text-red-500 border-solid border-2 border-red-500 rounded-md px-3 lg:ml-4 cursor-pointer"
-          onClick="delete"
-          >{{ '&#10005;' }}</UIButton
-        >
       </div>
     </section>
   </div>
@@ -38,4 +39,8 @@ import { moneyFormat } from '@/utils';
 
 const storeBasket = useStoreBasket();
 const basket = storeBasket.getBasket;
+
+const remove = (productId: string) => {
+  storeBasket.deleteFromBasket(productId);
+};
 </script>

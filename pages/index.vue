@@ -1,24 +1,26 @@
 <template>
-  <TheBanner
-    :title="banner?.title"
-    :subtitle="banner?.subtitle"
-    :description="banner?.description"
-    :img="banner?.img"
-  />
-  <Recommendation
-    :title="recommendation?.title"
-    :titleImg="recommendation?.titleImg"
-    :description="recommendation?.description"
-    :img="recommendation?.img"
-    :characteristic="recommendation?.characteristic"
-  />
-  <Delivery
-    :title="delivery?.title"
-    :description="delivery?.description"
-    :rules="delivery?.rules"
-  />
-  <TheTop :topThreeProducts="topThreeProducts" />
-  <Newsletter :title="newsletter?.title" :description="newsletter?.description" />
+  <div>
+    <TheBanner
+      :title="banner?.title"
+      :subtitle="banner?.subtitle"
+      :description="banner?.description"
+      :img="banner?.img"
+    />
+    <Recommendation
+      :title="recommendation?.title"
+      :titleImg="recommendation?.titleImg"
+      :description="recommendation?.description"
+      :img="recommendation?.img"
+      :characteristic="recommendation?.characteristic"
+    />
+    <Delivery
+      :title="delivery?.title"
+      :description="delivery?.description"
+      :rules="delivery?.rules"
+    />
+    <TheTop :topThreeProducts="topThreeProducts" />
+    <Newsletter :title="newsletter?.title" :description="newsletter?.description" />
+  </div>
 </template>
 <script setup lang="ts">
 import { IBanner } from '@/interfaces/thebanner';

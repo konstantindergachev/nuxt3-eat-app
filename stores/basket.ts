@@ -15,5 +15,8 @@ export const useStoreBasket = defineStore('basket', {
     addToBasket(product: IFruit) {
       this.basket.push(product);
     },
+    deleteFromBasket(productId: string) {
+      this.basket = this.basket.filter((product) => product.id !== productId);
+    },
   },
 });
