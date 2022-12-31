@@ -24,5 +24,13 @@ export const useStoreBasket = defineStore('basket', {
     deleteFromBasket(productId: string) {
       this.basket = this.basket.filter((product) => product.id !== productId);
     },
+    addFruitCount(productId: string) {
+      this.basket = this.basket.filter((product) => {
+        if (product.id == productId) {
+          product.count += 1;
+        }
+        return product;
+      });
+    },
   },
 });

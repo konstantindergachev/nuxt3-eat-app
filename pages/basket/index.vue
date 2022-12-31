@@ -18,8 +18,9 @@
           >
           <p class="mx-2">{{ moneyFormat('en-US', 'USD', product.price!) }}</p>
           <UIButton
+            type="button"
             class="uppercase text-Green text-2xl font-bold leading-6 shadow-md rounded-full w-6 text-center cursor-pointer"
-            onClick="increase"
+            :onClick="() => increase(product.id!)"
             >{{ '+' }}</UIButton
           >
           <UIButton
@@ -44,5 +45,9 @@ const basket = computed(() => {
 
 const remove = (productId: string) => {
   storeBasket.deleteFromBasket(productId);
+};
+
+const increase = (productId: string) => {
+  storeBasket.addFruitCount(productId);
 };
 </script>
