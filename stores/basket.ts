@@ -32,5 +32,13 @@ export const useStoreBasket = defineStore('basket', {
         return product;
       });
     },
+    removeFruitCount(productId: string) {
+      this.basket = this.basket.filter((product) => {
+        if (product.id == productId) {
+          product.count -= 1;
+        }
+        return product;
+      });
+    },
   },
 });

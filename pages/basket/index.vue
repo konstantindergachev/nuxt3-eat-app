@@ -12,8 +12,9 @@
         <h3>{{ product.count }}</h3>
         <div class="flex">
           <UIButton
+            type="button"
             class="uppercase text-Green text-3xl font-bold leading-6 shadow-md rounded-full w-6 text-center cursor-pointer"
-            onClick="decrease"
+            :onClick="() => decrease(product.id!)"
             >{{ '-' }}</UIButton
           >
           <p class="mx-2">{{ moneyFormat('en-US', 'USD', product.price!) }}</p>
@@ -49,5 +50,9 @@ const remove = (productId: string) => {
 
 const increase = (productId: string) => {
   storeBasket.addFruitCount(productId);
+};
+
+const decrease = (productId: string) => {
+  storeBasket.removeFruitCount(productId);
 };
 </script>
