@@ -11,7 +11,7 @@
       <UIText>{{ data.description }}</UIText>
       <p class="mb-10">
         Price:
-        <span class="opacity-70">{{ data && moneyFormat('en-US', 'USD', data.price) }}</span>
+        <span class="opacity-70">{{ moneyFormat('en-US', 'USD', data.price!) }}</span>
       </p>
       <UIButton
         type="button"
@@ -37,6 +37,7 @@ if (data.value && route.params.id !== data.value.id) {
 }
 const storeBasket = useStoreBasket();
 const addToBasket = () => {
-  if (data.value) storeBasket.addToBasket(data.value);
+  const productToBasket = { ...data.value, count: 1 };
+  if (data.value) storeBasket.addToBasket(productToBasket);
 };
 </script>

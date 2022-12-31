@@ -9,14 +9,14 @@
       >
         <UIImage :imgSrc="product.img" imgName="product.name" className="flex justify-center" />
         <h2>{{ product.name }}</h2>
-        <h3>{{ '1' }}</h3>
+        <h3>{{ product.count }}</h3>
         <div class="flex">
           <UIButton
             class="uppercase text-Green text-3xl font-bold leading-6 shadow-md rounded-full w-6 text-center cursor-pointer"
             onClick="decrease"
             >{{ '-' }}</UIButton
           >
-          <p class="mx-2">{{ moneyFormat('en-US', 'USD', product.price) }}</p>
+          <p class="mx-2">{{ moneyFormat('en-US', 'USD', product.price!) }}</p>
           <UIButton
             class="uppercase text-Green text-2xl font-bold leading-6 shadow-md rounded-full w-6 text-center cursor-pointer"
             onClick="increase"
@@ -25,7 +25,7 @@
           <UIButton
             type="button"
             className=" bg-red-500 text-White capitalize hover:bg-White hover:text-red-500 border-solid border-2 border-red-500 rounded-md px-3 lg:ml-4 cursor-pointer"
-            :onClick="() => remove(product.id)"
+            :onClick="() => remove(product.id!)"
             >{{ '&#10005;' }}</UIButton
           >
         </div>
@@ -39,7 +39,7 @@ import { moneyFormat } from '@/utils';
 const storeBasket = useStoreBasket();
 
 const basket = computed(() => {
-  return storeBasket.getBasket;
+  return storeBasket.getBasketFruits;
 });
 
 const remove = (productId: string) => {

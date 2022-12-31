@@ -24,6 +24,6 @@ const route = useRoute();
 
 const storeBasket = useStoreBasket();
 const fruitsCount = computed(() => {
-  return storeBasket.getBasket.length;
+  return storeBasket.getBasketFruitsCount;
 });
 </script>
