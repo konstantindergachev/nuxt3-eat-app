@@ -40,6 +40,10 @@
           >
         </div>
       </div>
+      <div class="w-28 self-end shadow-lg border rounded-lg text-center py-2">
+        Total:
+        <p class="pl-2 text-2xl text-Green">{{ moneyFormat('en-US', 'USD', totalPrice) }}</p>
+      </div>
     </section>
   </div>
 </template>
@@ -50,6 +54,9 @@ const storeBasket = useStoreBasket();
 
 const basket = computed(() => {
   return storeBasket.getBasketFruits;
+});
+const totalPrice = computed(() => {
+  return storeBasket.getBasketFruitsTotalPrice;
 });
 
 const remove = (productId: string) => {

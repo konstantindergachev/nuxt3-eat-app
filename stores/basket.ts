@@ -16,6 +16,12 @@ export const useStoreBasket = defineStore('basket', {
     getBasketFruits(state) {
       return state.basket;
     },
+    getBasketFruitsTotalPrice(state) {
+      const totalFruitsPrice = state.basket.reduce((acc, cur) => {
+        return acc + cur.count * cur.price!;
+      }, 0);
+      return totalFruitsPrice;
+    },
   },
   actions: {
     addToBasket(product: IBasket) {
