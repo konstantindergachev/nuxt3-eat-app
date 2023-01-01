@@ -5,7 +5,7 @@
       <div
         v-for="product in basket"
         :key="product.id"
-        class="w-full flex justify-around items-center shadow-lg border rounded-lg text-center p-10"
+        class="w-full flex justify-around items-center shadow-lg border rounded-lg text-center p-2"
       >
         <UIImage :imgSrc="product.img" imgName="product.name" className="flex justify-center" />
         <h2>{{ product.name }}</h2>
@@ -17,7 +17,15 @@
             :onClick="() => decrease(product.id!)"
             >{{ '-' }}</UIButton
           >
-          <p class="mx-2">{{ moneyFormat('en-US', 'USD', product.price!) }}</p>
+          <div class="flex relative">
+            <p class="mx-2">{{ moneyFormat('en-US', 'USD', product.price!) }}</p>
+            <span
+              v-if="product.count > 1"
+              class="absolute left-12 -top-14 shadow-lg border rounded-lg text-center p-2 text-xs"
+              >{{ moneyFormat('en-US', 'USD', product.price! * product.count) }} for
+              {{ product.count }}</span
+            >
+          </div>
           <UIButton
             type="button"
             class="uppercase text-Green text-2xl font-bold leading-6 shadow-md rounded-full w-6 text-center cursor-pointer"
