@@ -4,18 +4,11 @@ export default defineNuxtConfig({
     strict: true,
   },
   css: ['@/assets/css/main.css'],
-  meta: {
-    title: 'EatApp',
-  },
-  build: {
-    postcss: {
-      postcssOptions: {
-        plugins: {
-          tailwindcss: {},
-          autoprefixer: {},
-        },
-      },
+  app: {
+    head: {
+      title: 'EatApp',
+      meta: [{ name: 'description', content: 'Everything about EatApp' }],
     },
   },
-  modules: ['@pinia/nuxt'],
+  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt'],
 });
