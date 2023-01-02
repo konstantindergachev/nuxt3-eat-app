@@ -14,7 +14,7 @@
           <UIButton
             type="button"
             class="uppercase text-Green text-3xl font-bold leading-6 shadow-md rounded-full w-6 text-center cursor-pointer"
-            :onClick="() => decrease(product.id!)"
+            :onClick="() => decrease(product.id!, product.count)"
             >{{ '-' }}</UIButton
           >
           <div class="flex relative">
@@ -67,7 +67,10 @@ const increase = (productId: string) => {
   storeBasket.addFruitCount(productId);
 };
 
-const decrease = (productId: string) => {
+const decrease = (productId: string, productCount: number) => {
+  if (productCount === 1) {
+    return remove(productId);
+  }
   storeBasket.removeFruitCount(productId);
 };
 </script>
