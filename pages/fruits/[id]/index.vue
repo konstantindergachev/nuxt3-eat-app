@@ -30,11 +30,8 @@ import { useStoreBasket } from '@/stores/basket';
 
 const route = useRoute();
 
-const { data, refresh } = await useFetch<IFruit>(() => `/api/fruit?fruitId=${route.params.id}`);
+const { data } = await useFetch<IFruit>(() => `/api/fruit?fruitId=${route.params.id}`);
 
-if (data.value && route.params.id !== data.value.id) {
-  refresh();
-}
 const storeBasket = useStoreBasket();
 const addToBasket = () => {
   const productToBasket = { ...data.value, count: 1 };
