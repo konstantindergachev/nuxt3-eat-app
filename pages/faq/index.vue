@@ -9,23 +9,11 @@
       </h1>
 
       <div class="w-full">
-        <ul class="flex flex-col">
+        <ul v-for="item in data" :key="item.id" class="flex flex-col">
           <li class="flex justify-between items-center mb-10 space-x-24 md:space-x-4">
             <div class="text-Black opacity-70">
-              <h3 class="uppercase text-2xl leading-14">{{ 'question #1' }}</h3>
-              <p>{{ 'answer #1' }}</p>
-            </div>
-          </li>
-          <li class="flex justify-between items-center mb-10 space-x-24 md:space-x-4">
-            <div class="text-Black opacity-70">
-              <h3 class="uppercase text-2xl leading-14">{{ 'question #2' }}</h3>
-              <p>{{ 'answer #2' }}</p>
-            </div>
-          </li>
-          <li class="flex justify-between items-center mb-10 space-x-24 md:space-x-4">
-            <div class="text-Black opacity-70">
-              <h3 class="uppercase text-2xl leading-14">{{ 'question #3' }}</h3>
-              <p>{{ 'answer #3' }}</p>
+              <h3 class="uppercase text-2xl leading-14">{{ item.question }}</h3>
+              <p>{{ item.answer }}</p>
             </div>
           </li>
         </ul>
@@ -33,3 +21,8 @@
     </section>
   </div>
 </template>
+<script setup lang="ts">
+import { IFAQ } from '@/interfaces/faq';
+
+const { data } = await useFetch<IFAQ[]>('/api/faq');
+</script>
