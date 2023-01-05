@@ -14,7 +14,12 @@
             <div class="text-Black opacity-70">
               <div class="flex items-center">
                 <h3 class="uppercase text-2xl leading-14">{{ item.question }}</h3>
-                <span class="ml-5 cursor-pointer" v-if="openedAnswers.includes(item.id)">-</span>
+                <span
+                  class="ml-5 cursor-pointer text-2xl"
+                  @click="() => closeAnswer(item.id)"
+                  v-if="openedAnswers.includes(item.id)"
+                  >-</span
+                >
                 <span class="ml-5 cursor-pointer" @click="() => openAnswer(item.id)" v-else>+</span>
               </div>
               <p
@@ -42,5 +47,10 @@ const openAnswer = (itemId: string): void => {
       return openedAnswers.push(question.id);
     }
   });
+};
+const closeAnswer = (itemId: string): string[] => {
+  const index = openedAnswers.indexOf(itemId);
+  openedAnswers.splice(index, 1);
+  return openedAnswers;
 };
 </script>
