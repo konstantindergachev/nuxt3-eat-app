@@ -14,7 +14,7 @@
       <ul class="capitalize opacity-70">
         <NuxtLink to="/about"><li class="mb-2">about us</li></NuxtLink>
         <NuxtLink to="/faq"><li class="mb-2">FAQ</li></NuxtLink>
-        <NuxtLink to="/contact"><li>contact us</li></NuxtLink>
+        <NuxtLink to="/location"><li>contact us</li></NuxtLink>
       </ul>
     </div>
     <div class="flex flex-col items-center w-full md:w-1/5">

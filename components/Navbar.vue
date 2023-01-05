@@ -27,7 +27,7 @@ const navigation: INavigation[] = [
   {
     id: '3',
     path: '/about',
-    title: 'about',
+    title: 'about us',
   },
   {
     id: '4',
