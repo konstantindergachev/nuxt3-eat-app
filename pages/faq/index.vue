@@ -13,7 +13,7 @@
           <li class="flex justify-between items-center mb-10 space-x-24 md:space-x-4">
             <div class="text-Black opacity-70">
               <div class="flex items-center">
-                <h3 class="uppercase text-2xl leading-14">{{ item.question }}</h3>
+                <h3 class="uppercase text-2xl leading-14 my-4">{{ item.question }}</h3>
                 <span
                   class="ml-5 cursor-pointer text-2xl"
                   @click="() => closeAnswer(item.id)"
@@ -22,12 +22,14 @@
                 >
                 <span class="ml-5 cursor-pointer" @click="() => openAnswer(item.id)" v-else>+</span>
               </div>
-              <p
-                :class="openedAnswers.includes(item.id) ? 'block' : 'hidden'"
+              <ul
+                :class="openedAnswers.includes(item.id) ? 'block indent-10 text-justify' : 'hidden'"
                 v-if="openedAnswers.includes(item.id)"
+                v-for="(answer, index) in item.answers"
+                :key="index"
               >
-                {{ item.answer }}
-              </p>
+                <li>{{ answer }}</li>
+              </ul>
             </div>
           </li>
         </ul>
