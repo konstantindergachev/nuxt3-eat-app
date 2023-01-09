@@ -21,7 +21,7 @@
       <h4 class="text-Black text-2xl font-bold leading-14 mb-8 capitalize">news</h4>
       <ul class="capitalize opacity-70">
         <NuxtLink to="/features"><li class="mb-2">features</li></NuxtLink>
-        <NuxtLink to="/testimonial"><li class="mb-2">testimonial</li></NuxtLink>
+        <NuxtLink to="/terms"><li class="mb-2">terms of servive</li></NuxtLink>
         <NuxtLink to="/privacy"><li>privacy</li></NuxtLink>
       </ul>
     </div>
