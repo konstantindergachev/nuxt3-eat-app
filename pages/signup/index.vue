@@ -49,6 +49,7 @@
 </template>
 <script setup lang="ts">
 import { ISignup } from '@/interfaces/signup';
+import { useStoreAuth } from '@/stores/auth';
 
 const form = reactive<ISignup>({
   fullname: '',
@@ -70,11 +71,18 @@ const getPasswordConfirm = (value: string) => {
   form.passwordConfirm = value;
 };
 
+const storeAuth = useStoreAuth();
+const router = useRouter();
+
 const handleSignup = async () => {
   await $fetch('/api/auth/signup', {
     method: 'post',
     body: form,
   });
+
+  storeAuth.authenticate();
+  router.push('/fruits');
+
   form.fullname = '';
   form.email = '';
   form.password = '';
