@@ -12,7 +12,7 @@
         <span class="absolute top-[1.20rem] left-[19px] text-red-500">{{ fruitsCount }}</span>
       </div>
       <UIButton
-        v-if="route.path !== '/signup' && !storeAuth.getAuthentication"
+        v-if="!storeAuth.getAuthentication && route.path !== '/signup' && route.path !== '/signin'"
         className="bg-Green text-White hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large px-3 py-1"
         path="/signup"
         >{{ 'sign up' }}</UIButton
