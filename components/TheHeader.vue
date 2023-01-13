@@ -1,15 +1,15 @@
 <template>
-  <header class="flex flex-col md:flex-row items-center justify-between space-y-4">
+  <header class="flex flex-col md:flex-row items-center justify-between">
     <NuxtLink to="/">
       <img src="/images/logo.png" alt="logo" />
     </NuxtLink>
     <Navbar />
-    <div class="flex items-center relative">
+    <div class="relative">
       <div v-if="storeAuth.getAuthentication">
         <NuxtLink to="/basket" class="z-10"
-          ><img src="/images/carrybag.svg" alt="Carry bag" class="w-12"
-        /></NuxtLink>
-        <span class="absolute top-[1.20rem] left-[19px] text-red-500">{{ fruitsCount }}</span>
+          ><img src="/images/carrybag.svg" alt="Carry bag" class="w-12" />
+          <span class="absolute top-[1.20rem] left-[19px] text-red-500">{{ fruitsCount }}</span>
+        </NuxtLink>
       </div>
       <UIButton
         v-if="!storeAuth.getAuthentication && route.path !== '/signup' && route.path !== '/signin'"
