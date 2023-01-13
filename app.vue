@@ -1,5 +1,5 @@
 <template>
-  <NuxtLayout>
+  <NuxtLayout :name="layout">
     <NuxtPage :key="$route.fullPath" />
     <a href="#" @click="view('home')">Home</a>
     <a href="#" @click="view('counter')">Counter</a>

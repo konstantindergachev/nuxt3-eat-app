@@ -81,7 +81,7 @@ const handleSignup = async () => {
   });
 
   storeAuth.authenticate();
-  router.push('/fruits');
+  router.push('/profile');
 
   form.fullname = '';
   form.email = '';

@@ -54,7 +54,7 @@ const handleSignup = async () => {
   });
 
   storeAuth.authenticate();
-  router.push('/fruits');
+  router.push('/profile');
 
   form.email = '';
   form.password = '';
