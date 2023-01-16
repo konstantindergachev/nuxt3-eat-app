@@ -12,7 +12,7 @@
         <UIInput
           type="text"
           name="fullname"
-          placeholder="Enter your full name"
+          placeholder="Full name"
           class="shadow-lg border rounded-lg p-2 mb-2"
           @update:modelValue="getFullname"
           :modelValue="form.fullname"
@@ -20,15 +20,23 @@
         <UIInput
           type="email"
           name="email"
-          placeholder="Enter your mail"
+          placeholder="Email"
           class="shadow-lg border rounded-lg p-2 mb-2"
           @update:modelValue="getEmail"
           :modelValue="form.email"
         />
         <UIInput
+          type="text"
+          name="location"
+          placeholder="City, Country"
+          class="shadow-lg border rounded-lg p-2 mb-2"
+          @update:modelValue="getLocation"
+          :modelValue="form.location"
+        />
+        <UIInput
           type="password"
           name="password_old"
-          placeholder="Enter your old password"
+          placeholder="Old password"
           class="shadow-lg border rounded-lg p-2 mb-2"
           @update:modelValue="getOldPassword"
           :modelValue="form.oldPassword"
@@ -36,7 +44,7 @@
         <UIInput
           type="password"
           name="password_new"
-          placeholder="Enter your password to confirm"
+          placeholder="New password"
           class="shadow-lg border rounded-lg p-2 mb-2"
           @update:modelValue="getNewPassword"
           :modelValue="form.newPassword"
@@ -44,7 +52,7 @@
         <UIButton
           type="submit"
           className="bg-Green text-White capitalize hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-md px-3 py-1 justify-self-center h-10 lg:ml-4"
-          >{{ 'send' }}</UIButton
+          >{{ 'update profile' }}</UIButton
         >
       </form>
     </div>
@@ -60,6 +68,7 @@ definePageMeta({
 const form = reactive<IUpdateProfile>({
   fullname: '',
   email: '',
+  location: '',
   oldPassword: '',
   newPassword: '',
 });
@@ -69,6 +78,9 @@ const getFullname = (value: string) => {
 };
 const getEmail = (value: string) => {
   form.email = value;
+};
+const getLocation = (value: string) => {
+  form.location = value;
 };
 const getOldPassword = (value: string) => {
   form.oldPassword = value;
@@ -85,6 +97,7 @@ const handleUpdateProfile = async () => {
 
   form.fullname = '';
   form.email = '';
+  form.location = '';
   form.oldPassword = '';
   form.newPassword = '';
 };
