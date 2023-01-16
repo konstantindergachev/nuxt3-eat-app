@@ -1,6 +1,6 @@
 <template>
   <section
-    class="container flex flex-col-reverse justify-center md:flex-row lg:justify-between lg:space-x-10 mt-14 md:mt-32"
+    class="container flex flex-col-reverse justify-center md:flex-row lg:justify-between lg:space-x-10"
   >
     <Head>
       <Title>EatApp - Profile</Title>
@@ -51,16 +51,11 @@
   </section>
 </template>
 <script setup lang="ts">
+import { IUpdateProfile } from '@/interfaces/profile';
+
 definePageMeta({
   layout: 'profile',
 });
-
-interface IUpdateProfile {
-  fullname: string;
-  email: string;
-  oldPassword: string;
-  newPassword: string;
-}
 
 const form = reactive<IUpdateProfile>({
   fullname: '',
@@ -83,6 +78,11 @@ const getNewPassword = (value: string) => {
 };
 
 const handleUpdateProfile = async () => {
+  await $fetch('/api/profile', {
+    method: 'post',
+    body: form,
+  });
+
   form.fullname = '';
   form.email = '';
   form.oldPassword = '';
