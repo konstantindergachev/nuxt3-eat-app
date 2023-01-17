@@ -66,10 +66,13 @@ definePageMeta({
   layout: 'profile',
 });
 
+const storeProfile = useStoreProfile();
+const profile = computed(() => storeProfile.getProfile);
+
 const form = reactive<IUpdateProfile>({
-  fullname: '',
-  email: '',
-  location: '',
+  fullname: profile.value.fullname,
+  email: profile.value.email,
+  location: profile.value.location,
   oldPassword: '',
   newPassword: '',
 });
@@ -90,8 +93,6 @@ const getNewPassword = (value: string) => {
   form.newPassword = value;
 };
 
-const storeProfile = useStoreProfile();
-
 const handleUpdateProfile = async () => {
   await $fetch('/api/profile', {
     method: 'post',
@@ -102,7 +103,6 @@ const handleUpdateProfile = async () => {
   form.newPassword = '';
 
   storeProfile.addToProfile(form);
-  const profile = computed(() => storeProfile.getProfile);
   form.fullname = profile.value.fullname;
   form.email = profile.value.email;
   form.location = profile.value.location;
