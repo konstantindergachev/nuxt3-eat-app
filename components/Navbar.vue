@@ -1,17 +1,18 @@
 <template>
   <nav class="text-Black flex justify-between space-x-10 capitalize">
     <NuxtLink
-      v-for="nav in navigation"
-      :key="nav.id"
-      :to="nav.path"
+      v-for="item in nav"
+      :key="item.id"
+      :to="item.path"
       activeClass="border-b-2 border-b-Green"
       class="border-transparent border-b-2 hover:border-b-Green"
-      >{{ nav.title }}</NuxtLink
+      >{{ item.title }}</NuxtLink
     >
   </nav>
 </template>
 <script setup lang="ts">
 import { INavigation } from '@/interfaces/navigation';
+import { useStoreAuth } from '@/stores/auth';
 
 const navigation: INavigation[] = [
   {
@@ -35,4 +36,9 @@ const navigation: INavigation[] = [
     title: 'location',
   },
 ];
+
+const storeAuth = useStoreAuth();
+const isAuth = storeAuth.getAuthentication;
+
+const nav = !isAuth ? navigation : [...navigation, { id: '5', path: '/profile', title: 'profile' }];
 </script>
