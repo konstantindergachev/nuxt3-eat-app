@@ -60,6 +60,7 @@
 </template>
 <script setup lang="ts">
 import { IUpdateProfile } from '@/interfaces/profile';
+import { useStoreProfile } from '@/stores/profile';
 
 definePageMeta({
   layout: 'profile',
@@ -89,11 +90,15 @@ const getNewPassword = (value: string) => {
   form.newPassword = value;
 };
 
+const storeProfile = useStoreProfile();
+
 const handleUpdateProfile = async () => {
   await $fetch('/api/profile', {
     method: 'post',
     body: form,
   });
+
+  storeProfile.addToProfile(form);
 
   form.fullname = '';
   form.email = '';
