@@ -98,12 +98,13 @@ const handleUpdateProfile = async () => {
     body: form,
   });
 
-  storeProfile.addToProfile(form);
-
-  form.fullname = '';
-  form.email = '';
-  form.location = '';
   form.oldPassword = '';
   form.newPassword = '';
+
+  storeProfile.addToProfile(form);
+  const profile = computed(() => storeProfile.getProfile);
+  form.fullname = profile.value.fullname;
+  form.email = profile.value.email;
+  form.location = profile.value.location;
 };
 </script>

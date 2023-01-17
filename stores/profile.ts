@@ -10,7 +10,7 @@ export const useStoreProfile = defineStore('profile', {
     };
   },
   getters: {
-    getBasketProfile(state) {
+    getProfile(state) {
       return { ...state };
     },
   },
