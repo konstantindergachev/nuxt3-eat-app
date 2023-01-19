@@ -44,6 +44,11 @@
         Total:
         <p class="pl-2 text-2xl text-Green">{{ moneyFormat('en-US', 'USD', totalPrice) }}</p>
       </div>
+      <UIButton
+        path="/checkout"
+        className="self-end bg-Green text-White hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large px-3 py-1"
+        >{{ 'checkout' }}</UIButton
+      >
       <div
         v-if="totalPrice === 0"
         class="w-52 m-auto shadow-lg border rounded-lg text-red-500 text-center py-2"
