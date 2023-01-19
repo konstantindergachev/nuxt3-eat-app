@@ -158,6 +158,11 @@ const getDeliveryPostalCode = (value: string) => {
 };
 
 const handleCheckout = async () => {
+  await $fetch('/api/checkout', {
+    method: 'post',
+    body: form,
+  });
+
   form.firstname = '';
   form.lastname = '';
   form.notificationEmail = '';
