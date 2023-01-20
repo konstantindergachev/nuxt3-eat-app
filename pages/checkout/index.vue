@@ -1,14 +1,16 @@
 <template>
   <section
-    class="container flex flex-col-reverse justify-center md:flex-row lg:justify-between lg:space-x-10"
+    class="container grid grid-cols-[24rem,12rem] grid-rows-[auto,1fr,auto] gap-4 justify-evenly"
   >
     <Head>
       <Title>EatApp - Checkout</Title>
     </Head>
 
-    <div class="text-center w-full space-y-8 pt-6 md:pt-24">
-      <h1 class="text-Black text-3xl font-bold leading-14">Checkout</h1>
-      <form @submit.prevent="handleCheckout" class="grid max-w-xl mx-auto">
+    <h1 class="text-center text-Black text-3xl font-bold leading-14 col-span-full mt-10">
+      Checkout
+    </h1>
+    <div>
+      <form @submit.prevent="handleCheckout" class="grid max-w-xl">
         <UIInput
           type="text"
           name="firstname"
@@ -99,15 +101,35 @@
         />
         <UIButton
           type="submit"
-          className="bg-Green text-White capitalize hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-md px-3 py-1 justify-self-center h-10 lg:ml-4"
+          className="bg-Green text-White capitalize hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-md px-3 py-1 justify-self-start h-10"
           >{{ 'Pay now' }}</UIButton
         >
       </form>
+    </div>
+    <div class="h-fit shadow-lg border rounded-lg p-4">
+      <div v-for="prod in products" :key="prod.id" class="mb-4">
+        <h2 class="underline capitalize">{{ prod.name }}:</h2>
+        <h3 class="indent-10">
+          count: <span>{{ prod.count }}</span>
+        </h3>
+        <h3 class="indent-10">
+          price: <span>{{ moneyFormat('en-US', 'USD', prod.price! * prod.count) }}</span>
+        </h3>
+      </div>
+      <h3 class="capitalize text-Green">
+        total: <span>{{ moneyFormat('en-US', 'USD', totalPrice) }}</span>
+      </h3>
     </div>
   </section>
 </template>
 <script setup lang="ts">
 import { ICheckout } from '@/interfaces/checkout';
+import { useStoreBasket } from '@/stores/basket';
+import { moneyFormat } from '@/utils';
+
+const storeBasket = useStoreBasket();
+const products = computed(() => storeBasket.getBasketFruits);
+const totalPrice = computed(() => storeBasket.getBasketFruitsTotalPrice);
 
 const form = reactive<ICheckout>({
   firstname: '',
