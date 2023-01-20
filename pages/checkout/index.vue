@@ -78,7 +78,7 @@
         <UIInput
           type="text"
           name="deliveryCountry"
-          placeholder="Delivery Country"
+          placeholder="Delivery country"
           class="shadow-lg border rounded-lg p-2 mb-2"
           @update:modelValue="getDeliveryCountry"
           :modelValue="form.deliveryCountry"
@@ -123,15 +123,23 @@
   </section>
 </template>
 <script setup lang="ts">
-import { ICheckout } from '@/interfaces/checkout';
+import { ICheckoutForm, ICheckoutOrder } from '@/interfaces/checkout';
 import { useStoreBasket } from '@/stores/basket';
 import { moneyFormat } from '@/utils';
 
 const storeBasket = useStoreBasket();
-const products = computed(() => storeBasket.getBasketFruits);
+const products = computed(() => {
+  return storeBasket.getBasketFruits.map((fruit) => ({
+    id: fruit.id,
+    name: fruit.name,
+    count: fruit.count,
+    price: fruit.price,
+    popular: fruit.popular,
+  }));
+});
 const totalPrice = computed(() => storeBasket.getBasketFruitsTotalPrice);
 
-const form = reactive<ICheckout>({
+const form = reactive<ICheckoutForm>({
   firstname: '',
   lastname: '',
   notificationEmail: '',
@@ -180,9 +188,14 @@ const getDeliveryPostalCode = (value: string) => {
 };
 
 const handleCheckout = async () => {
+  const order: ICheckoutOrder = {
+    info: form,
+    basket: { products: products.value, total: totalPrice.value },
+  };
+
   await $fetch('/api/checkout', {
     method: 'post',
-    body: form,
+    body: order,
   });
 
   form.firstname = '';

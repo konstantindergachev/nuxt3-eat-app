@@ -1,4 +1,4 @@
-export interface ICheckout {
+export interface ICheckoutForm {
   firstname: string;
   lastname: string;
   notificationEmail: string;
@@ -10,4 +10,22 @@ export interface ICheckout {
   deliveryCountry: string;
   deliveryCity: string;
   deliveryPostalCode: string;
+}
+
+interface ICheckoutProduct {
+  id?: string;
+  name?: string;
+  count: number;
+  price?: number;
+  popular?: number;
+}
+
+interface ICheckoutBasket {
+  products: ICheckoutProduct[];
+  total: number;
+}
+
+export interface ICheckoutOrder {
+  info: ICheckoutForm;
+  basket: ICheckoutBasket;
 }
