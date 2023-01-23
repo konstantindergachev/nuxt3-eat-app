@@ -4,4 +4,5 @@ export interface IInput {
   placeholder?: string;
   className?: string;
   modelValue?: string;
+  onValidate?: () => void;
 }

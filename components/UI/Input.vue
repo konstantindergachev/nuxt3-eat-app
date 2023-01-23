@@ -6,17 +6,20 @@
     :class="className"
     @input="handleChange"
     :value="modelValue"
+    @blur="onValidate(name)"
+    @keypress="onValidate(name)"
   />
 </template>
 <script setup lang="ts">
 import { IInput } from '@/interfaces/input';
 
-const { type, name, placeholder, className, modelValue }: IInput = defineProps([
+const { type, name, placeholder, className, modelValue, onValidate }: IInput = defineProps([
   'type',
   'name',
   'placeholder',
   'className',
   'modelValue',
+  'onValidate',
 ]);
 const emit = defineEmits(['update:modelValue']);
 const handleChange = (event: Event) => {

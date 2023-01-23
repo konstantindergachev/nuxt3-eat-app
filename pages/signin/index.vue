@@ -1,6 +1,9 @@
 <template>
   <h1 class="text-center mt-10 mb-10 uppercase">Sign in</h1>
   <form @submit.prevent="handleSignup" class="grid max-w-xl mx-auto">
+    <p class="text-red-500 capitalize" v-if="!!errors.email">
+      {{ errors.email }}
+    </p>
     <UIInput
       type="email"
       name="email"
@@ -8,7 +11,11 @@
       class="shadow-lg border rounded-lg p-2 mb-2"
       @update:modelValue="getEmail"
       :modelValue="form.email"
+      :onValidate="validate"
     />
+    <p class="text-red-500 capitalize" v-if="!!errors.password">
+      {{ errors.password }}
+    </p>
     <UIInput
       type="password"
       name="password"
@@ -16,6 +23,7 @@
       class="shadow-lg border rounded-lg p-2 mb-2"
       @update:modelValue="getPassword"
       :modelValue="form.password"
+      :onValidate="validate"
     />
     <UIButton
       type="submit"
@@ -29,12 +37,19 @@
   </form>
 </template>
 <script setup lang="ts">
-import { ISignin } from '@/interfaces/signin';
+import { ISignin, ISigninErrors } from '@/interfaces/signin';
 import { useStoreAuth } from '@/stores/auth';
+import { signinSchema } from '@/validation/signin.validation';
 
 const form = reactive<ISignin>({
   email: '',
   password: '',
+});
+
+const errors = reactive<ISigninErrors>({
+  email: '',
+  password: '',
+  request: '',
 });
 
 const getEmail = (value: string) => {
@@ -46,6 +61,19 @@ const getPassword = (value: string) => {
 
 const storeAuth = useStoreAuth();
 const router = useRouter();
+
+const validate = async (field: keyof ISigninErrors) => {
+  try {
+    await signinSchema.validateAt(field, form);
+    errors[field] = '';
+  } catch (error) {
+    if (error instanceof Error) {
+      errors[field] = error.message;
+    } else {
+      errors[field] = 'Unexpected error';
+    }
+  }
+};
 
 const handleSignup = async () => {
   await $fetch('/api/auth/signin', {
