@@ -1,10 +1,11 @@
 export interface IFruit {
-  id?: string;
+  id?: number;
   name?: string;
   img?: string;
   price?: number;
   description?: string;
-  popular?: number;
+  popular?: boolean;
+  created_at?: string;
 }
 
 export interface IBasket extends IFruit {
