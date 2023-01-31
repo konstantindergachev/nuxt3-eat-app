@@ -1,9 +1,11 @@
-import { fruits } from '@/stub/fruits';
 import { IFruit } from '@/interfaces/fruits';
+import { supabase } from '@/client';
 
-export default defineEventHandler((event): IFruit | string => {
+export default defineEventHandler(async (event): Promise<IFruit | string> => {
   const query = getQuery(event);
-  const findFruit = fruits.find((fruit) => fruit.id.toString() === query.fruitId);
-  if (findFruit) return findFruit;
-  else return 'Fruit not found!';
+  const { data } = await supabase.from('fruits').select();
+  if (data) {
+    return data.find((fruit) => fruit.id.toString() === query.fruitId);
+  }
+  return 'Fruit not found!';
 });
