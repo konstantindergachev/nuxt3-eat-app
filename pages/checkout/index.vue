@@ -101,7 +101,7 @@
         />
         <UIButton
           type="submit"
-          className="bg-Green text-White capitalize hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-md px-3 py-1 justify-self-start h-10"
+          className="bg-Green text-White capitalize hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-md px-3 py-1 justify-self-start"
           >{{ 'Pay now' }}</UIButton
         >
       </form>

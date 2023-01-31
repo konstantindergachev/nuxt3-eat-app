@@ -27,7 +27,7 @@
     />
     <UIButton
       type="submit"
-      className="bg-Green text-White capitalize hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-md px-3 py-1 justify-self-center h-10 lg:ml-4"
+      className="bg-Green text-White capitalize hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-md px-3 py-1 justify-self-center lg:ml-4"
       >{{ 'send' }}</UIButton
     >
     <span class="text-center mt-10"
