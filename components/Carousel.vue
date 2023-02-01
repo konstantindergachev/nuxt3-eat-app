@@ -23,6 +23,7 @@
               <h1 class="uppercase text-Green text-6xl font-bold leading-14">{{ slide.title }}</h1>
               <p class="text-Black opacity-70">{{ slide.description }}</p>
               <h4 class="uppercase text-xs">Ahmed Hridoy</h4>
+              <h4 class="uppercase text-xs">{{ slide.created_at.split('.')[0] }}</h4>
               <UIStar> &#9733; &#9733; &#9733; &#9733; &#9733; </UIStar>
             </div>
             <div class="w-full lg:w-6/12 flex justify-center items-center">

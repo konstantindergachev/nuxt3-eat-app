@@ -1,6 +1,7 @@
-import { slides } from '@/stub/reviews';
 import { ISlide } from '@/interfaces/review';
+import { supabase } from '@/client';
 
-export default defineEventHandler((event): ISlide[] => {
-  return slides;
+export default defineEventHandler(async (event): Promise<ISlide[]> => {
+  const { data } = await supabase.from('reviews').select();
+  return data as ISlide[];
 });
