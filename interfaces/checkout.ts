@@ -12,12 +12,12 @@ export interface ICheckoutForm {
   deliveryPostalCode: string;
 }
 
-interface ICheckoutProduct {
-  id?: string;
-  name?: string;
+export interface ICheckoutProduct {
+  id: number;
+  name: string;
   count: number;
-  price?: number;
-  popular?: number;
+  price: number;
+  popular: boolean;
 }
 
 interface ICheckoutBasket {

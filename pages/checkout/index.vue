@@ -123,7 +123,7 @@
   </section>
 </template>
 <script setup lang="ts">
-import { ICheckoutForm, ICheckoutOrder } from '@/interfaces/checkout';
+import { ICheckoutForm, ICheckoutOrder, ICheckoutProduct } from '@/interfaces/checkout';
 import { useStoreBasket } from '@/stores/basket';
 import { moneyFormat } from '@/utils';
 
@@ -135,7 +135,7 @@ const products = computed(() => {
     count: fruit.count,
     price: fruit.price,
     popular: fruit.popular,
-  }));
+  })) as ICheckoutProduct[];
 });
 const totalPrice = computed(() => storeBasket.getBasketFruitsTotalPrice);
 
