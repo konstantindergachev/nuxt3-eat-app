@@ -90,10 +90,10 @@ const getEmail = (value: string) => {
   form.email = value;
 };
 const getPassword = (value: string) => {
-  form.password = value;
+  form.password = btoa(value);
 };
 const getPasswordConfirm = (value: string) => {
-  form.passwordConfirm = value;
+  form.passwordConfirm = btoa(value);
 };
 
 const storeAuth = useStoreAuth();
