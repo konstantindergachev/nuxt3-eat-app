@@ -11,6 +11,9 @@
     </h1>
     <div>
       <form @submit.prevent="handleCheckout" class="grid max-w-xl">
+        <p class="text-red-500 capitalize" v-if="!!errors.firstname">
+          {{ errors.firstname }}
+        </p>
         <UIInput
           type="text"
           name="firstname"
@@ -18,7 +21,11 @@
           class="shadow-lg border rounded-lg p-2 mb-2"
           @update:modelValue="getFirstname"
           :modelValue="form.firstname"
+          :onValidate="validate"
         />
+        <p class="text-red-500 capitalize" v-if="!!errors.lastname">
+          {{ errors.lastname }}
+        </p>
         <UIInput
           type="text"
           name="lastname"
@@ -26,7 +33,11 @@
           class="shadow-lg border rounded-lg p-2 mb-2"
           @update:modelValue="getLastname"
           :modelValue="form.lastname"
+          :onValidate="validate"
         />
+        <p class="text-red-500 capitalize" v-if="!!errors.notificationEmail">
+          {{ errors.notificationEmail }}
+        </p>
         <UIInput
           type="email"
           name="notificationEmail"
@@ -34,7 +45,11 @@
           class="shadow-lg border rounded-lg p-2 mb-2"
           @update:modelValue="getNotificationEmail"
           :modelValue="form.notificationEmail"
+          :onValidate="validate"
         />
+        <p class="text-red-500 capitalize" v-if="!!errors.phone">
+          {{ errors.phone }}
+        </p>
         <UIInput
           type="text"
           name="phone"
@@ -42,7 +57,11 @@
           class="shadow-lg border rounded-lg p-2 mb-2"
           @update:modelValue="getPhone"
           :modelValue="form.phone"
+          :onValidate="validate"
         />
+        <p class="text-red-500 capitalize" v-if="!!errors.address">
+          {{ errors.address }}
+        </p>
         <UIInput
           type="text"
           name="address"
@@ -50,7 +69,11 @@
           class="shadow-lg border rounded-lg p-2 mb-2"
           @update:modelValue="getAddress"
           :modelValue="form.address"
+          :onValidate="validate"
         />
+        <p class="text-red-500 capitalize" v-if="!!errors.addresseeFirstname">
+          {{ errors.addresseeFirstname }}
+        </p>
         <UIInput
           type="text"
           name="addresseeFirstname"
@@ -58,7 +81,11 @@
           class="shadow-lg border rounded-lg p-2 mb-2"
           @update:modelValue="getAddresseeFirstname"
           :modelValue="form.addresseeFirstname"
+          :onValidate="validate"
         />
+        <p class="text-red-500 capitalize" v-if="!!errors.addresseeLastname">
+          {{ errors.addresseeLastname }}
+        </p>
         <UIInput
           type="text"
           name="addresseeLastname"
@@ -66,7 +93,11 @@
           class="shadow-lg border rounded-lg p-2 mb-2"
           @update:modelValue="getAddresseeLastname"
           :modelValue="form.addresseeLastname"
+          :onValidate="validate"
         />
+        <p class="text-red-500 capitalize" v-if="!!errors.deliveryAddress">
+          {{ errors.deliveryAddress }}
+        </p>
         <UIInput
           type="text"
           name="deliveryAddress"
@@ -74,7 +105,11 @@
           class="shadow-lg border rounded-lg p-2 mb-2"
           @update:modelValue="getDeliveryAddress"
           :modelValue="form.deliveryAddress"
+          :onValidate="validate"
         />
+        <p class="text-red-500 capitalize" v-if="!!errors.deliveryCountry">
+          {{ errors.deliveryCountry }}
+        </p>
         <UIInput
           type="text"
           name="deliveryCountry"
@@ -82,7 +117,11 @@
           class="shadow-lg border rounded-lg p-2 mb-2"
           @update:modelValue="getDeliveryCountry"
           :modelValue="form.deliveryCountry"
+          :onValidate="validate"
         />
+        <p class="text-red-500 capitalize" v-if="!!errors.deliveryCity">
+          {{ errors.deliveryCity }}
+        </p>
         <UIInput
           type="text"
           name="deliveryCity"
@@ -90,7 +129,11 @@
           class="shadow-lg border rounded-lg p-2 mb-2"
           @update:modelValue="getDeliveryCity"
           :modelValue="form.deliveryCity"
+          :onValidate="validate"
         />
+        <p class="text-red-500 capitalize" v-if="!!errors.deliveryPostalCode">
+          {{ errors.deliveryPostalCode }}
+        </p>
         <UIInput
           type="text"
           name="deliveryPostalCode"
@@ -98,6 +141,7 @@
           class="shadow-lg border rounded-lg p-2 mb-2"
           @update:modelValue="getDeliveryPostalCode"
           :modelValue="form.deliveryPostalCode"
+          :onValidate="validate"
         />
         <UIButton
           type="submit"
@@ -123,9 +167,15 @@
   </section>
 </template>
 <script setup lang="ts">
-import { ICheckoutForm, ICheckoutOrder, ICheckoutProduct } from '@/interfaces/checkout';
+import {
+  ICheckoutForm,
+  ICheckoutErrors,
+  ICheckoutOrder,
+  ICheckoutProduct,
+} from '@/interfaces/checkout';
 import { useStoreBasket } from '@/stores/basket';
 import { moneyFormat } from '@/utils';
+import { checkoutSchema } from '@/validation/checkout.validation';
 
 const storeBasket = useStoreBasket();
 const products = computed(() => {
@@ -140,6 +190,19 @@ const products = computed(() => {
 const totalPrice = computed(() => storeBasket.getBasketFruitsTotalPrice);
 
 const form = reactive<ICheckoutForm>({
+  firstname: '',
+  lastname: '',
+  notificationEmail: '',
+  phone: '',
+  address: '',
+  addresseeFirstname: '',
+  addresseeLastname: '',
+  deliveryAddress: '',
+  deliveryCountry: '',
+  deliveryCity: '',
+  deliveryPostalCode: '',
+});
+const errors = reactive<ICheckoutErrors>({
   firstname: '',
   lastname: '',
   notificationEmail: '',
@@ -185,6 +248,19 @@ const getDeliveryCity = (value: string) => {
 };
 const getDeliveryPostalCode = (value: string) => {
   form.deliveryPostalCode = value;
+};
+
+const validate = async (field: keyof ICheckoutErrors) => {
+  try {
+    await checkoutSchema.validateAt(field, form);
+    errors[field] = '';
+  } catch (error) {
+    if (error instanceof Error) {
+      errors[field] = error.message;
+    } else {
+      errors[field] = 'Unexpected error';
+    }
+  }
 };
 
 const handleCheckout = async () => {

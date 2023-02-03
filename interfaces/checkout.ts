@@ -12,6 +12,10 @@ export interface ICheckoutForm {
   deliveryPostalCode: string;
 }
 
+export interface ICheckoutErrors extends ICheckoutForm {
+  request?: string;
+}
+
 export interface ICheckoutProduct {
   id: number;
   name: string;
