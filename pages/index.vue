@@ -13,11 +13,7 @@
       :img="recommendation?.img"
       :characteristic="recommendation?.characteristic"
     />
-    <Delivery
-      :title="delivery?.title"
-      :description="delivery?.description"
-      :rules="delivery?.rules"
-    />
+    <Delivery :delivery="delivery" />
     <TheTop :topThreeProducts="topThreeProducts" />
     <Newsletter :title="newsletter?.title" :description="newsletter?.description" />
   </div>
