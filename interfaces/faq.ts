@@ -1,5 +1,7 @@
 export interface IFAQ {
-  id: string;
+  id: number;
   question: string;
   answers: string[];
+  created_at: string;
+  updated_at: string;
 }

@@ -41,16 +41,16 @@
 import { IFAQ } from '@/interfaces/faq';
 
 const { data } = await useFetch<IFAQ[]>('/api/faq');
-const openedAnswers = reactive<string[]>([]);
+const openedAnswers = reactive<number[]>([]);
 
-const openAnswer = (itemId: string): void => {
+const openAnswer = (itemId: number): void => {
   data.value?.forEach((question) => {
     if (question.id === itemId) {
       return openedAnswers.push(question.id);
     }
   });
 };
-const closeAnswer = (itemId: string): string[] => {
+const closeAnswer = (itemId: number): number[] => {
   const index = openedAnswers.indexOf(itemId);
   openedAnswers.splice(index, 1);
   return openedAnswers;
