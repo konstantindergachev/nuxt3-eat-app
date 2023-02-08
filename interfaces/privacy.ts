@@ -3,6 +3,6 @@ interface IPrivacyContent {
 }
 
 export interface IPrivacy extends IPrivacyContent {
-  id: string;
+  id: number;
   title: string;
 }
