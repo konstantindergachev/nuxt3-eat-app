@@ -3,6 +3,6 @@ interface ITermsContent {
 }
 
 export interface ITerms extends ITermsContent {
-  id: string;
+  id: number;
   title: string;
 }
