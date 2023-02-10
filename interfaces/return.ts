@@ -3,6 +3,6 @@ interface IReturnRefundContent {
 }
 
 export interface IReturnRefund extends IReturnRefundContent {
-  id: string;
+  id: number;
   title: string;
 }
