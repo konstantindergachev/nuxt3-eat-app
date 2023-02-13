@@ -1,8 +1,8 @@
 <template>
   <h1 class="text-center mt-10 mb-10 uppercase">Sign in</h1>
   <form @submit.prevent="handleSignup" class="grid max-w-xl mx-auto">
-    <p class="text-red-500 capitalize" v-if="!!errors.email">
-      {{ errors.email }}
+    <p class="text-red-500 capitalize" v-if="!!errors.email || !!errors.request">
+      {{ errors.email || errors.request }}
     </p>
     <UIInput
       type="email"
@@ -76,19 +76,25 @@ const validate = async (field: keyof ISigninErrors) => {
 };
 
 const handleSignup = async () => {
-  await $fetch('/api/auth/signin', {
-    method: 'post',
-    body: form,
-  });
+  try {
+    const response = await $fetch('/api/auth/signin', {
+      method: 'post',
+      body: form,
+    });
+    storeAuth.authenticate();
 
-  storeAuth.authenticate();
-  const auth = useAuth();
-  auth.value.isAuthenticated = true;
-  if (auth.value.isAuthenticated) {
-    router.push('/profile');
+    const auth = useAuth();
+    auth.value.isAuthenticated = !!response;
+    if (auth.value.isAuthenticated) {
+      router.push('/profile');
+    }
+
+    form.email = '';
+    form.password = '';
+  } catch (error) {
+    if (error instanceof Error) {
+      errors.request = 'No such customer!';
+    }
   }
-
-  form.email = '';
-  form.password = '';
 };
 </script>
