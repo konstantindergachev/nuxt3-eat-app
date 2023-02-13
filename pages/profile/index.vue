@@ -85,6 +85,7 @@ import { updateProfileSchema } from '@/validation/updateprofile.validation';
 
 definePageMeta({
   layout: 'profile',
+  middleware: ['auth'],
 });
 
 const storeProfile = useStoreProfile();

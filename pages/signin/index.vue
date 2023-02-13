@@ -82,7 +82,11 @@ const handleSignup = async () => {
   });
 
   storeAuth.authenticate();
-  router.push('/profile');
+  const auth = useAuth();
+  auth.value.isAuthenticated = true;
+  if (auth.value.isAuthenticated) {
+    router.push('/profile');
+  }
 
   form.email = '';
   form.password = '';
