@@ -5,11 +5,17 @@
     </NuxtLink>
     <Navbar />
     <div class="relative">
-      <div v-if="auth.isAuthenticated">
+      <div v-if="auth.isAuthenticated" class="flex items-center">
         <NuxtLink to="/basket" class="z-10"
           ><img src="/images/carrybag.svg" alt="Carry bag" class="w-12" />
           <span class="absolute top-[1.20rem] left-[19px] text-red-500">{{ fruitsCount }}</span>
         </NuxtLink>
+        <UIButton
+          type="button"
+          className="bg-Green text-White hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large px-3 py-1"
+          :onClick="logout"
+          >{{ 'log out' }}</UIButton
+        >
       </div>
       <UIButton
         v-if="!auth.isAuthenticated && route.path !== '/signup' && route.path !== '/signin'"
@@ -24,10 +30,16 @@
 import { useStoreBasket } from '@/stores/basket';
 
 const route = useRoute();
+const router = useRouter();
 const auth = useAuth();
 
 const storeBasket = useStoreBasket();
 const fruitsCount = computed(() => {
   return storeBasket.getBasketFruitsCount;
 });
+
+const logout = () => {
+  auth.value.isAuthenticated = false;
+  router.push('/');
+};
 </script>
