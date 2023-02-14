@@ -70,15 +70,15 @@ const totalPrice = computed(() => {
   return storeBasket.getBasketFruitsTotalPrice;
 });
 
-const remove = (productId: string) => {
+const remove = (productId: number) => {
   storeBasket.deleteFromBasket(productId);
 };
 
-const increase = (productId: string) => {
+const increase = (productId: number) => {
   storeBasket.addFruitCount(productId);
 };
 
-const decrease = (productId: string, productCount: number) => {
+const decrease = (productId: number, productCount: number) => {
   if (productCount === 1) {
     return remove(productId);
   }

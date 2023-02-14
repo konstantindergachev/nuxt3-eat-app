@@ -27,10 +27,10 @@ export const useStoreBasket = defineStore('basket', {
     addToBasket(product: IBasket) {
       this.basket.push(product);
     },
-    deleteFromBasket(productId: string) {
+    deleteFromBasket(productId: number) {
       this.basket = this.basket.filter((product) => product.id !== productId);
     },
-    addFruitCount(productId: string) {
+    addFruitCount(productId: number) {
       this.basket = this.basket.filter((product) => {
         if (product.id == productId) {
           product.count += 1;
@@ -38,7 +38,7 @@ export const useStoreBasket = defineStore('basket', {
         return product;
       });
     },
-    removeFruitCount(productId: string) {
+    removeFruitCount(productId: number) {
       this.basket = this.basket.filter((product) => {
         if (product.id == productId) {
           product.count -= 1;
