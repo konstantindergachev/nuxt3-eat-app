@@ -38,7 +38,7 @@
 </template>
 <script setup lang="ts">
 import { ISignin, ISigninErrors } from '@/interfaces/signin';
-import { useStoreAuth } from '@/stores/auth';
+import { useStoreProfile } from '@/stores/profile';
 import { signinSchema } from '@/validation/signin.validation';
 
 const form = reactive<ISignin>({
@@ -59,7 +59,7 @@ const getPassword = (value: string) => {
   form.password = value;
 };
 
-const storeAuth = useStoreAuth();
+const storeProfile = useStoreProfile();
 const router = useRouter();
 
 const validate = async (field: keyof ISigninErrors) => {
@@ -81,11 +81,11 @@ const handleSignup = async () => {
       method: 'post',
       body: form,
     });
-    storeAuth.authenticate();
 
     const auth = useAuth();
     auth.value.isAuthenticated = !!response;
     if (auth.value.isAuthenticated) {
+      storeProfile.fullname = response;
       router.push('/profile');
     }
 

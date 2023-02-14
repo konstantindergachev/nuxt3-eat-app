@@ -65,7 +65,6 @@
 </template>
 <script setup lang="ts">
 import { ISignup, ISignupErrors } from '@/interfaces/signup';
-import { useStoreAuth } from '@/stores/auth';
 import { signupSchema } from '@/validation/signup.validation';
 
 const form = reactive<ISignup>({
@@ -96,7 +95,7 @@ const getPasswordConfirm = (value: string) => {
   form.passwordConfirm = value;
 };
 
-const storeAuth = useStoreAuth();
+const auth = useAuth();
 const router = useRouter();
 
 const validate = async (field: keyof ISignupErrors) => {
@@ -118,7 +117,7 @@ const handleSignup = async () => {
     body: form,
   });
 
-  storeAuth.authenticate();
+  auth.value.isAuthenticated = true;
   router.push('/profile');
 
   form.fullname = '';

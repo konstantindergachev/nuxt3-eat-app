@@ -12,7 +12,6 @@
 </template>
 <script setup lang="ts">
 import { INavigation } from '@/interfaces/navigation';
-import { useStoreAuth } from '@/stores/auth';
 
 const navigation: INavigation[] = [
   {
@@ -37,8 +36,8 @@ const navigation: INavigation[] = [
   },
 ];
 
-const storeAuth = useStoreAuth();
-const isAuth = storeAuth.getAuthentication;
-
-const nav = !isAuth ? navigation : [...navigation, { id: '5', path: '/profile', title: 'profile' }];
+const auth = useAuth();
+const nav = !auth.value.isAuthenticated
+  ? navigation
+  : [...navigation, { id: '5', path: '/profile', title: 'profile' }];
 </script>
