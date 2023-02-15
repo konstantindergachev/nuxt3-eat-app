@@ -7,3 +7,34 @@
 * {
   outline: 1px dashed #f4f4f4;
 }
+
+.btn {
+  @apply bg-Green text-White hover:bg-White hover:text-Green border-solid border-2 border-Green px-3 py-1 capitalize;
+}
+.btn-shape {
+  @apply rounded-tr-large rounded-bl-large;
+}
+.btn-outline {
+  @apply bg-White text-Green hover:bg-Green hover:text-White border-solid border-2 border-Green px-3 py-1 capitalize;
+}
+
+.btn-nav {
+  @apply border-transparent border-b-2 hover:border-b-Green;
+}
+.active {
+  @apply border-b-2 border-b-Green;
+}
+
+.btn-carousel-nav {
+  @apply bg-White text-Green hover:bg-Green hover:text-White text-2xl shadow-md rounded-full px-3 cursor-pointer;
+}
+.btn-carousel-dot {
+  @apply bg-Green border-0 m-1 rounded-full cursor-pointer opacity-50 hover:opacity-100 w-3 h-3;
+}
+
+.btn-round {
+  @apply bg-White text-Green text-2xl font-bold leading-6 shadow-md rounded-full w-6 text-center cursor-pointer;
+}
+.btn-del {
+  @apply bg-red-500 text-White hover:bg-White hover:text-red-500 border-solid border-2 border-red-500 rounded-md px-3 lg:ml-4 cursor-pointer;
+}

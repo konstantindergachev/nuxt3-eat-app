@@ -10,7 +10,7 @@
           <UIImage :imgSrc="product.img" :imgName="product.name" className="h-80" />
           <UIText>{{ product.name }}</UIText>
           <UIButton
-            className="bg-Green text-White capitalize hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large px-3 py-1 justify-self-center self-end"
+            className="btn btn-shape justify-self-center self-end"
             :path="`/fruits/${product.id}`"
             >{{ 'details' }}</UIButton
           >

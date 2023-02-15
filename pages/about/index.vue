@@ -21,11 +21,7 @@
               </div>
             </li>
           </ul>
-          <UIButton
-            className="bg-Green text-White hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large capitalize px-3 py-1"
-            path="/fruits"
-            >{{ 'shop now' }}</UIButton
-          >
+          <UIButton className="btn btn-shape" path="/fruits">{{ 'shop now' }}</UIButton>
         </div>
       </div>
     </section>

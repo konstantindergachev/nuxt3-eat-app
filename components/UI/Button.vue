@@ -1,6 +1,6 @@
 <template>
   <NuxtLink v-if="!type" :to="path" :class="className"><slot /></NuxtLink>
-  <button v-else :class="className" @click="onClick" :type="type">
+  <button v-else @click="onClick" :type="type">
     <slot />
   </button>
 </template>

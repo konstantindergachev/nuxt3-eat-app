@@ -143,11 +143,7 @@
           :modelValue="form.deliveryPostalCode"
           :onValidate="validate"
         />
-        <UIButton
-          type="submit"
-          className="bg-Green text-White capitalize hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-md px-3 py-1 justify-self-start"
-          >{{ 'Pay now' }}</UIButton
-        >
+        <UIButton type="submit" class="btn rounded-md justify-self-start">{{ 'Pay now' }}</UIButton>
       </form>
     </div>
     <div class="h-fit shadow-lg border rounded-lg p-4">

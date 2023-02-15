@@ -4,8 +4,8 @@
       v-for="item in nav"
       :key="item.id"
       :to="item.path"
-      activeClass="border-b-2 border-b-Green"
-      class="border-transparent border-b-2 hover:border-b-Green"
+      activeClass="active"
+      class="btn-nav"
       >{{ item.title }}</NuxtLink
     >
   </nav>

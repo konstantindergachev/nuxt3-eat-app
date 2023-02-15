@@ -6,10 +6,7 @@
       <UIStar> &#9733; &#9733; &#9733; &#9733; &#9733; </UIStar>
       <UISubtitle> {{ moneyFormat('en-US', 'USD', prod.price) }} kg </UISubtitle>
       <UIText>{{ prod.description }}</UIText>
-      <UIButton
-        className="bg-Green text-White capitalize hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large px-3 py-1 justify-self-center self-center"
-        >{{ 'buy now' }}</UIButton
-      >
+      <UIButton className="btn btn-shape justify-self-center self-center">{{ 'buy now' }}</UIButton>
     </UICard>
   </section>
 </template>

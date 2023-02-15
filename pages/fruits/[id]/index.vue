@@ -13,12 +13,9 @@
         Price:
         <span class="opacity-70">{{ moneyFormat('en-US', 'USD', data.price!) }}</span>
       </p>
-      <UIButton
-        type="button"
-        className="bg-Green text-White capitalize hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large px-3 py-1 justify-self-center"
-        :onClick="addToBasket"
-        >{{ 'add to basket' }}</UIButton
-      >
+      <UIButton type="button" class="btn btn-shape justify-self-center" :onClick="addToBasket">{{
+        'add to basket'
+      }}</UIButton>
     </UICard>
   </div>
 </template>

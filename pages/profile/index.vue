@@ -69,11 +69,9 @@
           :modelValue="form.newPassword"
           :onValidate="validate"
         />
-        <UIButton
-          type="submit"
-          className="bg-Green text-White capitalize hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-md px-3 py-1 justify-self-center lg:ml-4"
-          >{{ 'update profile' }}</UIButton
-        >
+        <UIButton type="submit" class="btn rounded-md justify-self-center lg:ml-4">{{
+          'update profile'
+        }}</UIButton>
       </form>
     </div>
   </section>

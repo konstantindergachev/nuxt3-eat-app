@@ -13,7 +13,7 @@
         <div class="flex">
           <UIButton
             type="button"
-            class="uppercase text-Green text-3xl font-bold leading-6 shadow-md rounded-full w-6 text-center cursor-pointer"
+            class="btn-round"
             :onClick="() => decrease(product.id!, product.count)"
             >{{ '-' }}</UIButton
           >
@@ -26,29 +26,19 @@
               {{ product.count }}</span
             >
           </div>
-          <UIButton
-            type="button"
-            class="uppercase text-Green text-2xl font-bold leading-6 shadow-md rounded-full w-6 text-center cursor-pointer"
-            :onClick="() => increase(product.id!)"
-            >{{ '+' }}</UIButton
-          >
-          <UIButton
-            type="button"
-            className=" bg-red-500 text-White capitalize hover:bg-White hover:text-red-500 border-solid border-2 border-red-500 rounded-md px-3 lg:ml-4 cursor-pointer"
-            :onClick="() => remove(product.id!)"
-            >{{ '&#10005;' }}</UIButton
-          >
+          <UIButton type="button" class="btn-round" :onClick="() => increase(product.id!)">{{
+            '+'
+          }}</UIButton>
+          <UIButton type="button" class="btn-del" :onClick="() => remove(product.id!)">{{
+            '&#10005;'
+          }}</UIButton>
         </div>
       </div>
       <div v-if="totalPrice > 0" class="w-28 self-end shadow-lg border rounded-lg text-center py-2">
         Total:
         <p class="pl-2 text-2xl text-Green">{{ moneyFormat('en-US', 'USD', totalPrice) }}</p>
       </div>
-      <UIButton
-        path="/checkout"
-        className="self-end bg-Green text-White hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large px-3 py-1"
-        >{{ 'checkout' }}</UIButton
-      >
+      <UIButton path="/checkout" className="btn btn-shape self-end">{{ 'checkout' }}</UIButton>
       <div
         v-if="totalPrice === 0"
         class="w-52 m-auto shadow-lg border rounded-lg text-red-500 text-center py-2"

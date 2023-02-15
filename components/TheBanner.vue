@@ -11,14 +11,8 @@
         {{ description }}
       </p>
       <div class="space-x-10">
-        <UIButton
-          className="bg-Green text-White hover:bg-White hover:text-Green border-solid border-2 border-Green rounded-tr-large rounded-bl-large capitalize px-3 py-1"
-          >{{ 'add to cart' }}</UIButton
-        >
-        <UIButton
-          className="bg-White text-Green hover:bg-Green hover:text-White border-solid border-2 border-Green rounded-tr-large rounded-bl-large capitalize px-3 py-1"
-          >{{ 'learn more' }}</UIButton
-        >
+        <UIButton className="btn btn-shape">{{ 'add to cart' }}</UIButton>
+        <UIButton className="btn-outline btn-shape">{{ 'learn more' }}</UIButton>
       </div>
     </div>
     <div class="w-full lg:w-6/12">
