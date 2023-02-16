@@ -27,20 +27,10 @@
     </div>
     <div class="flex flex-col items-center w-full md:w-1/5">
       <h4 class="text-Black text-2xl font-bold leading-14 mb-8 capitalize">socials</h4>
-      <ul class="flex">
-        <a href="#">
+      <ul v-for="social in data" :key="social.id" class="flex">
+        <a :href="`https://${social.name}.com`" target="_blank">
           <li class="w-10 py-2 mr-6 shadow-md rounded-full">
-            <img src="/images/facebook.svg" alt="Facebook" class="m-auto" />
-          </li>
-        </a>
-        <a href="#">
-          <li class="w-10 py-2 mr-6 shadow-md rounded-full">
-            <img src="/images/instagram.svg" alt="Instagram" class="m-auto" />
-          </li>
-        </a>
-        <a href="#">
-          <li class="w-10 py-2 mr-6 shadow-md rounded-full">
-            <img src="/images/twitter.svg" alt="Twitter" class="m-auto" />
+            <img :src="social.url" :alt="social.name" class="m-auto" />
           </li>
         </a>
       </ul>
@@ -50,3 +40,8 @@
     </div>
   </footer>
 </template>
+<script setup lang="ts">
+import { ISocial } from '@/interfaces/socials';
+
+const { data } = await useFetch<ISocial[]>('/api/socials');
+</script>
