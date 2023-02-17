@@ -1,6 +1,6 @@
 <template>
   <section
-    class="container flex flex-col md:flex-row justify-around items-center md:space-x-10 mt-14 md:mt-32 mb-12 shadow-lg rounded-lg p-4"
+    class="container flex flex-col justify-around items-center md:flex-row md:space-x-10 mt-14 md:mt-32 mb-12 shadow-lg rounded-lg p-4"
   >
     <img src="/images/product10.png" alt="Product 10" />
     <div class="space-y-8 pb-10">

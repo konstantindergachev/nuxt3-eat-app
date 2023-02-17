@@ -1,7 +1,5 @@
 <template>
-  <section
-    class="container flex flex-col-reverse justify-center md:flex-row lg:justify-between lg:space-x-10"
-  >
+  <section class="container flex justify-center md:flex-row lg:justify-between lg:space-x-10">
     <Head>
       <Title>EatApp - Orders</Title>
     </Head>

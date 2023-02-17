@@ -1,7 +1,7 @@
 <template>
   <div>
     <Head><Title>EatApp - Basket</Title></Head>
-    <section class="container m-auto flex flex-col gap-4 lg:justify-between mt-14 md:mt-32">
+    <section class="container flex flex-col lg:justify-between mt-14 md:mt-32 m-auto gap-4">
       <div
         v-for="product in basket"
         :key="product.id"

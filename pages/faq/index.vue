@@ -2,7 +2,7 @@
   <div>
     <Head><Title>EatApp - FAQ</Title></Head>
     <section
-      class="container flex flex-col-reverse justify-center items-center md:flex-row lg:justify-between lg:space-x-10 mt-14 md:mt-32"
+      class="container flex flex-col justify-center items-center md:flex-row lg:justify-between lg:space-x-10 mt-14 md:mt-32"
     >
       <h1 class="uppercase text-Green text-6xl font-bold leading-14 self-start mt-4">
         {{ 'Frequently Asked Questions' }}
