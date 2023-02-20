@@ -40,7 +40,7 @@
       </div>
       <UIButton path="/checkout" className="btn btn-shape self-end">{{ 'checkout' }}</UIButton>
       <div
-        v-if="totalPrice === 0"
+        v-if="!basket.length"
         class="w-52 m-auto shadow-lg border rounded-lg text-red-500 text-center py-2"
       >
         Your basket is empty

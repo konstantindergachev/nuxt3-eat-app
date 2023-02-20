@@ -29,6 +29,11 @@ const router = useRouter();
 const auth = useAuth();
 
 const storeBasket = useStoreBasket();
+
+onMounted(() => {
+  storeBasket.loadFromLocalStorage();
+});
+
 const fruitsCount = computed(() => {
   return storeBasket.getBasketFruitsCount;
 });

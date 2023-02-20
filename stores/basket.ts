@@ -24,11 +24,21 @@ export const useStoreBasket = defineStore('basket', {
     },
   },
   actions: {
+    loadFromLocalStorage() {
+      const cachedBasket = localStorage.getItem('basket');
+      if (cachedBasket) {
+        this.basket = JSON.parse(cachedBasket);
+        return;
+      }
+      this.basket = [];
+    },
     addToBasket(product: IBasket) {
       this.basket.push(product);
+      localStorage.setItem('basket', JSON.stringify(this.basket));
     },
     deleteFromBasket(productId: number) {
       this.basket = this.basket.filter((product) => product.id !== productId);
+      localStorage.setItem('basket', JSON.stringify(this.basket));
     },
     addFruitCount(productId: number) {
       this.basket = this.basket.filter((product) => {
@@ -37,6 +47,7 @@ export const useStoreBasket = defineStore('basket', {
         }
         return product;
       });
+      localStorage.setItem('basket', JSON.stringify(this.basket));
     },
     removeFruitCount(productId: number) {
       this.basket = this.basket.filter((product) => {
@@ -45,6 +56,7 @@ export const useStoreBasket = defineStore('basket', {
         }
         return product;
       });
+      localStorage.setItem('basket', JSON.stringify(this.basket));
     },
   },
 });
