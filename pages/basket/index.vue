@@ -51,6 +51,11 @@
 <script setup lang="ts">
 import { useStoreBasket } from '@/stores/basket';
 import { moneyFormat } from '@/utils';
+
+definePageMeta({
+  middleware: ['auth'],
+});
+
 const storeBasket = useStoreBasket();
 
 const basket = computed(() => {
