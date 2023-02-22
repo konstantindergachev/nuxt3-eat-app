@@ -38,6 +38,7 @@
 import { ISignin, ISigninErrors } from '@/interfaces/signin';
 import { useStoreProfile } from '@/stores/profile';
 import { signinSchema } from '@/validation/signin.validation';
+import { setCookie } from '@/utils';
 
 const form = reactive<ISignin>({
   email: '',
@@ -82,6 +83,8 @@ const handleSignup = async () => {
 
     const auth = useAuth();
     auth.value.isAuthenticated = !!response;
+    setCookie('auth', auth.value.isAuthenticated.toString());
+
     if (auth.value.isAuthenticated) {
       storeProfile.fullname = response;
       router.push('/profile');
