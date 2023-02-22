@@ -23,6 +23,7 @@
 </template>
 <script setup>
 import { useStoreBasket } from '@/stores/basket';
+import { removeCookie } from '@/utils';
 
 const route = useRoute();
 const router = useRouter();
@@ -40,6 +41,7 @@ const fruitsCount = computed(() => {
 
 const logout = () => {
   auth.value.isAuthenticated = false;
+  removeCookie('auth');
   router.push('/');
 };
 </script>
