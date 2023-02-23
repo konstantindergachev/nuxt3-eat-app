@@ -3,7 +3,8 @@
     <NuxtLink to="/">
       <img src="/images/logo.png" alt="logo" />
     </NuxtLink>
-    <Navbar />
+    <PrivateNavbar v-if="auth.isAuthenticated" />
+    <Navbar v-else />
     <div class="relative">
       <div v-if="auth.isAuthenticated" class="flex items-center">
         <NuxtLink to="/basket" class="z-10"
@@ -28,11 +29,14 @@ import { removeCookie } from '@/utils';
 const route = useRoute();
 const router = useRouter();
 const auth = useAuth();
+const authCookie = useCookie('auth');
+const isAuth = Boolean(authCookie.value);
 
 const storeBasket = useStoreBasket();
 
 onMounted(() => {
   storeBasket.loadFromLocalStorage();
+  auth.value.isAuthenticated = isAuth;
 });
 
 const fruitsCount = computed(() => {
@@ -42,6 +46,6 @@ const fruitsCount = computed(() => {
 const logout = () => {
   auth.value.isAuthenticated = false;
   removeCookie('auth');
-  router.push('/');
+  router.push('/signin');
 };
 </script>
