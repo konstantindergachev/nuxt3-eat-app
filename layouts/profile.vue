@@ -17,6 +17,7 @@
       <li>
         <NuxtLink
           to="/orders"
+          activeClass="border-b-2 border-b-Green"
           class="border-transparent border-b-2 hover:border-b-Green capitalize block"
           >orders</NuxtLink
         >
