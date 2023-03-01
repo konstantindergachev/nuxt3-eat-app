@@ -1,18 +1,22 @@
-import { IOrder } from '@/interfaces/orders';
+import { IOrder, IServerOrder, IFromServerProducts } from '@/interfaces/orders';
 import { supabase } from '@/client';
+import { PostgrestResponse } from '@supabase/supabase-js';
 
-export default defineEventHandler(async (event): Promise<IOrder[]> => {
-  const _order = await supabase
+export default defineEventHandler(async (event): Promise<IOrder[] | string> => {
+  const _order: PostgrestResponse<IServerOrder> = await supabase
     .from('order_details')
     .select(`order_id, price, quantity, fruits(id, name), orders(*)`);
 
-  const products = getProductsFromRawOrder(_order.data);
-  const orders = getOrders(_order.data, products);
-  return response(orders);
+  if (_order.data) {
+    const products = getProductsFromServerOrder(_order.data);
+    const orders = getOrdersWithProducts(_order.data, products);
+    return orderResponse(orders) as IOrder[];
+  }
+  return `Sorry! You don't have any orders yet.`;
 });
 
-const getProductsFromRawOrder = (rawOrder: any) => {
-  return rawOrder.map((item: any) => {
+const getProductsFromServerOrder = (orderFromServer: IServerOrder[]): IFromServerProducts[] => {
+  return orderFromServer.map((item: IServerOrder) => {
     return {
       id: item.fruits.id,
       title: item.fruits.name,
@@ -23,37 +27,45 @@ const getProductsFromRawOrder = (rawOrder: any) => {
   });
 };
 
-const getOrders = (rawOrder: any, products: any) => {
-  const _rawOrder = rawOrder.reduce((obj: any, curr: any) => {
-    curr.fruits = products.filter((product: any) => {
-      if (product.orderId === curr.order_id) {
+const getOrdersWithProducts = (
+  orderFromServer: IServerOrder[],
+  products: IFromServerProducts[]
+): IServerOrder[] => {
+  const _orderFromServer = orderFromServer.reduce((finalObj: any, currentObj: IServerOrder) => {
+    //mutate current object by products property adding
+    currentObj.products = products.filter((product) => {
+      if (product.orderId === currentObj.order_id) {
         return product;
       }
-    });
-    obj[`${curr.order_id}`] = curr;
-    return obj;
-  }, []);
+    }) as IFromServerProducts[];
+    const { fruits, price, quantity, ..._currentObj } = currentObj; //remove three props from currentObj
+    finalObj[`${currentObj.order_id}`] = _currentObj;
+    return finalObj;
+  }, {});
 
-  return Object.values(_rawOrder);
+  //Create array of object values
+  return Object.values(_orderFromServer);
 };
 
-const response = (rawOrder: any) => {
-  return rawOrder.map((item: any) => {
-    return {
-      id: item.order_id,
-      created_at: item.orders.order_date,
-      total: item.fruits.reduce((acc: any, curr: any) => {
-        return (acc += curr.price * curr.count);
-      }, 0),
-      products: item.fruits,
-      shipment: {
-        fullname: item.orders.ship_fullname,
-        phone: item.orders.ship_phone,
-        country: item.orders.ship_country,
-        city: item.orders.ship_city,
-        address: item.orders.ship_address,
-      },
-      user: { id: item.orders.customer_id },
-    };
+const orderResponse = (orders: IServerOrder[]) => {
+  return orders.map((item) => {
+    if (Array.isArray(item.products)) {
+      return {
+        id: item.order_id,
+        created_at: item.orders.order_date,
+        total: item.products.reduce((acc: any, curr: any) => {
+          return (acc += curr.price * curr.count);
+        }, 0),
+        products: item.products,
+        shipment: {
+          fullname: item.orders.ship_fullname,
+          phone: item.orders.ship_phone,
+          country: item.orders.ship_country,
+          city: item.orders.ship_city,
+          address: item.orders.ship_address,
+        },
+        user: { id: item.orders.customer_id },
+      };
+    }
   });
 };
