@@ -54,7 +54,7 @@ const getReport = (orders: IRawOrder[]) => {
         id: item.order_id,
         created_at: item.orders.order_date,
         total: item.products.reduce((acc: any, curr: IModifyProducts) => {
-          return (acc += curr.count * curr.count);
+          return (acc += curr.price * curr.count);
         }, 0),
         products: item.products,
         shipment: {
