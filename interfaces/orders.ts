@@ -32,16 +32,16 @@ interface IFruit {
   name: string;
 }
 
-export interface IFromServerProducts extends IProduct {
+export interface IModifyProducts extends IProduct {
   orderId: number;
 }
 
-export interface IServerOrder {
+export interface IRawOrder {
   order_id: number;
   price: number;
   quantity: number;
   fruits: IFruit;
-  products?: IFromServerProducts[];
+  products?: IModifyProducts[];
   orders: {
     id: number;
     customer_id: number;
