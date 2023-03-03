@@ -1,21 +1,9 @@
-import { supabase } from '@/client';
-import { ISignup } from '@/interfaces/signup';
+import { ISignup, ISignupResponse } from '@/interfaces/signup';
+import { signupService } from './service';
 
-export default defineEventHandler(async (event): Promise<ISignup> => {
+export default defineEventHandler(async (event): Promise<ISignupResponse> => {
   const body: ISignup = await readBody(event);
 
-  await supabase
-    .from('customers')
-    .insert([
-      {
-        firstname: body.fullname.split(' ')[0],
-        lastname: body.fullname.split(' ')[1],
-        email: body.email,
-        password: body.password,
-        password_confirm: body.passwordConfirm,
-      },
-    ])
-    .single();
-
-  return { ...body };
+  const response = await signupService(body);
+  return response;
 });

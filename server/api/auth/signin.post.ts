@@ -1,4 +1,3 @@
-import { supabase } from '@/client';
 import { signinService } from './service';
 import { ISignin } from '@/interfaces/signin';
 
