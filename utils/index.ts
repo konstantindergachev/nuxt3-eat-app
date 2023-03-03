@@ -13,3 +13,17 @@ export const setCookie = (key: string, value: string): void => {
 export const removeCookie = (key: string): void => {
   document.cookie = `${key}=; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
 };
+
+export const dateFormat = (date: string): string => {
+  const _date = new Date(date);
+  return new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    hour12: false,
+    timeZone: 'America/New_York',
+  }).format(_date);
+};

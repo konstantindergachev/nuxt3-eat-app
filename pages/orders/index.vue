@@ -13,7 +13,7 @@
               order id: <span class="text-Green">{{ order.id }}</span>
             </p>
             <p class="leading-14">
-              created: <span class="text-Green">{{ order.created_at }}</span>
+              created: <span class="text-Green">{{ dateFormat(order.created_at) }}</span>
             </p>
             <p class="leading-14">
               total price:<span class="text-Green">{{ order.total }}</span>
@@ -49,7 +49,10 @@
                     count: <span class="text-Green">{{ product.count }}</span>
                   </p>
                   <p class="leading-14">
-                    price: <span class="text-Green">{{ product.price }} per 1 kg</span>
+                    price:
+                    <span class="text-Green"
+                      >{{ moneyFormat('en-US', 'USD', product.price) }} per 1 kg</span
+                    >
                   </p>
                 </li>
               </div>
@@ -62,6 +65,7 @@
 </template>
 <script setup lang="ts">
 import { IOrder } from '@/interfaces/orders';
+import { moneyFormat, dateFormat } from '@/utils';
 
 definePageMeta({
   layout: 'profile',
