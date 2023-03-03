@@ -94,7 +94,7 @@ const handleSignup = async () => {
     form.password = '';
   } catch (error) {
     if (error instanceof Error) {
-      errors.request = 'No such customer!';
+      errors.request = `Sorry! You don't have any account yet.`;
     }
   }
 };

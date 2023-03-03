@@ -8,3 +8,9 @@ export interface ISigninErrors {
   password: string;
   request: string;
 }
+
+export interface IRawSignin {
+  firstname: string;
+  lastname: string;
+  password: string;
+}

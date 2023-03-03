@@ -1,18 +1,13 @@
 import { supabase } from '@/client';
+import { signinService } from './service';
+import { ISignin } from '@/interfaces/signin';
 
 export default defineEventHandler(async (event) => {
   try {
-    const body = await readBody(event);
+    const body: ISignin = await readBody(event);
 
-    const { data } = await supabase
-      .from('customers')
-      .select('firstname, lastname, password')
-      .single();
-
-    if (data?.password !== body.password) {
-      throw new Error('No such customer!');
-    }
-    return `${data?.firstname} ${data?.lastname}`;
+    const customer = await signinService(body.password);
+    return `${customer.firstname} ${customer.lastname}`;
   } catch (error) {
     console.error(error);
   }
