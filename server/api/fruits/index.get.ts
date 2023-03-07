@@ -1,7 +1,6 @@
 import { IFruit } from '@/interfaces/fruits';
-import { supabase } from '@/client';
+import { fruitsService } from './service';
 
 export default defineEventHandler(async (event): Promise<IFruit[]> => {
-  const { data } = await supabase.from('fruits').select();
-  return data as IFruit[];
+  return fruitsService();
 });
