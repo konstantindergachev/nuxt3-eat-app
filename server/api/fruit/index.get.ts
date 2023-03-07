@@ -1,11 +1,8 @@
 import { IFruit } from '@/interfaces/fruits';
-import { supabase } from '@/client';
+import { fruitService } from './service';
 
 export default defineEventHandler(async (event): Promise<IFruit | string> => {
   const query = getQuery(event);
-  const { data } = await supabase.from('fruits').select();
-  if (data) {
-    return data.find((fruit) => fruit.id.toString() === query.fruitId);
-  }
-  return 'Fruit not found!';
+  const fruitId = Number(query.fruitId);
+  return await fruitService(fruitId);
 });
