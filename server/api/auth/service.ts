@@ -3,18 +3,19 @@ import { IRawSignin } from '@/interfaces/signin';
 import { ISignup, ISignupResponse } from '@/interfaces/signup';
 
 export const signinService = async (password: string): Promise<IRawSignin> => {
-  const customer = await supabase
+  const { data } = await supabase
     .from('customers')
     .select('firstname, lastname, password')
+    .eq('password', password)
     .single();
 
-  if (!customer.data) {
+  if (!data) {
     throw new Error(`Something went wrong. We're fixing the problem. Try later. Thank you.`);
   }
-  if (customer.data.password !== password) {
+  if (data.password !== password) {
     throw new Error('No such customer!');
   }
-  return customer.data;
+  return data;
 };
 
 export const signupService = async (body: ISignup): Promise<ISignupResponse> => {
