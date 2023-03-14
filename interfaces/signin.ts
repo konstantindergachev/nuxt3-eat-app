@@ -10,6 +10,7 @@ export interface ISigninErrors {
 }
 
 export interface IRawSignin {
+  id: number;
   firstname: string;
   lastname: string;
   password: string;

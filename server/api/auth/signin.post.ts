@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
     const body: ISignin = await readBody(event);
 
     const customer = await signinService(body.password);
-    return `${customer.firstname} ${customer.lastname}`;
+    return { ...customer };
   } catch (error) {
     console.error(error);
   }
