@@ -46,6 +46,7 @@ const fruitsCount = computed(() => {
 const logout = () => {
   auth.value.isAuthenticated = false;
   removeCookie('auth');
+  removeCookie('id');
   router.push('/signin');
 };
 </script>
