@@ -28,28 +28,27 @@ export interface IOrder {
 
 //From server
 interface IFruit {
-  id: number;
+  id?: number;
   name: string;
 }
 
-export interface IModifyProducts extends IProduct {
-  orderId: number;
+export interface IOrderDetails {
+  order_id: number;
+  fruit_id: number;
+  price: number;
+  quantity: number;
+  created_at: string;
+  fruits: IFruit;
 }
 
 export interface IRawOrder {
-  order_id: number;
-  price: number;
-  quantity: number;
-  fruits: IFruit;
-  products?: IModifyProducts[];
-  orders: {
-    id: number;
-    customer_id: number;
-    ship_fullname: string;
-    ship_phone: string;
-    ship_address: string;
-    ship_city: string;
-    ship_country: string;
-    order_date: string;
-  };
+  id: number;
+  customer_id: number;
+  ship_fullname: string;
+  ship_phone: string;
+  ship_address: string;
+  ship_city: string;
+  ship_country: string;
+  order_date: string;
+  order_details: IOrderDetails[];
 }
