@@ -16,7 +16,8 @@
               created: <span class="text-Green">{{ dateFormat(order.created_at) }}</span>
             </p>
             <p class="leading-14">
-              total price:<span class="text-Green">{{ order.total }}</span>
+              total price:
+              <span class="text-Green">{{ moneyFormat('en-US', 'USD', order.total) }}</span>
             </p>
             <div class="leading-14 mt-5">
               <h3 class="underline">shipment:</h3>
