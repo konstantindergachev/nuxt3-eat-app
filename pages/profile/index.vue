@@ -67,6 +67,18 @@
           :modelValue="form.newPassword"
           :onValidate="validate"
         />
+        <p class="text-red-500 capitalize" v-if="!!errors.newPasswordConfirm">
+          {{ errors.newPasswordConfirm }}
+        </p>
+        <UIInput
+          type="password"
+          name="newPasswordConfirm"
+          placeholder="New password confirm"
+          class="shadow-lg border rounded-lg p-2 mb-2"
+          @update:modelValue="getNewPasswordConfirm"
+          :modelValue="form.newPasswordConfirm"
+          :onValidate="validate"
+        />
         <UIButton type="submit" class="btn rounded-md justify-self-center lg:ml-4">{{
           'update profile'
         }}</UIButton>
@@ -93,6 +105,7 @@ const form = reactive<IUpdateProfile>({
   location: profile.value.location,
   oldPassword: '',
   newPassword: '',
+  newPasswordConfirm: '',
 });
 
 const errors = reactive<IUpdateProfileErrors>({
@@ -101,6 +114,7 @@ const errors = reactive<IUpdateProfileErrors>({
   location: '',
   oldPassword: '',
   newPassword: '',
+  newPasswordConfirm: '',
   request: '',
 });
 
@@ -118,6 +132,9 @@ const getOldPassword = (value: string) => {
 };
 const getNewPassword = (value: string) => {
   form.newPassword = value;
+};
+const getNewPasswordConfirm = (value: string) => {
+  form.newPasswordConfirm = value;
 };
 
 const validate = async (field: keyof IUpdateProfileErrors) => {
@@ -141,6 +158,7 @@ const handleUpdateProfile = async () => {
 
   form.oldPassword = '';
   form.newPassword = '';
+  form.newPasswordConfirm = '';
 
   storeProfile.addToProfile(form);
   form.fullname = profile.value.fullname;

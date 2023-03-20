@@ -22,4 +22,8 @@ export const updateProfileSchema = object().shape({
     .min(CHARCOUNT.NEWPASSWORD_MIN, MESSAGES.NEWPASSWORD_MIN)
     .max(CHARCOUNT.NEWPASSWORD_MAX, MESSAGES.NEWPASSWORD_MAX)
     .required(),
+  newPasswordConfirm: trimString
+    .min(CHARCOUNT.NEWPASSWORD_MIN, MESSAGES.NEWPASSWORD_MIN)
+    .max(CHARCOUNT.NEWPASSWORD_MAX, MESSAGES.NEWPASSWORD_MAX)
+    .required(),
 });
