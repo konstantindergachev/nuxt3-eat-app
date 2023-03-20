@@ -76,7 +76,7 @@ const validate = async (field: keyof ISigninErrors) => {
 
 const handleSignup = async () => {
   try {
-    const { id, firstname, lastname } = await $fetch('/api/auth/signin', {
+    const { id, firstname, lastname, email } = await $fetch('/api/auth/signin', {
       method: 'post',
       body: form,
     });
@@ -87,7 +87,8 @@ const handleSignup = async () => {
     setCookie('id', id.toString());
 
     if (auth.value.isAuthenticated) {
-      storeProfile.fullname = `${firstname} ${lastname}`;
+      const profile = { fullname: `${firstname} ${lastname}`, email, location: '' };
+      storeProfile.addToProfile(profile);
       router.push('/profile');
     }
 

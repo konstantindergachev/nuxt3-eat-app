@@ -5,7 +5,7 @@ import { ISignup, ISignupResponse } from '@/interfaces/signup';
 export const signinService = async (password: string): Promise<IRawSignin> => {
   const { data } = await supabase
     .from('customers')
-    .select('id, firstname, lastname, password')
+    .select('id, firstname, lastname, email, password')
     .eq('password', password)
     .single();
 
