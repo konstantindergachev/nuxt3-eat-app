@@ -87,7 +87,7 @@
   </section>
 </template>
 <script setup lang="ts">
-import { IUpdateProfile, IUpdateProfileErrors } from '@/interfaces/profile';
+import { IReceiveProfileFromDB, IUpdateProfile, IUpdateProfileErrors } from '@/interfaces/profile';
 import { useStoreProfile } from '@/stores/profile';
 import { updateProfileSchema } from '@/validation/updateprofile.validation';
 
@@ -96,13 +96,17 @@ definePageMeta({
   middleware: ['auth'],
 });
 
+const { data } = await useFetch<IReceiveProfileFromDB>('/api/profile');
+
 const storeProfile = useStoreProfile();
 const profile = computed(() => storeProfile.getProfile);
 
 const form = reactive<IUpdateProfile>({
-  fullname: profile.value.fullname,
-  email: profile.value.email,
-  location: profile.value.location,
+  fullname:
+    profile.value.fullname ||
+    `${data.value?.customers.firstname} ${data.value?.customers.lastname}`,
+  email: profile.value.email || `${data.value?.customers.email}`,
+  location: profile.value.location || `${data.value?.city}, ${data.value?.country}`,
   oldPassword: '',
   newPassword: '',
   newPasswordConfirm: '',

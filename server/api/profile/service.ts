@@ -1,7 +1,11 @@
 import { supabase } from '@/client';
-import { IUpdateProfile, IUpdateProfileDBResponse } from '@/interfaces/profile';
+import {
+  IReceiveProfileFromDB,
+  IUpdateProfile,
+  IUpdateProfileDBResponse,
+} from '@/interfaces/profile';
 
-export const profileService = async (
+export const createProfileService = async (
   profile: IUpdateProfile,
   customerId: number
 ): Promise<IUpdateProfileDBResponse> => {
@@ -47,4 +51,18 @@ const updateCustomer = async (
     .update({ ...customer })
     .eq('id', customerId);
   return { status: dbResponse.status, statusText: dbResponse.statusText };
+};
+
+export const receiveProfileService = async (
+  customerId: number
+): Promise<IReceiveProfileFromDB | string> => {
+  const { data } = await supabase
+    .from('profiles')
+    .select('city, country, customers(firstname, lastname, email)')
+    .eq('customer_id', customerId)
+    .single();
+  if (!data) {
+    return `You don't have any additional profile data yet`;
+  }
+  return data as IReceiveProfileFromDB;
 };

@@ -23,3 +23,9 @@ export interface IUpdateProfileDBResponse {
   profileResponse: { status: number; statusText: string };
   customerResponse: { status: number; statusText: string };
 }
+
+export interface IReceiveProfileFromDB {
+  city: string;
+  country: string;
+  customers: { firstname: string; lastname: string; email: string };
+}
