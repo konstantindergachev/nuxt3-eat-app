@@ -6,6 +6,9 @@
 
     <div class="w-full space-y-8 pt-6 md:pt-24">
       <h1 class="text-center text-Black text-3xl font-bold leading-14">Profile</h1>
+      <p class="text-center text-red-500 capitalize" v-if="errors.request">
+        {{ errors.request }}
+      </p>
       <form @submit.prevent="handleUpdateProfile" class="grid max-w-xl mx-auto">
         <p class="text-red-500 capitalize" v-if="!!errors.fullname">
           {{ errors.fullname }}
@@ -96,17 +99,23 @@ definePageMeta({
   middleware: ['auth'],
 });
 
-const { data } = await useFetch<IReceiveProfileFromDB>('/api/profile');
+const { data } = await useFetch<IReceiveProfileFromDB | string>('/api/profile');
 
 const storeProfile = useStoreProfile();
 const profile = computed(() => storeProfile.getProfile);
 
+if (typeof data.value !== 'string') {
+  storeProfile.addToProfile({
+    fullname: `${data.value?.customers.firstname} ${data.value?.customers.lastname}`,
+    email: data.value?.customers.email!,
+    location: `${data.value?.city}, ${data.value?.country}`,
+  });
+}
+
 const form = reactive<IUpdateProfile>({
-  fullname:
-    profile.value.fullname ||
-    `${data.value?.customers.firstname} ${data.value?.customers.lastname}`,
-  email: profile.value.email || `${data.value?.customers.email}`,
-  location: profile.value.location || `${data.value?.city}, ${data.value?.country}`,
+  fullname: profile.value.fullname,
+  email: profile.value.email,
+  location: profile.value.location,
   oldPassword: '',
   newPassword: '',
   newPasswordConfirm: '',
@@ -121,6 +130,10 @@ const errors = reactive<IUpdateProfileErrors>({
   newPasswordConfirm: '',
   request: '',
 });
+
+if (typeof data.value === 'string') {
+  errors.request = data.value;
+}
 
 const getFullname = (value: string) => {
   form.fullname = value;

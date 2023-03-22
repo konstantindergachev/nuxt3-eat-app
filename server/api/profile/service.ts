@@ -61,8 +61,9 @@ export const receiveProfileService = async (
     .select('city, country, customers(firstname, lastname, email)')
     .eq('customer_id', customerId)
     .single();
+
   if (!data) {
-    return `You don't have any additional profile data yet`;
+    throw new Error(`You don't have any additional profile data yet`);
   }
   return data as IReceiveProfileFromDB;
 };

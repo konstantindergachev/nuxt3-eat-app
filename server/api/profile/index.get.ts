@@ -3,6 +3,14 @@ import { IReceiveProfileFromDB } from '@/interfaces/profile';
 
 export default defineEventHandler(async (event): Promise<IReceiveProfileFromDB | string> => {
   const customerId = getCookie(event, 'id');
-  const dbResponse = receiveProfileService(Number(customerId));
-  return dbResponse;
+  try {
+    const dbResponse = await receiveProfileService(Number(customerId));
+    return dbResponse;
+  } catch (error) {
+    if (error instanceof Error) {
+      return error.message;
+    } else {
+      return 'Unexpected error';
+    }
+  }
 });
