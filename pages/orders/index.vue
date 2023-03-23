@@ -70,6 +70,7 @@ import { moneyFormat, dateFormat } from '@/utils';
 
 definePageMeta({
   layout: 'profile',
+  middleware: ['auth'],
 });
 
 const { data } = await useFetch<IOrder[]>('/api/orders');

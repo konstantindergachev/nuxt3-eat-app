@@ -25,6 +25,6 @@
 <script setup lang="ts">
 const router = useRouter();
 const goBack = () => {
-  router.back(-1);
+  router.back();
 };
 </script>

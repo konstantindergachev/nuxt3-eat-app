@@ -24,29 +24,25 @@
 </template>
 <script setup>
 import { useStoreBasket } from '@/stores/basket';
-import { removeCookie } from '@/utils';
 
 const route = useRoute();
 const router = useRouter();
 const auth = useAuth();
-const authCookie = useCookie('auth');
-const isAuth = Boolean(authCookie.value);
 
 const storeBasket = useStoreBasket();
 
 onMounted(() => {
   storeBasket.loadFromLocalStorage();
-  auth.value.isAuthenticated = isAuth;
+  // auth.value.isAuthenticated = isAuth;
 });
 
 const fruitsCount = computed(() => {
   return storeBasket.getBasketFruitsCount;
 });
 
-const logout = () => {
+const logout = async () => {
   auth.value.isAuthenticated = false;
-  removeCookie('auth');
-  removeCookie('id');
+  $fetch('/api/auth/logout', { method: 'delete' });
   router.push('/signin');
 };
 </script>
