@@ -3,3 +3,7 @@ export interface ICookieOptions {
   path: string;
   expires: Date;
 }
+
+export interface ICookieProp {
+  isHttpOnly: boolean;
+}

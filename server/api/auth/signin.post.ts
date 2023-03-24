@@ -12,9 +12,10 @@ export default defineEventHandler(async (event) => {
     const date = new Date();
     date.setTime(date.getTime() + 60 * 1000);
 
-    const opts: ICookieOptions = getCookieOptions();
-    setCookie(event, 'id', customer.id.toString(), opts);
-    setCookie(event, 'auth', 'true', opts);
+    const httpOnlyCookie: ICookieOptions = getCookieOptions({ isHttpOnly: true });
+    const globalCookie: ICookieOptions = getCookieOptions({ isHttpOnly: false });
+    setCookie(event, 'id', customer.id.toString(), httpOnlyCookie);
+    setCookie(event, 'auth', 'true', globalCookie);
 
     return { ...customer };
   } catch (error) {

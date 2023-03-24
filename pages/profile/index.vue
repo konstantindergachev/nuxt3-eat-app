@@ -135,24 +135,12 @@ if (typeof data.value === 'string') {
   errors.request = data.value;
 }
 
-const getFullname = (value: string) => {
-  form.fullname = value;
-};
-const getEmail = (value: string) => {
-  form.email = value;
-};
-const getLocation = (value: string) => {
-  form.location = value;
-};
-const getOldPassword = (value: string) => {
-  form.oldPassword = value;
-};
-const getNewPassword = (value: string) => {
-  form.newPassword = value;
-};
-const getNewPasswordConfirm = (value: string) => {
-  form.newPasswordConfirm = value;
-};
+const getFullname = (value: string): string => (form.fullname = value);
+const getEmail = (value: string): string => (form.email = value);
+const getLocation = (value: string): string => (form.location = value);
+const getOldPassword = (value: string): string => (form.oldPassword = value);
+const getNewPassword = (value: string): string => (form.newPassword = value);
+const getNewPasswordConfirm = (value: string): string => (form.newPasswordConfirm = value);
 
 const validate = async (field: keyof IUpdateProfileErrors) => {
   try {

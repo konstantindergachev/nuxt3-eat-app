@@ -1,4 +1,4 @@
-import { ICookieOptions } from '@/interfaces/cookies';
+import { ICookieProp, ICookieOptions } from '@/interfaces/cookies';
 
 export const moneyFormat = (locale: string, countryCurrency: string, money: number): string => {
   return new Intl.NumberFormat(locale, { style: 'currency', currency: countryCurrency }).format(
@@ -20,12 +20,12 @@ export const dateFormat = (date: string): string => {
   }).format(_date);
 };
 
-export const getCookieOptions = (): ICookieOptions => {
+export const getCookieOptions = ({ isHttpOnly }: ICookieProp): ICookieOptions => {
   const date = new Date();
   date.setTime(date.getTime() + 1 * 1 * 60 * 60 * 1000);
 
   return {
-    httpOnly: true,
+    httpOnly: isHttpOnly,
     path: '/',
     expires: date,
   };

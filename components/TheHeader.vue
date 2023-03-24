@@ -33,7 +33,6 @@ const storeBasket = useStoreBasket();
 
 onMounted(() => {
   storeBasket.loadFromLocalStorage();
-  // auth.value.isAuthenticated = isAuth;
 });
 
 const fruitsCount = computed(() => {

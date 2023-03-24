@@ -5,12 +5,12 @@
     <div class="col-span-full">
       <TheHeader />
     </div>
-    <ul class="flex flex-col mt-4 space-y-4 items-left">
+    <ul class="flex flex-col mt-8 space-y-4 items-center">
       <li>
         <NuxtLink
           to="/profile"
           activeClass="border-b-2 border-b-Green"
-          class="border-transparent border-b-2 hover:border-b-Green capitalize block"
+          class="border-transparent border-b-2 hover:border-b-Green capitalize"
           >profile</NuxtLink
         >
       </li>
@@ -18,7 +18,7 @@
         <NuxtLink
           to="/orders"
           activeClass="border-b-2 border-b-Green"
-          class="border-transparent border-b-2 hover:border-b-Green capitalize block"
+          class="border-transparent border-b-2 hover:border-b-Green capitalize"
           >orders</NuxtLink
         >
       </li>
