@@ -11,7 +11,8 @@
   </section>
 </template>
 <script setup lang="ts">
-import { moneyFormat } from '@/utils';
-
+import { useUtilities } from '@/composables/useUtilities';
 const { topThreeProducts } = defineProps(['topThreeProducts']);
+
+const { moneyFormat } = useUtilities();
 </script>

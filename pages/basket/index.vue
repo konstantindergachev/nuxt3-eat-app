@@ -52,12 +52,13 @@
 </template>
 <script setup lang="ts">
 import { useStoreBasket } from '@/stores/basket';
-import { moneyFormat } from '@/utils';
+import { useUtilities } from '@/composables/useUtilities';
 
 definePageMeta({
   middleware: ['auth'],
 });
 
+const { moneyFormat } = useUtilities();
 const storeBasket = useStoreBasket();
 
 const basket = computed(() => {

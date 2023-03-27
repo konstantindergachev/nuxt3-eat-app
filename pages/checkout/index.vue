@@ -170,8 +170,10 @@ import {
   ICheckoutProduct,
 } from '@/interfaces/checkout';
 import { useStoreBasket } from '@/stores/basket';
-import { moneyFormat } from '@/utils';
+import { useUtilities } from '@/composables/useUtilities';
 import { checkoutSchema } from '@/validation/checkout.validation';
+
+const { moneyFormat } = useUtilities();
 
 const storeBasket = useStoreBasket();
 const products = computed(() => {

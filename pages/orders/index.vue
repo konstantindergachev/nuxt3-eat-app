@@ -66,12 +66,14 @@
 </template>
 <script setup lang="ts">
 import { IOrder } from '@/interfaces/orders';
-import { moneyFormat, dateFormat } from '@/utils';
+import { useUtilities } from '@/composables/useUtilities';
 
 definePageMeta({
   layout: 'profile',
   middleware: ['auth'],
 });
+
+const { moneyFormat, dateFormat } = useUtilities();
 
 const { data } = await useFetch<IOrder[]>('/api/orders');
 const orders = data.value;
