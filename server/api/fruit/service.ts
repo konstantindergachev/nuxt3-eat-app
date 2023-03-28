@@ -8,3 +8,12 @@ export const fruitService = async (fruitId: number): Promise<IFruit | string> =>
   }
   return 'Fruit not found!';
 };
+
+export const addFruitToFavoriteService = async (body: IFruit): Promise<IFruit | string> => {
+  await supabase
+    .from('fruits')
+    .update({ ...body })
+    .eq('id', body.id);
+
+  return fruitService(Number(body.id));
+};
