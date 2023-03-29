@@ -30,6 +30,6 @@ const { data: recommendation } = await useLazyFetch<IRecommendation>('/api/recom
 const { data: delivery } = await useLazyFetch<IDelivery>('/api/delivery');
 const { data: newsletter } = await useLazyFetch<INewsletter>('/api/newsletter');
 
-const { data } = await useLazyFetch<IFruit[]>('/api/fruits');
+const { data } = await useLazyFetch<IFruit[]>('/api/fruits/top');
 const topThreeProducts = data.value?.filter((product, idx) => idx <= 2 && product);
 </script>
