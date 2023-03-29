@@ -15,10 +15,15 @@
           <span class="opacity-70">{{ moneyFormat('en-US', 'USD', fruit.price!) }}</span>
         </p>
         <div v-if="auth.isAuthenticated">
-          <button type="button" v-if="fruit.popular" class="text-2xl">
-            <span class="text-red-500">&#128153;</span>
-          </button>
-          <UIButton type="button" v-else class="text-2xl" :onClick="addToFavorite">
+          <UIButton
+            type="button"
+            v-if="fruit.popular"
+            class="text-2xl"
+            :onClick="() => addToFavorite(false)"
+          >
+            <span class="text-Yellow">&#128153;</span>
+          </UIButton>
+          <UIButton type="button" v-else class="text-2xl" :onClick="() => addToFavorite(true)">
             <span class="opacity-70">&#9825;</span>
           </UIButton>
         </div>
@@ -49,8 +54,8 @@ const addToBasket = () => {
   if (data.value) storeBasket.addToBasket(productToBasket);
 };
 
-const addToFavorite = async () => {
-  fruit.popular = true;
+const addToFavorite = async (isFavorite: boolean) => {
+  fruit.popular = isFavorite;
   const response: IFruit = await $fetch('/api/fruit', {
     method: 'put',
     body: { ...data.value, popular: !data.value?.popular },
