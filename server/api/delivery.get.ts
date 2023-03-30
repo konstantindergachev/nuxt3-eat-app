@@ -1,8 +1,8 @@
+import { db } from '@/server/db/clientDB';
 import { IDelivery } from '@/interfaces/delivery';
-import { supabase } from '@/client';
 
 export default defineEventHandler(async (event): Promise<IDelivery | string> => {
-  const { data } = await supabase.from('deliveries').select(`
+  const { data } = await db.from('deliveries').select(`
     id,
     title,
     description,

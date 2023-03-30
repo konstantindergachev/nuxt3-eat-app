@@ -1,4 +1,4 @@
-import { supabase } from '@/client';
+import { db } from '@/server/db/clientDB';
 import {
   IReceiveProfileFromDB,
   IUpdateProfile,
@@ -22,7 +22,7 @@ const createProfile = async (
   location: string
 ): Promise<{ status: number; statusText: string }> => {
   const [city, country] = location.split(',');
-  const dbResponse = await supabase.from('profiles').insert([
+  const dbResponse = await db.from('profiles').insert([
     {
       customer_id: customerId,
       city: city.trim(),
@@ -46,7 +46,7 @@ const updateCustomer = async (
     password_confirm: profile.newPasswordConfirm,
     updated_at: new Date(),
   };
-  const dbResponse = await supabase
+  const dbResponse = await db
     .from('customers')
     .update({ ...customer })
     .eq('id', customerId);
@@ -56,7 +56,7 @@ const updateCustomer = async (
 export const receiveProfileService = async (
   customerId: number
 ): Promise<IReceiveProfileFromDB | string> => {
-  const { data } = await supabase
+  const { data } = await db
     .from('profiles')
     .select('city, country, customers(firstname, lastname, email)')
     .eq('customer_id', customerId)

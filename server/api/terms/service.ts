@@ -1,7 +1,7 @@
-import { supabase } from '@/client';
+import { db } from '@/server/db/clientDB';
 import { ITerms } from '@/interfaces/terms';
 
 export const termsService = async (): Promise<ITerms[]> => {
-  const { data } = await supabase.from('terms').select();
+  const { data } = await db.from('terms').select();
   return data as ITerms[];
 };

@@ -1,9 +1,9 @@
-import { supabase } from '@/client';
+import { db } from '@/server/db/clientDB';
 import { IRawSignin } from '@/interfaces/signin';
 import { ISignup, ISignupResponse } from '@/interfaces/signup';
 
 export const signinService = async (password: string): Promise<IRawSignin> => {
-  const { data } = await supabase
+  const { data } = await db
     .from('customers')
     .select('id, firstname, lastname, email, password')
     .eq('password', password)
@@ -19,7 +19,7 @@ export const signinService = async (password: string): Promise<IRawSignin> => {
 };
 
 export const signupService = async (body: ISignup): Promise<ISignupResponse> => {
-  const newCustomer = await supabase
+  const newCustomer = await db
     .from('customers')
     .insert([
       {

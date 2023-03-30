@@ -1,7 +1,7 @@
-import { supabase } from '@/client';
+import { db } from '@/server/db/clientDB';
 import { IReturnRefund } from '@/interfaces/return';
 
 export const returnRefundService = async (): Promise<IReturnRefund[]> => {
-  const { data } = await supabase.from('refunds').select();
+  const { data } = await db.from('refunds').select();
   return data as IReturnRefund[];
 };

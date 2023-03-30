@@ -1,9 +1,9 @@
-import { supabase } from '@/client';
+import { db } from '@/server/db/clientDB';
 import { PostgrestResponse } from '@supabase/supabase-js';
 import { IOrder, IRawOrder, IOrderDetails } from '@/interfaces/orders';
 
 export const orderService = async (id: number): Promise<IOrder[] | string> => {
-  const rawOrder: PostgrestResponse<IRawOrder> = await supabase
+  const rawOrder: PostgrestResponse<IRawOrder> = await db
     .from('orders')
     .select(`*, order_details(*, fruits(name))`)
     .eq('customer_id', id);
