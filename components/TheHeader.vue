@@ -5,7 +5,7 @@
     </NuxtLink>
     <PrivateNavbar v-if="auth.isAuthenticated" />
     <Navbar v-else />
-    <div class="relative">
+    <div class="relative mt-5 lg:mt-0">
       <div v-if="auth.isAuthenticated" class="flex items-center">
         <NuxtLink to="/basket" class="z-10"
           ><img src="/images/carrybag.svg" alt="Carry bag" class="w-12" />

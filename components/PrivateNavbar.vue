@@ -1,5 +1,5 @@
 <template>
-  <nav class="text-Black flex justify-between space-x-10 capitalize">
+  <nav class="text-Black flex flex-wrap justify-between space-x-10 capitalize mt-5 lg:mt-0">
     <NuxtLink
       v-for="item in navigation"
       :key="item.id"
