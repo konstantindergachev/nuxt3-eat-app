@@ -7,8 +7,12 @@
       <div class="w-full lg:w-6/12">
         <img src="/images/about_us.png" alt="About us" class="mt-5 lg:mt-0" />
       </div>
-      <div class="w-full lg:w-6/12 space-y-8 pt-14 md:pt-32">
-        <h1 class="uppercase text-Green text-6xl font-bold leading-14">{{ about?.title }}</h1>
+      <div class="w-full lg:w-6/12 space-y-8 md:pt-32">
+        <h1
+          class="uppercase text-Green font-bold leading-14 text-3xl lg:text-6xl text-center lg:text-left"
+        >
+          {{ about?.title }}
+        </h1>
         <p class="text-Black opacity-70">{{ about?.description }}</p>
         <div class="w-full">
           <ul v-for="item in about?.list" :key="item.id" class="flex flex-wrap">

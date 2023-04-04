@@ -5,7 +5,9 @@
       class="container flex flex-col-reverse justify-center items-center md:flex-row lg:justify-between lg:space-x-10 mt-14 md:mt-32"
     >
       <div class="w-full">
-        <h1 class="text-center uppercase text-Green text-6xl font-bold leading-14 mb-20">
+        <h1
+          class="text-center uppercase text-Green font-bold leading-14 mb-10 text-3xl lg:text-6xl lg:mb-20"
+        >
           {{ 'Individual Marketplace Privacy Policy' }}
         </h1>
         <ul v-for="item in data" :key="item.id" class="flex flex-col">

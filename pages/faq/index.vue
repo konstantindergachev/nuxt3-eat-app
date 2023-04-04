@@ -4,7 +4,9 @@
     <section
       class="container flex flex-col justify-center items-center md:flex-row lg:justify-between lg:space-x-10 mt-14 md:mt-32"
     >
-      <h1 class="uppercase text-Green text-6xl font-bold leading-14 self-start mt-4">
+      <h1
+        class="uppercase text-Green font-bold leading-14 self-start mb-5 text-3xl lg:text-6xl text-center lg:text-left"
+      >
         {{ 'Frequently Asked Questions' }}
       </h1>
 

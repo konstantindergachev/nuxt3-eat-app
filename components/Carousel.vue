@@ -20,7 +20,9 @@
             class="container flex flex-col-reverse justify-center md:flex-row lg:justify-between lg:space-x-10 mt-14 md:mt-32"
           >
             <div class="w-full text-left lg:w-6/12 space-y-6 pt-14 md:pt-32">
-              <h1 class="uppercase text-Green text-6xl font-bold leading-14">{{ slide.title }}</h1>
+              <h1 class="uppercase text-Green font-bold leading-14 text-3xl lg:text-6xl">
+                {{ slide.title }}
+              </h1>
               <p class="text-Black opacity-70">{{ slide.description }}</p>
               <h4 class="uppercase text-xs">Ahmed Hridoy</h4>
               <h4 class="uppercase text-xs">{{ slide.created_at.split('.')[0] }}</h4>
