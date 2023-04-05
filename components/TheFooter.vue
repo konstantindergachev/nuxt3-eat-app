@@ -27,8 +27,13 @@
     </div>
     <div class="flex flex-col items-center w-full md:w-1/5">
       <h4 class="text-Black text-2xl font-bold leading-14 mb-8 capitalize">socials</h4>
-      <ul v-for="social in data" :key="social.id" class="flex">
-        <a :href="`https://${social.name}.com`" target="_blank">
+      <ul class="flex">
+        <a
+          v-for="social in data"
+          :key="social.id"
+          :href="`https://${social.name}.com`"
+          target="_blank"
+        >
           <li class="w-10 py-2 mr-6 shadow-md rounded-full">
             <img :src="social.url" :alt="social.name" class="m-auto" />
           </li>

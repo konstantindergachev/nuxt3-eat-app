@@ -1,5 +1,5 @@
 <template>
-  <section class="container flex flex-col lg:flex-row justify-between lg:space-x-10 mt-14 md:mt-32">
+  <section class="container flex flex-col lg:flex-row justify-between lg:space-x-10 mt-10 md:mt-32">
     <div class="w-full mb-10 text-center lg:text-left lg:w-6/12">
       <h1 class="text-Black text-3xl font-bold leading-14 mb-10">
         {{ delivery[0].title }}

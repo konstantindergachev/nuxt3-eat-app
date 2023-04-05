@@ -1,5 +1,5 @@
 <template>
-  <section class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-14 md:mt-20">
+  <section class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10 md:mt-20">
     <UICard v-for="prod in topThreeProducts" :key="prod.id">
       <UIImage :imgSrc="prod.img" :imgName="prod.name" className="flex justify-center" />
       <UITitle>{{ prod.name }}</UITitle>
