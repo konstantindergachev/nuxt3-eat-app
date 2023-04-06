@@ -5,7 +5,7 @@
     <div class="col-span-full">
       <TheHeader />
     </div>
-    <ul class="flex justify-evenly lg:flex-col mt-8 lg:space-y-4 lg:items-center">
+    <ul class="flex justify-evenly mt-8 lg:flex-col lg:space-y-4 lg:items-center lg:justify-start">
       <li>
         <NuxtLink
           to="/profile"
@@ -25,7 +25,6 @@
     </ul>
     <main class="main">
       <slot />
-      <hr class="bg-Black w-full h-0.5 mb-20 opacity-40" />
     </main>
     <div class="col-span-full">
       <TheFooter />
