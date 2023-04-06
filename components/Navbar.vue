@@ -15,7 +15,7 @@ import { INavigation } from '@/interfaces/navigation';
 
 const navigation: INavigation[] = [
   { id: '1', path: '/fruits', title: 'fruits' },
-  { id: '2', path: '/review', title: 'review' },
+  { id: '2', path: '/reviews', title: 'reviews' },
   { id: '3', path: '/about', title: 'about us' },
   { id: '4', path: '/location', title: 'location' },
 ];
