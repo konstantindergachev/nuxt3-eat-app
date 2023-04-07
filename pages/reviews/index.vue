@@ -1,12 +1,14 @@
 <template>
-  <div class="relative w-full">
+  <div class="relative w-full mb-5">
     <Head>
       <Title>EatApp - review</Title>
     </Head>
     <Carousel v-if="slides" :slides="slides" :interval="3000" controls indicators />
   </div>
-  <a href="#" @click="view('counter')">Counter</a>
-  <LazyCounter v-if="page === 'counter'" />
+  <UIButton type="button" class="btn self-start mb-5" :onClick="() => view('post')">{{
+    'create post'
+  }}</UIButton>
+  <LazyPost v-if="page === 'post'" />
 </template>
 <script setup lang="ts">
 import { ISlide } from '@/interfaces/review';
