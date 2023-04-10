@@ -15,8 +15,7 @@
     <p class="text-red-500 capitalize" v-if="!!errors.text">
       {{ errors.text }}
     </p>
-    <UIInput
-      type="text"
+    <UITextArea
       name="text"
       placeholder="Enter your text"
       class="shadow-lg border rounded-lg p-2 mb-2"
