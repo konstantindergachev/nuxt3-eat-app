@@ -12,6 +12,18 @@
       :modelValue="form.fullname"
       :onValidate="validate"
     />
+    <p class="text-red-500 capitalize" v-if="!!errors.title">
+      {{ errors.title }}
+    </p>
+    <UIInput
+      type="text"
+      name="title"
+      placeholder="Enter your title"
+      class="shadow-lg border rounded-lg p-2 mb-2"
+      @update:modelValue="getTitle"
+      :modelValue="form.title"
+      :onValidate="validate"
+    />
     <p class="text-red-500 capitalize" v-if="!!errors.text">
       {{ errors.text }}
     </p>
@@ -35,16 +47,22 @@ import { postSchema } from '@/validation/post.validation';
 
 const form = reactive<IPost>({
   fullname: '',
+  title: '',
   text: '',
 });
 const errors = reactive<IPostErrors>({
   fullname: '',
+  title: '',
   text: '',
   request: '',
 });
 
 const getFullname = (value: string) => {
   form.fullname = value;
+};
+
+const getTitle = (value: string) => {
+  form.title = value;
 };
 
 const getText = (value: string) => {
@@ -66,6 +84,7 @@ const validate = async (field: keyof IPostErrors) => {
 
 const handleSignup = async () => {
   form.fullname = '';
+  form.title = '';
   form.text = '';
 };
 </script>
