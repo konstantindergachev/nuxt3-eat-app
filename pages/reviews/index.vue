@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import { ISlide } from '@/interfaces/review';
 
-const { data } = await useFetch<ISlide[]>('/api/review');
+const { data } = await useFetch<ISlide[]>('/api/reviews');
 const slides = data.value;
 const auth = useAuth();
 

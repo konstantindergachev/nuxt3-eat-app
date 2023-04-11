@@ -1,4 +1,7 @@
 <template>
+  <p class="text-Green capitalize" v-if="!!errors.request">
+    {{ errors.request }}
+  </p>
   <form @submit.prevent="handleSignup" class="grid self-start max-w-xl lg:w-1/3">
     <p class="text-red-500 capitalize" v-if="!!errors.fullname">
       {{ errors.fullname }}
@@ -42,15 +45,15 @@
 </template>
 
 <script setup lang="ts">
-import { IPost, IPostErrors } from '@/interfaces/post';
+import { IReview, IReviewErrors, IReviewResponse } from '@/interfaces/review';
 import { postSchema } from '@/validation/post.validation';
 
-const form = reactive<IPost>({
+const form = reactive<IReview>({
   fullname: '',
   title: '',
   text: '',
 });
-const errors = reactive<IPostErrors>({
+const errors = reactive<IReviewErrors>({
   fullname: '',
   title: '',
   text: '',
@@ -69,7 +72,7 @@ const getText = (value: string) => {
   form.text = value;
 };
 
-const validate = async (field: keyof IPostErrors) => {
+const validate = async (field: keyof IReviewErrors) => {
   try {
     await postSchema.validateAt(field, form);
     errors[field] = '';
@@ -83,8 +86,20 @@ const validate = async (field: keyof IPostErrors) => {
 };
 
 const handleSignup = async () => {
-  form.fullname = '';
-  form.title = '';
-  form.text = '';
+  try {
+    const response = await $fetch<IReviewResponse>('/api/reviews', {
+      method: 'post',
+      body: form,
+    });
+    errors.request = response.statusText;
+
+    form.fullname = '';
+    form.title = '';
+    form.text = '';
+  } catch (error) {
+    if (error instanceof Error) {
+      errors.request = error.message;
+    }
+  }
 };
 </script>
