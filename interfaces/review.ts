@@ -23,3 +23,11 @@ export interface IReviewErrors {
   text: string;
   request: string;
 }
+
+export interface IPost {
+  id: number;
+  title: string;
+  text: string;
+  created_at: string;
+  fullname: string;
+}

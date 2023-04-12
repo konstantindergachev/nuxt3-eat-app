@@ -1,7 +1,7 @@
 import { db } from '@/server/db/clientDB';
 import { ISlide, IReview } from '@/interfaces/review';
 
-export const reviewService = async (): Promise<ISlide[]> => {
+export const reviewsService = async (): Promise<ISlide[]> => {
   const { data } = await db.from('reviews').select();
   return data as ISlide[];
 };
@@ -18,4 +18,17 @@ export const createReviewService = async (
     },
   ]);
   return { status: dbResponse.status, statusText: dbResponse.statusText };
+};
+
+export const postsService = async () => {
+  const { data } = await db.from('posts').select('id, title, text, created_at, customers(*)');
+  const posts = data?.map((post) => {
+    const tempPost = {
+      ...post,
+      fullname: `${post.customers.firstname} ${post.customers.lastname}`,
+    };
+    const { customers, ..._post } = tempPost;
+    return _post;
+  });
+  return posts;
 };
