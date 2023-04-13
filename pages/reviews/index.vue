@@ -8,21 +8,26 @@
   <UIButton
     v-if="auth.isAuthenticated"
     type="button"
-    class="btn self-start mb-5"
+    class="btn self-start my-10"
     :onClick="() => view('post')"
     >{{ 'create post' }}</UIButton
   >
-  <LazyPost v-if="page === 'post'" />
-  <ul class="flex flex-row justify-start flex-wrap mt-10 space-x-8">
-    <li v-for="post in posts" :key="post.id" class="space-y-4">
-      <h3 class="uppercase text-Green font-bold leading-14 text-3xl lg:text-3xl">
-        {{ post.title }}
-      </h3>
-      <p class="text-Black opacity-70">{{ post.text }}</p>
-      <h4 class="uppercase text-xs">{{ post.fullname }}</h4>
-      <h4 class="uppercase text-xs">{{ post.created_at.split('.')[0] }}</h4>
-    </li>
-  </ul>
+  <div class="flex flex-col md:flex-row md:justify-between">
+    <LazyPostForm v-if="page === 'post'" />
+    <ul
+      class="flex flex-wrap justify-between"
+      :class="[page === 'post' ? 'lg:w-1/3' : 'lg:w-full']"
+    >
+      <li v-for="post in posts" :key="post.id" class="space-y-4 mb-8">
+        <h3 class="uppercase text-Green font-bold leading-14 text-3xl lg:text-3xl">
+          {{ post.title }}
+        </h3>
+        <p class="text-Black opacity-70">{{ post.text }}</p>
+        <h4 class="uppercase text-xs">{{ post.fullname }}</h4>
+        <h4 class="uppercase text-xs">{{ post.created_at.split('.')[0] }}</h4>
+      </li>
+    </ul>
+  </div>
 </template>
 <script setup lang="ts">
 import { ISlide, IPost } from '@/interfaces/review';
