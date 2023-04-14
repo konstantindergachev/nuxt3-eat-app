@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="handleSignup" class="grid self-start mb-8 max-w-xl lg:w-1/3">
+  <form @submit.prevent="handleSignup" class="grid self-start mb-8 mr-8 max-w-xl lg:w-1/3">
     <p class="text-Green capitalize" v-if="!!errors.request">
       {{ errors.request }}
     </p>
