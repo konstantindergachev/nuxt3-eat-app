@@ -12,8 +12,3 @@ export interface ISignupErrors {
   passwordConfirm: string;
   request: string;
 }
-
-export interface ISignupResponse {
-  status: number;
-  message: string;
-}

@@ -1,7 +1,7 @@
 import crypto from 'crypto';
 import { db } from '@/server/db/clientDB';
 import { IRawSignin } from '@/interfaces/signin';
-import { ISignup, ISignupResponse } from '@/interfaces/signup';
+import { ISignup } from '@/interfaces/signup';
 
 const { CUSTOMER_PASSWORD_SECRET } = process.env;
 
@@ -23,7 +23,7 @@ export const signinService = async (password: string): Promise<IRawSignin> => {
   return data;
 };
 
-export const signupService = async (body: ISignup): Promise<ISignupResponse> => {
+export const signupService = async (body: ISignup): Promise<IRawSignin> => {
   const hashedPassword = getHashedPassword(body.password);
   const hashedPasswordConfirm = getHashedPassword(body.passwordConfirm);
 
@@ -43,8 +43,7 @@ export const signupService = async (body: ISignup): Promise<ISignupResponse> => 
   if (newCustomer.error) {
     throw new Error(`Something went wrong. We're fixing the problem. Try later. Thank you.`);
   }
-
-  return { status: newCustomer.status, message: newCustomer.statusText };
+  return await signinService(body.password);
 };
 
 const getHashedPassword = (password: string): string => {
