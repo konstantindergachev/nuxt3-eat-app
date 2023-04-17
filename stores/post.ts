@@ -11,7 +11,7 @@ export const useStorePost = defineStore('post', {
       return { ...state };
     },
     getPosts(state) {
-      return state.posts;
+      return sortByDesc(state.posts);
     },
   },
   actions: {
@@ -19,7 +19,11 @@ export const useStorePost = defineStore('post', {
       this.posts.push({ ...post, id: Date.now(), created_at: new Date().toISOString().toString() });
     },
     addPosts(posts: IPost[]) {
-      this.posts = posts;
+      this.posts = sortByDesc(posts);
     },
   },
 });
+
+const sortByDesc = (posts: IPost[]): IPost[] => {
+  return posts.sort((a, b) => b.id - a.id);
+};
