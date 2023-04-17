@@ -14,16 +14,22 @@
   >
   <div class="flex flex-col md:flex-row md:justify-between">
     <LazyPostForm v-if="page === 'post'" />
-    <Post :page="page" :posts="posts" />
+    <Post :page="page" :posts="storedPosts" />
   </div>
 </template>
 <script setup lang="ts">
 import { ISlide, IPost } from '@/interfaces/review';
+import { useStorePost } from '@/stores/post';
 
 const { data } = await useFetch<{ reviews: ISlide[]; posts: IPost[] }>('/api/reviews');
 const slides = data.value?.reviews;
-const posts = data.value?.posts;
+
 const auth = useAuth();
+
+const storePost = useStorePost();
+const storedPosts = computed(() => storePost.getPosts);
+const posts = data.value?.posts;
+if (posts) storePost.addPosts(posts);
 
 const page = ref('');
 const view = (name: string) => (page.value = name);

@@ -47,6 +47,7 @@
 <script setup lang="ts">
 import { IReview, IReviewErrors, IReviewResponse } from '@/interfaces/review';
 import { postSchema } from '@/validation/post.validation';
+import { useStorePost } from '@/stores/post.js';
 
 const form = reactive<IReview>({
   fullname: '',
@@ -59,6 +60,8 @@ const errors = reactive<IReviewErrors>({
   text: '',
   request: '',
 });
+
+const storePost = useStorePost();
 
 const getFullname = (value: string) => {
   form.fullname = value;
@@ -92,6 +95,7 @@ const handleSignup = async () => {
       body: form,
     });
     errors.request = response.statusText;
+    storePost.addPost(form);
 
     form.fullname = '';
     form.title = '';
