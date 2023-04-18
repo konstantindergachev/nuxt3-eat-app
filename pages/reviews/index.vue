@@ -12,7 +12,7 @@
     :onClick="() => view('post')"
     >{{ 'create post' }}</UIButton
   >
-  <div class="flex flex-col md:flex-row md:justify-between">
+  <div>
     <LazyPostForm v-if="page === 'post'" />
     <Post :page="page" :posts="storedPosts" />
   </div>

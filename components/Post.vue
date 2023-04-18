@@ -1,6 +1,6 @@
 <template>
-  <ul class="flex flex-col md:flex-row flex-wrap gap-4 mt-10" :class="[page && 'mt-0']">
-    <UICard v-for="post in posts" :key="post.id">
+  <ul :class="[page ? 'block mt-0' : 'flex flex-wrap gap-4 mt-10']">
+    <UICard v-for="post in posts" :key="post.id" :class="[page && 'mb-4']">
       <h3 class="uppercase text-Green font-bold leading-14 text-3xl">
         {{ post.title }}
       </h3>
