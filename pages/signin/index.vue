@@ -1,29 +1,22 @@
 <template>
   <h1 class="text-center mt-10 mb-10 uppercase">Sign in</h1>
   <form @submit.prevent="handleSignup" class="grid max-w-xl mx-auto">
-    <p class="text-red-500 capitalize" v-if="!!errors.email || !!errors.request">
-      {{ errors.email || errors.request }}
+    <p
+      class="text-red-500 capitalize"
+      v-if="!!errors.email || !!errors.password || !!errors.request"
+    >
+      {{ errors.email || errors.password || errors.request }}
     </p>
     <UIInput
-      type="email"
-      name="email"
-      placeholder="Enter your mail"
-      class="shadow-lg border rounded-lg p-2 mb-2"
-      @update:modelValue="getEmail"
-      :modelValue="form.email"
+      v-for="input in inputs"
+      :key="input.name"
+      :type="input.type"
+      :name="input.name"
+      :placeholder="input.placeholder"
+      className="shadow-lg border rounded-lg p-2 mb-2"
+      :modelValue="input.value"
       :onValidate="validate"
-    />
-    <p class="text-red-500 capitalize" v-if="!!errors.password">
-      {{ errors.password }}
-    </p>
-    <UIInput
-      type="password"
-      name="password"
-      placeholder="Enter your password"
-      class="shadow-lg border rounded-lg p-2 mb-2"
-      @update:modelValue="getPassword"
-      :modelValue="form.password"
-      :onValidate="validate"
+      @update:modelValue="input.getValue"
     />
     <UIButton type="submit" class="btn rounded-md justify-self-center lg:ml-4">{{
       'send'
@@ -35,27 +28,18 @@
   </form>
 </template>
 <script setup lang="ts">
-import { ISignin, ISigninErrors } from '@/interfaces/signin';
+import { ISigninErrors } from '@/interfaces/signin';
 import { useStoreProfile } from '@/stores/profile';
 import { signinSchema } from '@/validation/signin.validation';
+import { useFormConfigs } from '@/composables/useSigninFormConfig';
 
-const form = reactive<ISignin>({
-  email: '',
-  password: '',
-});
+const { inputs, form } = useFormConfigs();
 
 const errors = reactive<ISigninErrors>({
   email: '',
   password: '',
   request: '',
 });
-
-const getEmail = (value: string) => {
-  form.email = value;
-};
-const getPassword = (value: string) => {
-  form.password = value;
-};
 
 const storeProfile = useStoreProfile();
 const router = useRouter();
