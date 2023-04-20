@@ -3,53 +3,34 @@
     <Head><Title>EatApp - Nuxtjs</Title></Head>
     <h1 class="text-center mt-10 mb-10 uppercase">Sign up</h1>
     <form @submit.prevent="handleSignup" class="grid max-w-xl mx-auto">
-      <p class="text-red-500 capitalize" v-if="!!errors.fullname">
-        {{ errors.fullname }}
+      <p
+        class="text-red-500 capitalize"
+        v-if="
+          !!errors.fullname ||
+          !!errors.email ||
+          !!errors.password ||
+          !!errors.passwordConfirm ||
+          !!errors.request
+        "
+      >
+        {{
+          errors.fullname ||
+          errors.email ||
+          errors.password ||
+          errors.passwordConfirm ||
+          errors.request
+        }}
       </p>
       <UIInput
-        type="text"
-        name="fullname"
-        placeholder="Enter your full name"
-        class="shadow-lg border rounded-lg p-2 mb-2"
-        @update:modelValue="getFullname"
-        :modelValue="form.fullname"
+        v-for="input in inputs"
+        :key="input.name"
+        :type="input.type"
+        :name="input.name"
+        :placeholder="input.placeholder"
+        className="shadow-lg border rounded-lg p-2 mb-2"
+        :modelValue="input.value"
         :onValidate="validate"
-      />
-      <p class="text-red-500 capitalize" v-if="!!errors.email">
-        {{ errors.email }}
-      </p>
-      <UIInput
-        type="email"
-        name="email"
-        placeholder="Enter your mail"
-        class="shadow-lg border rounded-lg p-2 mb-2"
-        @update:modelValue="getEmail"
-        :modelValue="form.email"
-        :onValidate="validate"
-      />
-      <p class="text-red-500 capitalize" v-if="!!errors.password">
-        {{ errors.password }}
-      </p>
-      <UIInput
-        type="password"
-        name="password"
-        placeholder="Enter your password"
-        class="shadow-lg border rounded-lg p-2 mb-2"
-        @update:modelValue="getPassword"
-        :modelValue="form.password"
-        :onValidate="validate"
-      />
-      <p class="text-red-500 capitalize" v-if="!!errors.passwordConfirm">
-        {{ errors.passwordConfirm }}
-      </p>
-      <UIInput
-        type="password"
-        name="passwordConfirm"
-        placeholder="Enter your password to confirm"
-        class="shadow-lg border rounded-lg p-2 mb-2"
-        @update:modelValue="getPasswordConfirm"
-        :modelValue="form.passwordConfirm"
-        :onValidate="validate"
+        @update:modelValue="input.getValue"
       />
       <UIButton type="submit" class="btn rounded-md justify-self-center lg:ml-4">{{
         'send'
@@ -62,15 +43,11 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ISignup, ISignupErrors } from '@/interfaces/signup';
+import { ISignupErrors } from '@/interfaces/signup';
 import { signupSchema } from '@/validation/signup.validation';
+import { useSignupFormConfigs } from '@/composables/useSignupFormConfig';
 
-const form = reactive<ISignup>({
-  fullname: '',
-  email: '',
-  password: '',
-  passwordConfirm: '',
-});
+const { inputs, form } = useSignupFormConfigs();
 
 const errors = reactive<ISignupErrors>({
   fullname: '',
@@ -79,19 +56,6 @@ const errors = reactive<ISignupErrors>({
   passwordConfirm: '',
   request: '',
 });
-
-const getFullname = (value: string) => {
-  form.fullname = value;
-};
-const getEmail = (value: string) => {
-  form.email = value;
-};
-const getPassword = (value: string) => {
-  form.password = value;
-};
-const getPasswordConfirm = (value: string) => {
-  form.passwordConfirm = value;
-};
 
 const auth = useAuth();
 const router = useRouter();

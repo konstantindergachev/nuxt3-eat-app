@@ -31,9 +31,9 @@
 import { ISigninErrors } from '@/interfaces/signin';
 import { useStoreProfile } from '@/stores/profile';
 import { signinSchema } from '@/validation/signin.validation';
-import { useFormConfigs } from '@/composables/useSigninFormConfig';
+import { useSigninFormConfigs } from '@/composables/useSigninFormConfig';
 
-const { inputs, form } = useFormConfigs();
+const { inputs, form } = useSigninFormConfigs();
 
 const errors = reactive<ISigninErrors>({
   email: '',

@@ -1,6 +1,6 @@
 import { ISignin } from '@/interfaces/signin';
 
-export const useFormConfigs = () => {
+export const useSigninFormConfigs = () => {
   const form = reactive<ISignin>({
     email: '',
     password: '',
