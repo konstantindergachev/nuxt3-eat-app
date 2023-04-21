@@ -1,6 +1,7 @@
-import { IUpdateProfile } from '@/interfaces/profile';
+import { IUpdateProfile, IReceiveProfileFromDB } from '@/interfaces/profile';
 
-export const useProfileFormConfigs = () => {
+export const useProfileFormConfigs = async () => {
+  const { data } = await useFetch<IReceiveProfileFromDB>('/api/profile');
   const form = reactive<IUpdateProfile>({
     fullname: '',
     email: '',
@@ -9,6 +10,14 @@ export const useProfileFormConfigs = () => {
     newPassword: '',
     newPasswordConfirm: '',
   });
+
+  if (typeof data.value !== 'string') {
+    form.fullname = `${data.value?.customers.firstname} ${data.value?.customers.lastname}`;
+    form.email = data.value?.customers.email!;
+    form.location = `${data.value?.city}, ${data.value?.country}`;
+  }
+
+  const message = ref(data.value);
 
   const inputs = [
     {
@@ -70,5 +79,6 @@ export const useProfileFormConfigs = () => {
   return {
     inputs,
     form,
+    message,
   };
 };

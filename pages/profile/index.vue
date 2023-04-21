@@ -18,8 +18,7 @@
             !!errors.location ||
             !!errors.oldPassword ||
             !!errors.newPassword ||
-            !!errors.newPasswordConfirm ||
-            !!errors.request
+            !!errors.newPasswordConfirm
           "
         >
           {{
@@ -28,8 +27,7 @@
             errors.location ||
             errors.oldPassword ||
             errors.newPassword ||
-            errors.newPasswordConfirm ||
-            errors.request
+            errors.newPasswordConfirm
           }}
         </p>
         <UIInput
@@ -51,7 +49,7 @@
   </section>
 </template>
 <script setup lang="ts">
-import { IReceiveProfileFromDB, IUpdateProfile, IUpdateProfileErrors } from '@/interfaces/profile';
+import { IUpdateProfileErrors } from '@/interfaces/profile';
 import { useStoreProfile } from '@/stores/profile';
 import { updateProfileSchema } from '@/validation/updateprofile.validation';
 import { useProfileFormConfigs } from '@/composables/useProfileFormConfig';
@@ -61,20 +59,10 @@ definePageMeta({
   middleware: ['auth'],
 });
 
-const { inputs, form } = useProfileFormConfigs();
-
-const { data } = await useFetch<IReceiveProfileFromDB | string>('/api/profile');
+const { inputs, form, message } = await useProfileFormConfigs();
 
 const storeProfile = useStoreProfile();
 const profile = computed(() => storeProfile.getProfile);
-
-if (typeof data.value !== 'string') {
-  storeProfile.addToProfile({
-    fullname: `${data.value?.customers.firstname} ${data.value?.customers.lastname}`,
-    email: data.value?.customers.email!,
-    location: `${data.value?.city}, ${data.value?.country}`,
-  });
-}
 
 const errors = reactive<IUpdateProfileErrors>({
   fullname: '',
@@ -86,8 +74,8 @@ const errors = reactive<IUpdateProfileErrors>({
   request: '',
 });
 
-if (typeof data.value === 'string') {
-  errors.request = data.value;
+if (typeof message.value === 'string') {
+  errors.request = message.value;
 }
 
 const validate = async (field: keyof IUpdateProfileErrors) => {
