@@ -10,77 +10,38 @@
         {{ errors.request }}
       </p>
       <form @submit.prevent="handleUpdateProfile" class="grid max-w-xl mx-auto">
-        <p class="text-red-500 capitalize" v-if="!!errors.fullname">
-          {{ errors.fullname }}
+        <p
+          class="text-red-500 capitalize"
+          v-if="
+            !!errors.fullname ||
+            !!errors.email ||
+            !!errors.location ||
+            !!errors.oldPassword ||
+            !!errors.newPassword ||
+            !!errors.newPasswordConfirm ||
+            !!errors.request
+          "
+        >
+          {{
+            errors.fullname ||
+            errors.email ||
+            errors.location ||
+            errors.oldPassword ||
+            errors.newPassword ||
+            errors.newPasswordConfirm ||
+            errors.request
+          }}
         </p>
         <UIInput
-          type="text"
-          name="fullname"
-          placeholder="Full name"
+          v-for="input in inputs"
+          :key="input.name"
+          :type="input.type"
+          :name="input.name"
+          :placeholder="input.placeholder"
           class="shadow-lg border rounded-lg p-2 mb-2"
-          @update:modelValue="getFullname"
-          :modelValue="form.fullname"
+          :modelValue="input.value"
           :onValidate="validate"
-        />
-        <p class="text-red-500 capitalize" v-if="!!errors.email">
-          {{ errors.email }}
-        </p>
-        <UIInput
-          type="email"
-          name="email"
-          placeholder="Email"
-          class="shadow-lg border rounded-lg p-2 mb-2"
-          @update:modelValue="getEmail"
-          :modelValue="form.email"
-          :onValidate="validate"
-        />
-        <p class="text-red-500 capitalize" v-if="!!errors.location">
-          {{ errors.location }}
-        </p>
-        <UIInput
-          type="text"
-          name="location"
-          placeholder="City, Country"
-          class="shadow-lg border rounded-lg p-2 mb-2"
-          @update:modelValue="getLocation"
-          :modelValue="form.location"
-          :onValidate="validate"
-        />
-        <p class="text-red-500 capitalize" v-if="!!errors.oldPassword">
-          {{ errors.oldPassword }}
-        </p>
-        <UIInput
-          type="password"
-          name="oldPassword"
-          placeholder="Old password"
-          class="shadow-lg border rounded-lg p-2 mb-2"
-          @update:modelValue="getOldPassword"
-          :modelValue="form.oldPassword"
-          :onValidate="validate"
-        />
-        <p class="text-red-500 capitalize" v-if="!!errors.newPassword">
-          {{ errors.newPassword }}
-        </p>
-        <UIInput
-          type="password"
-          name="newPassword"
-          placeholder="New password"
-          class="shadow-lg border rounded-lg p-2 mb-2"
-          @update:modelValue="getNewPassword"
-          :modelValue="form.newPassword"
-          :onValidate="validate"
-        />
-        <p class="text-red-500 capitalize" v-if="!!errors.newPasswordConfirm">
-          {{ errors.newPasswordConfirm }}
-        </p>
-        <UIInput
-          type="password"
-          name="newPasswordConfirm"
-          placeholder="New password confirm"
-          class="shadow-lg border rounded-lg p-2 mb-2"
-          @update:modelValue="getNewPasswordConfirm"
-          :modelValue="form.newPasswordConfirm"
-          :onValidate="validate"
+          @update:modelValue="input.getValue"
         />
         <UIButton type="submit" class="btn rounded-md justify-self-center lg:ml-4">{{
           'update profile'
@@ -93,11 +54,14 @@
 import { IReceiveProfileFromDB, IUpdateProfile, IUpdateProfileErrors } from '@/interfaces/profile';
 import { useStoreProfile } from '@/stores/profile';
 import { updateProfileSchema } from '@/validation/updateprofile.validation';
+import { useProfileFormConfigs } from '@/composables/useProfileFormConfig';
 
 definePageMeta({
   layout: 'profile',
   middleware: ['auth'],
 });
+
+const { inputs, form } = useProfileFormConfigs();
 
 const { data } = await useFetch<IReceiveProfileFromDB | string>('/api/profile');
 
@@ -112,15 +76,6 @@ if (typeof data.value !== 'string') {
   });
 }
 
-const form = reactive<IUpdateProfile>({
-  fullname: profile.value.fullname,
-  email: profile.value.email,
-  location: profile.value.location,
-  oldPassword: '',
-  newPassword: '',
-  newPasswordConfirm: '',
-});
-
 const errors = reactive<IUpdateProfileErrors>({
   fullname: '',
   email: '',
@@ -134,13 +89,6 @@ const errors = reactive<IUpdateProfileErrors>({
 if (typeof data.value === 'string') {
   errors.request = data.value;
 }
-
-const getFullname = (value: string): string => (form.fullname = value);
-const getEmail = (value: string): string => (form.email = value);
-const getLocation = (value: string): string => (form.location = value);
-const getOldPassword = (value: string): string => (form.oldPassword = value);
-const getNewPassword = (value: string): string => (form.newPassword = value);
-const getNewPasswordConfirm = (value: string): string => (form.newPasswordConfirm = value);
 
 const validate = async (field: keyof IUpdateProfileErrors) => {
   try {
