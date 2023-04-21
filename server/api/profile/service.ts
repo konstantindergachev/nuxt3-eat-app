@@ -1,9 +1,12 @@
+import crypto from 'crypto';
 import { db } from '@/server/db/clientDB';
 import {
   IReceiveProfileFromDB,
   IUpdateProfile,
   IUpdateProfileDBResponse,
 } from '@/interfaces/profile';
+
+const { CUSTOMER_PASSWORD_SECRET } = process.env;
 
 export const createProfileService = async (
   profile: IUpdateProfile,
@@ -38,12 +41,14 @@ const updateCustomer = async (
   profile: IUpdateProfile
 ): Promise<{ status: number; statusText: string }> => {
   const [firstname, lastname] = profile.fullname.split(' ');
+  const hashedNewPassword = getHashedPassword(profile.newPassword);
+  const hashedNewPasswordConfirm = getHashedPassword(profile.newPasswordConfirm);
   const customer = {
     firstname: firstname.trim(),
     lastname: lastname.trim(),
     email: profile.email,
-    password: profile.newPassword,
-    password_confirm: profile.newPasswordConfirm,
+    password: hashedNewPassword,
+    password_confirm: hashedNewPasswordConfirm,
     updated_at: new Date(),
   };
   const dbResponse = await db
@@ -66,4 +71,8 @@ export const receiveProfileService = async (
     throw new Error(`You don't have any additional profile data yet`);
   }
   return data as IReceiveProfileFromDB;
+};
+
+const getHashedPassword = (password: string): string => {
+  return crypto.createHmac('sha256', CUSTOMER_PASSWORD_SECRET!).update(password).digest('hex');
 };
