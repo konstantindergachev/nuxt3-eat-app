@@ -6,40 +6,19 @@
     <p class="text-Green capitalize" v-if="!!errors.request">
       {{ errors.request }}
     </p>
-    <p class="text-red-500 capitalize" v-if="!!errors.fullname">
-      {{ errors.fullname }}
+    <p class="text-red-500 capitalize" v-if="!!errors.fullname || !!errors.title || !!errors.text">
+      {{ errors.fullname || errors.title || errors.text }}
     </p>
     <UIInput
-      type="text"
-      name="fullname"
-      placeholder="Enter your full name"
+      v-for="input in inputs"
+      :key="input.name"
+      :type="input.type"
+      :name="input.name"
+      :placeholder="input.placeholder"
       class="shadow-lg border rounded-lg p-2 mb-2"
-      @update:modelValue="getFullname"
-      :modelValue="form.fullname"
+      :modelValue="input.value"
       :onValidate="validate"
-    />
-    <p class="text-red-500 capitalize" v-if="!!errors.title">
-      {{ errors.title }}
-    </p>
-    <UIInput
-      type="text"
-      name="title"
-      placeholder="Enter your title"
-      class="shadow-lg border rounded-lg p-2 mb-2"
-      @update:modelValue="getTitle"
-      :modelValue="form.title"
-      :onValidate="validate"
-    />
-    <p class="text-red-500 capitalize" v-if="!!errors.text">
-      {{ errors.text }}
-    </p>
-    <UITextArea
-      name="text"
-      placeholder="Enter your text"
-      class="shadow-lg border rounded-lg p-2 mb-2"
-      @update:modelValue="getText"
-      :modelValue="form.text"
-      :onValidate="validate"
+      @update:modelValue="input.getValue"
     />
     <UIButton type="submit" class="btn rounded-md justify-self-center lg:ml-4">{{
       'send'
@@ -48,15 +27,13 @@
 </template>
 
 <script setup lang="ts">
-import { IReview, IReviewErrors, IReviewResponse } from '@/interfaces/review';
+import { IReviewErrors, IReviewResponse } from '@/interfaces/review';
 import { postSchema } from '@/validation/post.validation';
 import { useStorePost } from '@/stores/post.js';
+import { usePostFormConfigs } from '@/composables/usePostFormConfig';
 
-const form = reactive<IReview>({
-  fullname: '',
-  title: '',
-  text: '',
-});
+const { inputs, form } = usePostFormConfigs();
+
 const errors = reactive<IReviewErrors>({
   fullname: '',
   title: '',
@@ -65,18 +42,6 @@ const errors = reactive<IReviewErrors>({
 });
 
 const storePost = useStorePost();
-
-const getFullname = (value: string) => {
-  form.fullname = value;
-};
-
-const getTitle = (value: string) => {
-  form.title = value;
-};
-
-const getText = (value: string) => {
-  form.text = value;
-};
 
 const validate = async (field: keyof IReviewErrors) => {
   try {
