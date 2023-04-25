@@ -3,11 +3,11 @@
     :type="type"
     :name="name"
     :placeholder="placeholder"
-    :class="className"
     @input="handleChange"
     :value="modelValue"
     @blur="onValidate(name)"
     @keypress="onValidate(name)"
+    :class="className"
   />
 </template>
 <script setup lang="ts">
