@@ -8,7 +8,7 @@
       :onSubmit="handleSubmit"
       :inputs="inputs"
       :validate="validate"
-      className="grid max-w-xl mb-10"
+      className="grid md:w-96 mb-10"
     />
     <span class="text-center"
       >If you don't have an account, than
