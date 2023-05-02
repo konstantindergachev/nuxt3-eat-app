@@ -5,7 +5,11 @@
       class="container flex flex-col-reverse justify-center items-center md:flex-row lg:justify-between lg:space-x-10 mt-14 md:mt-32"
     >
       <div class="w-full lg:w-6/12">
-        <img src="/images/about_us.png" alt="About us" class="mt-5 lg:mt-0" />
+        <img
+          src="https://res.cloudinary.com/dmqomp5ba/image/upload/v1683010416/about/about_us_uekqk5.png"
+          alt="About us"
+          class="mt-5 lg:mt-0"
+        />
       </div>
       <div class="w-full lg:w-6/12 space-y-8 md:pt-32">
         <h1
@@ -36,14 +40,4 @@ import { IAbout } from '@/interfaces/about';
 
 const { data } = await useFetch<IAbout>('/api/about');
 const about = data.value;
-
-// const url = 'https://reqres.in/api/users/2';
-// onMounted(async () => {
-//   const { data, error } = await useFetch(url);
-//   if (data.value) {
-//     console.log('data', data.value.data); //FIXME: remove me
-//   } else {
-//     console.log('error', error.value); //FIXME: remove me
-//   }
-// });
 </script>

@@ -12,7 +12,11 @@
       <h1 class="text-center uppercase text-red-500 text-6xl font-bold leading-14 mb-10">
         {{ '404 Page' }}
       </h1>
-      <img class="w-32" src="/images/exclamation-mark.svg" alt="Sxclamation mark" />
+      <img
+        class="w-32"
+        src="https://res.cloudinary.com/dmqomp5ba/image/upload/v1683010346/error/exclamation-mark_xcovrr.svg"
+        alt="Sxclamation mark"
+      />
       <UIButton type="button" class="btn btn-shape" :onClick="goBack">{{ 'back' }}</UIButton>
 
       <slot />

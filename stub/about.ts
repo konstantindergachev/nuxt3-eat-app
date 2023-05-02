@@ -5,7 +5,7 @@ export const about = {
   list: [
     {
       id: '1',
-      url: '/images/food.svg',
+      url: 'https://res.cloudinary.com/dmqomp5ba/image/upload/v1683010286/delivery/food_g8dtic.svg',
       name: 'Food icon',
       title: 'organic foods only',
       description:
@@ -13,7 +13,7 @@ export const about = {
     },
     {
       id: '2',
-      url: '/images/delivery.svg',
+      url: 'https://res.cloudinary.com/dmqomp5ba/image/upload/v1683010286/delivery/delivery_wnoymu.svg',
       name: 'Delivery icon',
       title: 'quality standards',
       description:

@@ -2,7 +2,10 @@
   <section
     class="container flex flex-col justify-around items-center md:flex-row md:space-x-10 mt-14 md:mt-32 mb-12 shadow-lg rounded-lg p-4"
   >
-    <img src="/images/product10.png" alt="Product 10" />
+    <img
+      src="https://res.cloudinary.com/dmqomp5ba/image/upload/v1683009840/fruits/product10_zoty7t.png"
+      alt="Product 10"
+    />
     <div class="space-y-8 pb-10">
       <h1 class="text-Black text-3xl font-bold leading-14 text-center md:text-left capitalize">
         {{ title }}

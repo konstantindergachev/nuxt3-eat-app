@@ -2,13 +2,13 @@ export const recommendation = {
   title: 'Eat a banana for a healthy snack',
   titleImg: {
     title: 'Leath',
-    url: '/images/leath.png',
+    url: 'https://res.cloudinary.com/dmqomp5ba/image/upload/v1683010450/hero/leath_bghvvg.png',
   },
   description:
     'You should eat at least five serves of vegetables and two serves of fruit each day. Choose different colours and varieties.',
   img: {
     title: 'Product 11',
-    url: '/images/product11.png',
+    url: 'https://res.cloudinary.com/dmqomp5ba/image/upload/v1683009840/fruits/product11_lyavjk.png',
   },
   characteristic: [
     {

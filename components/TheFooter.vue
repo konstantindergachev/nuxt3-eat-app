@@ -3,7 +3,10 @@
   <footer class="container flex flex-col md:flex-row justify-between items-stretch gap-10">
     <div class="flex flex-col items-center w-full md:w-1/2">
       <NuxtLink to="/" class="mb-8">
-        <img src="/images/logo.png" alt="logo" />
+        <img
+          src="https://res.cloudinary.com/dmqomp5ba/image/upload/v1683010240/logo/logo_llkbzu.png"
+          alt="logo"
+        />
       </NuxtLink>
       <p class="opacity-70 text-center md:text-left">
         Lorem ipsum dolor sit amet, consectetur adipin elit. A eleifend tristique condimentum
@@ -42,7 +45,10 @@
       </ul>
     </div>
     <div class="flex flex-col items-center">
-      <img src="/images/product12.png" alt="Product 12" />
+      <img
+        src="https://res.cloudinary.com/dmqomp5ba/image/upload/v1683009840/fruits/product12_r7orbv.png"
+        alt="Product 12"
+      />
     </div>
   </footer>
 </template>
