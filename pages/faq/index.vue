@@ -1,48 +1,48 @@
 <template>
-  <div>
-    <Head><Title>EatApp - FAQ</Title></Head>
-    <section
-      class="container flex flex-col justify-center items-center md:flex-row lg:justify-between lg:space-x-10 mt-14 md:mt-32"
+  <Head><Title>EatApp - FAQ</Title></Head>
+  <section
+    v-if="data"
+    class="container flex flex-col justify-center items-center md:flex-row lg:justify-between lg:space-x-10 mt-14 md:mt-32"
+  >
+    <h1
+      class="uppercase text-Green font-bold leading-14 self-start mb-5 text-3xl lg:text-6xl text-center lg:text-left"
     >
-      <h1
-        class="uppercase text-Green font-bold leading-14 self-start mb-5 text-3xl lg:text-6xl text-center lg:text-left"
-      >
-        {{ 'Frequently Asked Questions' }}
-      </h1>
+      {{ 'Frequently Asked Questions' }}
+    </h1>
 
-      <div class="w-full">
-        <ul v-for="item in data" :key="item.id" class="flex flex-col">
-          <li class="flex justify-between items-center mb-10 space-x-24 md:space-x-4">
-            <div class="text-Black opacity-70">
-              <div class="flex items-center">
-                <h3 class="uppercase text-2xl leading-14 my-4">{{ item.question }}</h3>
-                <span
-                  class="ml-5 cursor-pointer text-2xl"
-                  @click="() => closeAnswer(item.id)"
-                  v-if="openedAnswers.includes(item.id)"
-                  >-</span
-                >
-                <span class="ml-5 cursor-pointer" @click="() => openAnswer(item.id)" v-else>+</span>
-              </div>
-              <ul
-                :class="openedAnswers.includes(item.id) ? 'block indent-10 text-justify' : 'hidden'"
+    <div class="w-full">
+      <ul v-for="item in data" :key="item.id" class="flex flex-col">
+        <li class="flex justify-between items-center mb-10 space-x-24 md:space-x-4">
+          <div class="text-Black opacity-70">
+            <div class="flex items-center">
+              <h3 class="uppercase text-2xl leading-14 my-4">{{ item.question }}</h3>
+              <span
+                class="ml-5 cursor-pointer text-2xl"
+                @click="() => closeAnswer(item.id)"
                 v-if="openedAnswers.includes(item.id)"
-                v-for="(answer, index) in item.answers"
-                :key="index"
+                >-</span
               >
-                <li>{{ answer }}</li>
-              </ul>
+              <span class="ml-5 cursor-pointer" @click="() => openAnswer(item.id)" v-else>+</span>
             </div>
-          </li>
-        </ul>
-      </div>
-    </section>
-  </div>
+            <ul
+              :class="openedAnswers.includes(item.id) ? 'block indent-10 text-justify' : 'hidden'"
+              v-if="openedAnswers.includes(item.id)"
+              v-for="(answer, index) in item.answers"
+              :key="index"
+            >
+              <li>{{ answer }}</li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section v-else class="flex justify-center items-center mt-10"><UILoader /></section>
 </template>
 <script setup lang="ts">
 import { IFAQ } from '@/interfaces/faq';
 
-const { data } = await useFetch<IFAQ[]>('/api/faq');
+const { data } = await useFetch<IFAQ[]>('/api/faq', { lazy: true });
 const openedAnswers = reactive<number[]>([]);
 
 const openAnswer = (itemId: number): void => {

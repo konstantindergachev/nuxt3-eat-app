@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section>
     <Head>
       <Title>EatApp - Fruit</Title>
     </Head>
@@ -32,7 +32,7 @@
         'add to basket'
       }}</UIButton>
     </UICard>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">

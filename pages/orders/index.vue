@@ -1,5 +1,8 @@
 <template>
-  <section class="container flex justify-center md:flex-row lg:justify-between lg:space-x-10">
+  <section
+    v-if="data"
+    class="container flex justify-center md:flex-row lg:justify-between lg:space-x-10"
+  >
     <Head>
       <Title>EatApp - Orders</Title>
     </Head>
@@ -8,7 +11,7 @@
       <h1 class="text-center text-Black text-3xl font-bold leading-14">Orders</h1>
       <div class="w-full">
         <ul class="flex gap-5 flex-wrap">
-          <li v-for="order in orders" :key="order.id" class="text-left shadow-md my-10 p-5">
+          <li v-for="order in data" :key="order.id" class="text-left shadow-md my-10 p-5">
             <p class="leading-14">
               order id: <span class="text-Green">{{ order.id }}</span>
             </p>
@@ -63,6 +66,7 @@
       </div>
     </div>
   </section>
+  <section v-else class="flex justify-center items-center mt-10"><UILoader /></section>
 </template>
 <script setup lang="ts">
 import { IOrder } from '@/interfaces/orders';
@@ -75,6 +79,5 @@ definePageMeta({
 
 const { moneyFormat, dateFormat } = useUtilities();
 
-const { data } = await useFetch<IOrder[]>('/api/orders');
-const orders = data.value;
+const { data } = await useFetch<IOrder[]>('/api/orders', { lazy: true });
 </script>

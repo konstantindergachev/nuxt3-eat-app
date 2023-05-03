@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto">
+  <section class="mx-auto">
     <Head><Title>EatApp - Nuxtjs</Title></Head>
     <h1 class="text-center mt-10 mb-10 uppercase">Sign up</h1>
     <p class="text-Green capitalize" v-if="!!errors.request">
@@ -16,7 +16,7 @@
       >If you have an account, than
       <NuxtLink to="/signin" class="text-Green capitalize"> sign in </NuxtLink></span
     >
-  </div>
+  </section>
 </template>
 <script setup lang="ts">
 import { useSignup } from '@/composables/useSignup';

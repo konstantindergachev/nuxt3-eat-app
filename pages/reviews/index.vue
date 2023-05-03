@@ -1,10 +1,10 @@
 <template>
-  <div class="relative w-full mb-5">
+  <section class="relative w-full mb-5">
     <Head>
       <Title>EatApp - review</Title>
     </Head>
-    <Carousel v-if="slides" :slides="slides" :interval="3000" controls indicators />
-  </div>
+    <Carousel :slides="data?.reviews" :interval="3000" controls indicators />
+  </section>
   <UIButton
     v-if="auth.isAuthenticated"
     type="button"
@@ -12,17 +12,16 @@
     :onClick="() => view('post')"
     >{{ 'create post' }}</UIButton
   >
-  <div>
+  <section>
     <LazyPostForm v-if="page === 'post'" />
     <Post :page="page" :posts="storedPosts" />
-  </div>
+  </section>
 </template>
 <script setup lang="ts">
 import { ISlide, IPost } from '@/interfaces/review';
 import { useStorePost } from '@/stores/post';
 
 const { data } = await useFetch<{ reviews: ISlide[]; posts: IPost[] }>('/api/reviews');
-const slides = data.value?.reviews;
 
 const auth = useAuth();
 
