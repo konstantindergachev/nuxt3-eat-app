@@ -23,6 +23,12 @@ const { type, name, placeholder, className, modelValue, onValidate }: IInput = d
 ]);
 const emit = defineEmits(['update:modelValue']);
 const handleChange = (event: Event) => {
-  emit('update:modelValue', (event.target as HTMLInputElement).value);
+  const target = event.target as HTMLInputElement;
+
+  if (type !== 'file') {
+    emit('update:modelValue', target.value);
+  } else {
+    emit('update:modelValue', target.files);
+  }
 };
 </script>
