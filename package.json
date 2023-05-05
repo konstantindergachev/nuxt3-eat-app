@@ -9,11 +9,14 @@
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "6.2.0",
+    "@types/formidable": "2.0.5",
     "nuxt": "3.0.0"
   },
   "dependencies": {
     "@pinia/nuxt": "0.4.6",
     "@supabase/supabase-js": "2.5.0",
+    "cloudinary": "1.36.4",
+    "formidable": "2.1.1",
     "pinia": "2.0.28",
     "yup": "0.32.11"
   }

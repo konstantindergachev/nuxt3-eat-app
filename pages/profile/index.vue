@@ -14,6 +14,7 @@
         :inputs="inputs"
         :validate="validate"
         className="grid max-w-xl mx-auto"
+        enctype="multipart/form-data"
       />
     </div>
   </section>

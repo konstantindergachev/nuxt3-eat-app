@@ -21,13 +21,9 @@ export const useImageUpload = () => {
     file.append('file', imageFile, imageFile.name);
 
     try {
-      //TODO: Created API for upload file
       $fetch('/api/upload', {
         method: 'post',
         body: file,
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
       });
     } catch (error) {
       if (error instanceof Error) {
