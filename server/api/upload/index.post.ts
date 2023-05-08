@@ -4,6 +4,7 @@ import formidable, { Files } from 'formidable';
 import { uploadCloudinaryService } from './service';
 
 export default defineEventHandler(async (event) => {
+  const customerId = getCookie(event, 'id');
   try {
     let body;
     const headers = getRequestHeaders(event);
@@ -11,7 +12,7 @@ export default defineEventHandler(async (event) => {
       body = await parseMultipartNodeRequest(event.node.req);
       const { file } = body as Files;
       const url = Array.isArray(file) ? file.map((f) => f.filepath) : file.filepath;
-      const result = await uploadCloudinaryService(url);
+      const result = await uploadCloudinaryService(Number(customerId), url);
       return { message: result };
     }
     return await readBody(event);
