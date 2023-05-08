@@ -5,42 +5,33 @@ import { receiveProfileService } from '@/server/api/profile/service';
 
 const { CLOUD_NAME, API_KEY, API_SECRET } = process.env;
 
-export const uploadCloudinaryService = async (
-  customerId: number,
-  url: string | string[]
-): Promise<string> => {
-  try {
-    await receiveProfileService(customerId);
-  } catch (error) {
-    if (error instanceof Error) {
-      if (typeof url === 'string') {
-        await rm(url);
-      }
-      return error.message;
-    } else {
-      return 'Unexpected error';
-    }
-  }
-
+export const uploadCloudinaryService = async (customerId: number, url: string | string[]) => {
   cloudinary.v2.config({
     cloud_name: CLOUD_NAME,
     api_key: API_KEY,
     api_secret: API_SECRET,
   });
 
+  let cloudinaryResponse;
+
   try {
     if (typeof url === 'string') {
-      const data = await cloudinary.v2.uploader.upload(url);
-      await uploadImageProfileService(customerId, data.url);
+      cloudinary.v2.url;
+      cloudinaryResponse = await cloudinary.v2.uploader.upload(url);
+      await receiveProfileService(customerId);
+      await uploadImageProfileService(customerId, cloudinaryResponse.url);
       await rm(url);
-      return data.url;
+      return cloudinaryResponse.url;
     }
     return '';
   } catch (error) {
     if (error instanceof Error) {
-      throw new Error(error.message);
+      if (typeof url === 'string') {
+        await rm(url);
+      }
+      return { error: error.message, url: cloudinaryResponse?.url };
     } else {
-      throw new Error('Cloudinary store error');
+      return { error: 'Cloudinary store error', url: cloudinaryResponse?.url };
     }
   }
 };

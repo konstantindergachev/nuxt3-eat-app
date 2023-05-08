@@ -5,11 +5,12 @@ import { updateProfileSchema } from '@/validation/updateprofile.validation';
 
 export const useProfile = async () => {
   const { data } = await useFetch<IReceiveProfileFromDB>('/api/profile');
-  const { handleImageSelected } = useImageUpload();
+  const { imageUrl, handleImageSelected } = useImageUpload();
   const form = reactive<IUpdateProfile>({
     fullname: '',
     email: '',
     location: '',
+    image: '',
     oldPassword: '',
     newPassword: '',
     newPasswordConfirm: '',
@@ -25,6 +26,7 @@ export const useProfile = async () => {
     fullname: '',
     email: '',
     location: '',
+    image: '',
     oldPassword: '',
     newPassword: '',
     newPasswordConfirm: '',
@@ -72,7 +74,9 @@ export const useProfile = async () => {
     {
       type: 'file',
       name: 'photo',
-      getValue: computed(() => ''),
+      getValue: computed(() => {
+        form.image = imageUrl.value;
+      }),
       setValue: handleImageSelected,
       component: Input,
       error: computed(() => errors.location),

@@ -12,7 +12,7 @@ export const createProfileService = async (
   profile: IUpdateProfile,
   customerId: number
 ): Promise<IUpdateProfileDBResponse> => {
-  const profilePromise = createProfile(customerId, profile.location);
+  const profilePromise = createProfile(customerId, profile);
   const customerPromise = updateCustomer(customerId, profile);
 
   const [profileResponse, customerResponse] = await Promise.all([profilePromise, customerPromise]);
@@ -22,14 +22,15 @@ export const createProfileService = async (
 
 const createProfile = async (
   customerId: number,
-  location: string
+  profile: IUpdateProfile
 ): Promise<{ status: number; statusText: string }> => {
-  const [city, country] = location.split(',');
+  const [city, country] = profile.location.split(',');
   const dbResponse = await db.from('profiles').insert([
     {
       customer_id: customerId,
       city: city.trim(),
       country: country.trim(),
+      img: profile.image,
     },
   ]);
 
@@ -63,7 +64,7 @@ export const receiveProfileService = async (
 ): Promise<IReceiveProfileFromDB | string> => {
   const { data } = await db
     .from('profiles')
-    .select('city, country, customers(firstname, lastname, email)')
+    .select('city, country, img, customers(firstname, lastname, email)')
     .eq('customer_id', customerId)
     .single();
 

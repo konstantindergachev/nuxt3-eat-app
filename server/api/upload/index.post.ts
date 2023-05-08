@@ -12,8 +12,8 @@ export default defineEventHandler(async (event) => {
       body = await parseMultipartNodeRequest(event.node.req);
       const { file } = body as Files;
       const url = Array.isArray(file) ? file.map((f) => f.filepath) : file.filepath;
-      const result = await uploadCloudinaryService(Number(customerId), url);
-      return { message: result };
+      const response = await uploadCloudinaryService(Number(customerId), url);
+      return response;
     }
     return await readBody(event);
   } catch (error) {

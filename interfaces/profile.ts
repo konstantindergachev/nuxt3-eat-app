@@ -2,6 +2,7 @@ export interface IUpdateProfile {
   fullname: string;
   email: string;
   location: string;
+  image: string;
   oldPassword: string;
   newPassword: string;
   newPasswordConfirm: string;
@@ -13,6 +14,7 @@ export interface IUpdateProfileErrors {
   fullname: string;
   email: string;
   location: string;
+  image: string;
   oldPassword: string;
   newPassword: string;
   newPasswordConfirm: string;

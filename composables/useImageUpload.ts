@@ -16,15 +16,16 @@ export const useImageUpload = () => {
     handleFileUpload(imageFile.value);
   };
 
-  const handleFileUpload = (imageFile: File) => {
+  const handleFileUpload = async (imageFile: File) => {
     const file = new FormData();
     file.append('file', imageFile, imageFile.name);
 
     try {
-      $fetch('/api/upload', {
+      const serverResponse = await $fetch('/api/upload', {
         method: 'post',
         body: file,
       });
+      imageUrl.value = serverResponse.url;
     } catch (error) {
       if (error instanceof Error) {
         imageError.value = error.message;
