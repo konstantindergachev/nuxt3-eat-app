@@ -8,7 +8,7 @@ export interface IUpdateProfile {
   newPasswordConfirm: string;
 }
 
-export type TUpdateProfile = Pick<IUpdateProfile, 'fullname' | 'email' | 'location'>;
+export type TUpdateProfile = Pick<IUpdateProfile, 'fullname' | 'email' | 'location' | 'image'>;
 
 export interface IUpdateProfileErrors {
   fullname: string;
@@ -29,5 +29,6 @@ export interface IUpdateProfileDBResponse {
 export interface IReceiveProfileFromDB {
   city: string;
   country: string;
+  img: string;
   customers: { firstname: string; lastname: string; email: string };
 }

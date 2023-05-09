@@ -16,10 +16,14 @@ export const useProfile = async () => {
     newPasswordConfirm: '',
   });
 
+  const storeProfile = useStoreProfile();
   if (typeof data.value !== 'string') {
     form.fullname = `${data.value?.customers.firstname} ${data.value?.customers.lastname}`;
     form.email = data.value?.customers.email!;
     form.location = `${data.value?.city}, ${data.value?.country}`;
+    form.image = `${data.value?.img}`;
+
+    storeProfile.addToProfile(form);
   }
 
   const errors = reactive<IUpdateProfileErrors>({
@@ -75,7 +79,7 @@ export const useProfile = async () => {
       type: 'file',
       name: 'photo',
       getValue: computed(() => {
-        form.image = imageUrl.value;
+        form.image = imageUrl.value ? imageUrl.value : form.image;
       }),
       setValue: handleImageSelected,
       component: Input,
@@ -129,7 +133,6 @@ export const useProfile = async () => {
     }
   };
 
-  const storeProfile = useStoreProfile();
   const profile = computed(() => storeProfile.getProfile);
 
   const handleSubmit = async () => {
@@ -147,6 +150,7 @@ export const useProfile = async () => {
       form.fullname = profile.value.fullname;
       form.email = profile.value.email;
       form.location = profile.value.location;
+      form.image = profile.value.image;
     } catch (error) {
       if (error instanceof Error) {
         errors.request = error.message;
@@ -159,5 +163,6 @@ export const useProfile = async () => {
     inputs,
     validate,
     errors,
+    profile,
   };
 };

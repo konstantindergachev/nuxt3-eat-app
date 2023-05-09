@@ -4,8 +4,8 @@
       <Title>EatApp - Profile</Title>
     </Head>
 
-    <div class="w-full space-y-8 pt-6 md:pt-24">
-      <h1 class="text-center text-Black text-3xl font-bold leading-14">Profile</h1>
+    <div class="w-full space-y-8 pt-6 md:pt-24 lg:grid lg:grid-cols-2 lg:auto-rows-auto lg:gap-5">
+      <h1 class="text-center text-Black text-3xl font-bold leading-14 lg:col-span-full">Profile</h1>
       <p class="text-center text-red-500 capitalize" v-if="errors.request">
         {{ errors.request }}
       </p>
@@ -16,6 +16,7 @@
         className="grid max-w-xl mx-auto"
         enctype="multipart/form-data"
       />
+      <img v-if="profile.image" :src="profile.image" :alt="profile.fullname" />
     </div>
   </section>
 </template>
@@ -27,5 +28,5 @@ definePageMeta({
   middleware: ['auth'],
 });
 
-const { handleSubmit, inputs, validate, errors } = await useProfile();
+const { handleSubmit, inputs, validate, errors, profile } = await useProfile();
 </script>
