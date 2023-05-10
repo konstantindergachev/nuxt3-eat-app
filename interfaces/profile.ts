@@ -1,4 +1,5 @@
 export interface IUpdateProfile {
+  id?: number;
   fullname: string;
   email: string;
   location: string;
@@ -27,6 +28,7 @@ export interface IUpdateProfileDBResponse {
 }
 
 export interface IReceiveProfileFromDB {
+  id: number;
   city: string;
   country: string;
   img: string;

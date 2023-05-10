@@ -7,6 +7,7 @@ export const useProfile = async () => {
   const { data } = await useFetch<IReceiveProfileFromDB>('/api/profile');
   const { imageUrl, handleImageSelected } = useImageUpload();
   const form = reactive<IUpdateProfile>({
+    id: 0,
     fullname: '',
     email: '',
     location: '',
@@ -18,6 +19,7 @@ export const useProfile = async () => {
 
   const storeProfile = useStoreProfile();
   if (typeof data.value !== 'string') {
+    form.id = data.value?.id;
     form.fullname = `${data.value?.customers.firstname} ${data.value?.customers.lastname}`;
     form.email = data.value?.customers.email!;
     form.location = `${data.value?.city}, ${data.value?.country}`;
@@ -137,10 +139,17 @@ export const useProfile = async () => {
 
   const handleSubmit = async () => {
     try {
-      await $fetch('/api/profile', {
-        method: 'post',
-        body: form,
-      });
+      if (!form.id) {
+        await $fetch('/api/profile', {
+          method: 'post',
+          body: form,
+        });
+      } else {
+        await $fetch('/api/profile', {
+          method: 'put',
+          body: form,
+        });
+      }
 
       form.oldPassword = '******';
       form.newPassword = '******';

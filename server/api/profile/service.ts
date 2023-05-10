@@ -64,7 +64,7 @@ export const receiveProfileService = async (
 ): Promise<IReceiveProfileFromDB | string> => {
   const { data } = await db
     .from('profiles')
-    .select('city, country, img, customers(firstname, lastname, email)')
+    .select('id, city, country, img, customers(firstname, lastname, email)')
     .eq('customer_id', customerId)
     .single();
 
@@ -76,4 +76,28 @@ export const receiveProfileService = async (
 
 const getHashedPassword = (password: string): string => {
   return crypto.createHmac('sha256', CUSTOMER_PASSWORD_SECRET!).update(password).digest('hex');
+};
+
+export const updateProfileService = async (
+  customerId: number,
+  profile: IUpdateProfile
+): Promise<IUpdateProfileDBResponse> => {
+  const customerPromise = updateCustomer(customerId, profile);
+  const profilePromise = updateProfile(customerId, profile);
+  const [profileResponse, customerResponse] = await Promise.all([profilePromise, customerPromise]);
+  return { profileResponse, customerResponse };
+};
+
+const updateProfile = async (customerId: number, profile: IUpdateProfile) => {
+  const [city, country] = profile.location.split(',');
+  const dbResponse = await db
+    .from('profiles')
+    .update({
+      customer_id: customerId,
+      city,
+      country,
+      img: profile.image,
+    })
+    .eq('id', profile.id);
+  return { status: dbResponse.status, statusText: dbResponse.statusText };
 };
