@@ -18,8 +18,9 @@ export const uploadCloudinaryService = async (customerId: number, url: string | 
     if (typeof url === 'string') {
       cloudinary.v2.url;
       cloudinaryResponse = await cloudinary.v2.uploader.upload(url);
+      const { asset_id, url: imgUrl } = cloudinaryResponse;
       await receiveProfileService(customerId);
-      await uploadImageProfileService(customerId, cloudinaryResponse.url);
+      await uploadImageProfileService(customerId, imgUrl, asset_id);
       await rm(url);
       return cloudinaryResponse.url;
     }
@@ -29,17 +30,29 @@ export const uploadCloudinaryService = async (customerId: number, url: string | 
       if (typeof url === 'string') {
         await rm(url);
       }
-      return { error: error.message, url: cloudinaryResponse?.url };
+      return {
+        error: error.message,
+        imgUrl: cloudinaryResponse?.url,
+        imgId: cloudinaryResponse?.asset_id,
+      };
     } else {
-      return { error: 'Cloudinary store error', url: cloudinaryResponse?.url };
+      return {
+        error: 'Cloudinary store error',
+        imgUrl: cloudinaryResponse?.url,
+        imgId: cloudinaryResponse?.asset_id,
+      };
     }
   }
 };
 
 const uploadImageProfileService = async (
   customerId: number,
-  url: string
+  imgUrl: string,
+  imgId: string
 ): Promise<{ status: number; statusText: string }> => {
-  const dbResponse = await db.from('profiles').update({ img: url }).eq('customer_id', customerId);
+  const dbResponse = await db
+    .from('profiles')
+    .update({ img: imgUrl, img_id: imgId })
+    .eq('customer_id', customerId);
   return { status: dbResponse.status, statusText: dbResponse.statusText };
 };

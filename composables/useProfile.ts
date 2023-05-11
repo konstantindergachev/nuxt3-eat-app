@@ -5,13 +5,14 @@ import { updateProfileSchema } from '@/validation/updateprofile.validation';
 
 export const useProfile = async () => {
   const { data } = await useFetch<IReceiveProfileFromDB>('/api/profile');
-  const { imageUrl, handleImageSelected } = useImageUpload();
+  const { imageUrl, imageId, handleImageSelected } = useImageUpload();
   const form = reactive<IUpdateProfile>({
     id: 0,
     fullname: '',
     email: '',
     location: '',
     image: '',
+    imageId: '',
     oldPassword: '',
     newPassword: '',
     newPasswordConfirm: '',
@@ -24,7 +25,7 @@ export const useProfile = async () => {
     form.email = data.value?.customers.email!;
     form.location = `${data.value?.city}, ${data.value?.country}`;
     form.image = `${data.value?.img}`;
-
+    form.imageId = `${data.value?.img_id}`;
     storeProfile.addToProfile(form);
   }
 
@@ -33,6 +34,7 @@ export const useProfile = async () => {
     email: '',
     location: '',
     image: '',
+    imageId: '',
     oldPassword: '',
     newPassword: '',
     newPasswordConfirm: '',
@@ -82,6 +84,7 @@ export const useProfile = async () => {
       name: 'photo',
       getValue: computed(() => {
         form.image = imageUrl.value ? imageUrl.value : form.image;
+        form.imageId = imageId.value ? imageId.value : form.imageId;
       }),
       setValue: handleImageSelected,
       component: Input,
@@ -160,6 +163,7 @@ export const useProfile = async () => {
       form.email = profile.value.email;
       form.location = profile.value.location;
       form.image = profile.value.image;
+      form.imageId = profile.value.imageId;
     } catch (error) {
       if (error instanceof Error) {
         errors.request = error.message;

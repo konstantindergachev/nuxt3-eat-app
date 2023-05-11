@@ -1,6 +1,7 @@
 export const useImageUpload = () => {
   const imageFile = ref();
   const imageUrl = ref('');
+  const imageId = ref('');
   const imageError = ref('');
 
   const handleImageSelected = (target: FileList) => {
@@ -25,7 +26,8 @@ export const useImageUpload = () => {
         method: 'post',
         body: file,
       });
-      imageUrl.value = serverResponse.url;
+      imageUrl.value = serverResponse.imgUrl;
+      imageId.value = serverResponse.imgId;
     } catch (error) {
       if (error instanceof Error) {
         imageError.value = error.message;
@@ -38,6 +40,7 @@ export const useImageUpload = () => {
   return {
     imageFile,
     imageUrl,
+    imageId,
     imageError,
     handleImageSelected,
   };

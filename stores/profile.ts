@@ -8,6 +8,7 @@ export const useStoreProfile = defineStore('profile', {
       email: '',
       location: '',
       image: '',
+      imageId: '',
     };
   },
   getters: {
@@ -21,6 +22,7 @@ export const useStoreProfile = defineStore('profile', {
       this.email = profile.email;
       this.location = profile.location;
       this.image = profile.image;
+      this.imageId = profile.imageId;
     },
   },
 });

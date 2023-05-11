@@ -31,6 +31,7 @@ const createProfile = async (
       city: city.trim(),
       country: country.trim(),
       img: profile.image,
+      img_id: profile.imageId,
     },
   ]);
 
@@ -64,7 +65,7 @@ export const receiveProfileService = async (
 ): Promise<IReceiveProfileFromDB | string> => {
   const { data } = await db
     .from('profiles')
-    .select('id, city, country, img, customers(firstname, lastname, email)')
+    .select('id, city, country, img, img_id, customers(firstname, lastname, email)')
     .eq('customer_id', customerId)
     .single();
 
@@ -97,6 +98,7 @@ const updateProfile = async (customerId: number, profile: IUpdateProfile) => {
       city,
       country,
       img: profile.image,
+      img_id: profile.imageId,
     })
     .eq('id', profile.id);
   return { status: dbResponse.status, statusText: dbResponse.statusText };

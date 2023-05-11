@@ -4,18 +4,23 @@ export interface IUpdateProfile {
   email: string;
   location: string;
   image: string;
+  imageId: string;
   oldPassword: string;
   newPassword: string;
   newPasswordConfirm: string;
 }
 
-export type TUpdateProfile = Pick<IUpdateProfile, 'fullname' | 'email' | 'location' | 'image'>;
+export type TUpdateProfile = Pick<
+  IUpdateProfile,
+  'fullname' | 'email' | 'location' | 'image' | 'imageId'
+>;
 
 export interface IUpdateProfileErrors {
   fullname: string;
   email: string;
   location: string;
   image: string;
+  imageId: string;
   oldPassword: string;
   newPassword: string;
   newPasswordConfirm: string;
@@ -32,5 +37,6 @@ export interface IReceiveProfileFromDB {
   city: string;
   country: string;
   img: string;
+  img_id: string;
   customers: { firstname: string; lastname: string; email: string };
 }
