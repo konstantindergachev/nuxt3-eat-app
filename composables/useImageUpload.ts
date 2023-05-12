@@ -8,6 +8,7 @@ export const useImageUpload = () => {
     if (target.length === 0) {
       imageFile.value = '';
       imageUrl.value = '';
+      imageId.value = '';
       return;
     }
     imageFile.value = target[0];

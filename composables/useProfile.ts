@@ -42,6 +42,9 @@ export const useProfile = async () => {
   });
 
   if (typeof data.value === 'string') {
+    const profile = computed(() => storeProfile.getProfile);
+    form.fullname = profile.value.fullname;
+    form.email = profile.value.email;
     errors.request = data.value;
   }
 
