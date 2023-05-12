@@ -19,17 +19,35 @@
         className="grid max-w-xl mx-auto"
         enctype="multipart/form-data"
       />
-      <img v-if="profile.image" :src="profile.image" :alt="profile.fullname" />
+      <div v-if="profile.image" class="relative">
+        <UIButton
+          type="button"
+          class="btn-del absolute -top-8 right-0"
+          :onClick="() => remove(profile.imageId)"
+          >{{ '&#10005;' }}</UIButton
+        >
+        <img :src="profile.image" :alt="profile.fullname" />
+      </div>
     </div>
   </section>
 </template>
 <script setup lang="ts">
 import { useProfile } from '@/composables/useProfile';
-
+import { useStoreProfile } from '@/stores/profile';
 definePageMeta({
   layout: 'profile',
   middleware: ['auth'],
 });
 
 const { handleSubmit, inputs, validate, errors, profile } = await useProfile();
+
+const storeProfile = useStoreProfile();
+const remove = async (imageId: string) => {
+  await $fetch('/api/upload', {
+    method: 'delete',
+    body: imageId,
+  });
+
+  storeProfile.removeImageFromProfile();
+};
 </script>

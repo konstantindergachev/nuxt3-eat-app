@@ -24,5 +24,9 @@ export const useStoreProfile = defineStore('profile', {
       this.image = profile.image;
       this.imageId = profile.imageId;
     },
+    removeImageFromProfile() {
+      this.image = '';
+      this.imageId = '';
+    },
   },
 });
