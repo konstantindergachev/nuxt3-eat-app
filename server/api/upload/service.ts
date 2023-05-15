@@ -22,7 +22,7 @@ export const uploadCloudinaryService = async (customerId: number, url: string | 
       await receiveProfileService(customerId);
       await uploadImageProfileService(customerId, imgUrl, public_id);
       await rm(url);
-      return cloudinaryResponse.url;
+      return { imgUrl: cloudinaryResponse.url, imgId: cloudinaryResponse.public_id };
     }
     return '';
   } catch (error) {
