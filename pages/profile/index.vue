@@ -9,17 +9,19 @@
       :class="profile.image ? 'lg:grid-cols-2' : 'lg:grid-cols-1'"
     >
       <h1 class="text-center text-Black text-3xl font-bold leading-14 lg:col-span-full">Profile</h1>
-      <p class="text-center text-red-500 capitalize" v-if="errors.request">
-        {{ errors.request }}
-      </p>
-      <TheForm
-        :onSubmit="handleSubmit"
-        :inputs="inputs"
-        :validate="validate"
-        className="grid max-w-xl mx-auto"
-        enctype="multipart/form-data"
-      />
-      <div v-if="profile.image" class="relative">
+      <div class="grid">
+        <p class="text-center text-red-500 capitalize" v-if="errors.request && !profile.image">
+          {{ errors.request }}
+        </p>
+        <TheForm
+          :onSubmit="handleSubmit"
+          :inputs="inputs"
+          :validate="validate"
+          className="grid max-w-xl mx-auto"
+          enctype="multipart/form-data"
+        />
+      </div>
+      <div v-if="profile.image" class="relative w-fit">
         <UIButton
           type="button"
           class="btn-del absolute -top-8 right-0"
