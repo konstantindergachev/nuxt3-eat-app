@@ -17,18 +17,18 @@
           :onSubmit="handleSubmit"
           :inputs="inputs"
           :validate="validate"
-          className="grid max-w-xl mx-auto"
+          className="grid max-w-xl mx-auto mb-5 lg:mb-0"
           enctype="multipart/form-data"
         />
       </div>
-      <div v-if="profile.image" class="relative w-fit">
+      <div v-if="profile.image" class="relative w-fit m-auto lg:m-0">
         <UIButton
           type="button"
           class="btn-del absolute -top-8 right-0"
           :onClick="() => remove(profile.imageId)"
           >{{ '&#10005;' }}</UIButton
         >
-        <img :src="profile.image" :alt="profile.fullname" />
+        <img :src="profile.image" :alt="profile.fullname" class="w-60" />
       </div>
     </div>
   </section>

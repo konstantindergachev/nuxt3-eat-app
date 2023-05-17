@@ -1,8 +1,12 @@
+import { useStoreProfile } from '@/stores/profile';
+
 export const useImageUpload = () => {
   const imageFile = ref();
   const imageUrl = ref('');
   const imageId = ref('');
   const imageError = ref('');
+
+  const storeProfile = useStoreProfile();
 
   const handleImageSelected = (target: FileList) => {
     if (target.length === 0) {
@@ -12,6 +16,8 @@ export const useImageUpload = () => {
       return;
     }
     imageFile.value = target[0];
+    const url = URL.createObjectURL(imageFile.value);
+    storeProfile.addToProfile({ fullname: '', email: '', location: '', image: url, imageId: '' });
 
     const reader = new FileReader();
     reader.readAsDataURL(imageFile.value);
