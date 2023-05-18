@@ -3,7 +3,7 @@
     <UICard v-for="prod in topThreeProducts" :key="prod.id">
       <UIImage :imgSrc="prod.img" :imgName="prod.name" className="flex justify-center" />
       <UITitle>{{ prod.name }}</UITitle>
-      <UIStar> &#9733; &#9733; &#9733; &#9733; &#9733; </UIStar>
+      <UIBlackStar> &#9733; &#9733; &#9733; &#9733; &#9733; </UIBlackStar>
       <UISubtitle> {{ moneyFormat('en-US', 'USD', prod.price) }} kg </UISubtitle>
       <UIText>{{ prod.description }}</UIText>
       <UIButton className="btn btn-shape justify-self-center self-center">{{ 'buy now' }}</UIButton>

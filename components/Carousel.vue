@@ -26,7 +26,7 @@
               <p class="text-Black opacity-70">{{ slide.description }}</p>
               <h4 class="uppercase text-xs">Ahmed Hridoy</h4>
               <h4 class="uppercase text-xs">{{ slide.created_at.split('.')[0] }}</h4>
-              <UIStar> &#9733; &#9733; &#9733; &#9733; &#9733; </UIStar>
+              <UIBlackStar> &#9733; &#9733; &#9733; &#9733; &#9733; </UIBlackStar>
             </div>
             <div class="w-full lg:w-6/12 flex justify-center items-center">
               <img :src="slide.url" :alt="slide.title" class="h-96" />
