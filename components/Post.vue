@@ -9,6 +9,7 @@
       <h4 class="uppercase text-xs">{{ post.created_at.split('.')[0] }}</h4>
       <UIWhiteStar v-if="!isLiked" @click="handleLike" class="m-auto">&#9734;</UIWhiteStar>
       <UIBlackStar v-else @click="handleLike" class="m-auto">&#9733;</UIBlackStar>
+      <p class="text-red-500 capitalize" v-if="message">{{ message }}</p>
     </UICard>
   </ul>
 </template>
@@ -16,6 +17,8 @@
 >
 <script setup lang="ts">
 const { page, posts } = defineProps(['page', 'posts']);
-const { isLiked, handleLike } = useLike();
+const { isLiked, handleLike, message } = useLike();
+
 watch(isLiked, () => isLiked.value);
+watch(message, () => message.value);
 </script>
