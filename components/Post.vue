@@ -14,7 +14,6 @@
   </ul>
 </template>
 
->
 <script setup lang="ts">
 const { page, posts } = defineProps(['page', 'posts']);
 const { isLiked, handleLike, message } = useLike();

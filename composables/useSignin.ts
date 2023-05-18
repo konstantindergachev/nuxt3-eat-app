@@ -67,7 +67,13 @@ export const useSignin = () => {
       auth.value.isAuthenticated = Boolean(id);
 
       if (auth.value.isAuthenticated) {
-        const profile = { fullname: `${firstname} ${lastname}`, email, location: '' };
+        const profile = {
+          fullname: `${firstname} ${lastname}`,
+          email,
+          location: '',
+          image: '',
+          imageId: '',
+        };
         storeProfile.addToProfile(profile);
         router.push('/profile');
       }
