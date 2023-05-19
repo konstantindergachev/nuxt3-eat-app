@@ -7,7 +7,10 @@
       <p class="text-Black opacity-70 my-6">{{ post.text }}</p>
       <h4 class="uppercase text-xs my-3">{{ post.fullname }}</h4>
       <h4 class="uppercase text-xs">{{ post.created_at.split('.')[0] }}</h4>
-      <UIWhiteStar v-if="!isLiked" @click="() => handleLike(post.id)" class="m-auto"
+      <UIWhiteStar
+        v-if="likedPost.postId !== post.id"
+        @click="() => handleLike(post.id)"
+        class="m-auto"
         >&#9734;</UIWhiteStar
       >
       <UIBlackStar v-else @click="() => handleLike(posts.id)" class="m-auto">&#9733;</UIBlackStar>
@@ -18,8 +21,8 @@
 
 <script setup lang="ts">
 const { page, posts } = defineProps(['page', 'posts']);
-const { isLiked, handleLike, message } = useLike();
+const { likedPost, handleLike, message } = useLike();
 
-watch(isLiked, () => isLiked.value);
+watch(likedPost, () => likedPost.isLiked);
 watch(message, () => message.value);
 </script>

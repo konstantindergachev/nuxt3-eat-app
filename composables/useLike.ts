@@ -1,23 +1,32 @@
 export const useLike = () => {
-  const isLiked = ref(false);
+  const likedPost = reactive({
+    isLiked: false,
+    postId: 0,
+  });
   const message = ref('');
 
   const auth = useAuth();
 
-  const handleLike = async (postId: string) => {
+  const addLike = async (postId: number) => {
+    await $fetch('/api/likes', {
+      method: 'post',
+      body: postId.toString(),
+    });
+  };
+  const handleLike = (postId: number) => {
     if (auth.value.isAuthenticated) {
-      isLiked.value = !isLiked.value;
-      await $fetch('/api/likes', {
-        method: 'post',
-        body: postId,
-      });
+      likedPost.isLiked = !likedPost.isLiked;
+      likedPost.postId = postId;
+      if (likedPost.isLiked) {
+        addLike(postId);
+      }
     } else {
       message.value = 'You need to be authorized.';
     }
   };
 
   return {
-    isLiked,
+    likedPost,
     handleLike,
     message,
   };
