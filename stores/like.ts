@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
+import { ILikedPost } from '@/interfaces/like';
 
-const likes: number[] = [];
+const likes: ILikedPost[] = [];
 export const useStoreLike = defineStore('like', {
   state: () => {
     return {
@@ -13,8 +14,8 @@ export const useStoreLike = defineStore('like', {
     },
   },
   actions: {
-    addToLikes(likeId: number) {
-      this.likes.push(likeId);
+    addToLikes(likedPost: ILikedPost) {
+      this.likes.push(likedPost);
     },
   },
 });

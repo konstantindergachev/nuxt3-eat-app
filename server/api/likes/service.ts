@@ -8,7 +8,7 @@ export const createLikeService = async (postId: number, customerId: number) => {
         post_id: postId,
       },
     ])
-    .select('id')
+    .select('id, post_id')
     .single();
-  return { status, statusText, likeId: data?.id };
+  return { status, statusText, likeId: data?.id, postId: data?.post_id };
 };

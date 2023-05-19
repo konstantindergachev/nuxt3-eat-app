@@ -16,7 +16,8 @@ export const useLike = () => {
       method: 'post',
       body: postId.toString(),
     });
-    storeLike.addToLikes(response.likeId);
+    const likedPost = { postId: response.postId, likeId: response.likeId };
+    storeLike.addToLikes(likedPost);
   };
   const handleLike = (postId: number) => {
     if (auth.value.isAuthenticated) {
