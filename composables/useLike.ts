@@ -1,3 +1,5 @@
+import { useStoreLike } from '@/stores/like';
+
 export const useLike = () => {
   const likedPost = reactive({
     isLiked: false,
@@ -7,11 +9,14 @@ export const useLike = () => {
 
   const auth = useAuth();
 
+  const storeLike = useStoreLike();
+
   const addLike = async (postId: number) => {
-    await $fetch('/api/likes', {
+    const response = await $fetch('/api/likes', {
       method: 'post',
       body: postId.toString(),
     });
+    storeLike.addToLikes(response.likeId);
   };
   const handleLike = (postId: number) => {
     if (auth.value.isAuthenticated) {
