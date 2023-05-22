@@ -1,4 +1,8 @@
-export interface ILikedPost {
-  likeId: number;
+export interface IPiniaLikeInfo {
+  [postId: string]: boolean;
+}
+
+export interface ILikeInfo {
+  isLiked: boolean;
   postId: number;
 }
