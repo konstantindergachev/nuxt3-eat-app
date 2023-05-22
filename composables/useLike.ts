@@ -6,7 +6,10 @@ export const useLike = () => {
     isLiked: false,
     postId: 0,
   });
-  const message = ref('');
+  const message = reactive({
+    postId: 0,
+    text: '',
+  });
 
   const auth = useAuth();
   const storeLike = useStoreLike();
@@ -27,7 +30,8 @@ export const useLike = () => {
 
       saveLike(likeInfo);
     } else {
-      message.value = 'You need to be an authorized.';
+      message.postId = postId;
+      message.text = 'You need to be an authorized.';
     }
   };
 

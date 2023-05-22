@@ -11,7 +11,7 @@
         >&#9734;</UIWhiteStar
       >
       <UIBlackStar v-else @click="() => handleLike(posts.id)" class="m-auto">&#9733;</UIBlackStar>
-      <p class="text-red-500 capitalize" v-if="message">{{ message }}</p>
+      <p class="text-red-500 capitalize" v-if="message.postId === post.id">{{ message.text }}</p>
     </UICard>
   </ul>
 </template>
@@ -19,6 +19,4 @@
 <script setup lang="ts">
 const { page, posts } = defineProps(['page', 'posts']);
 const { handleLike, message, likes } = useLike();
-
-watch(message, () => message.value);
 </script>
