@@ -17,7 +17,7 @@ export const useLike = () => {
   const { likes } = storeLike.getLikes;
 
   const saveLike = async (likeInfo: ILikeInfo) => {
-    const response = await $fetch('/api/likes', {
+    const response: ILikeInfo = await $fetch('/api/likes', {
       method: 'post',
       body: JSON.stringify(likeInfo),
     });

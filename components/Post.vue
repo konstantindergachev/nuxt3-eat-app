@@ -1,4 +1,5 @@
 <template>
+  <p class="text-red-500 capitalize" v-if="responseError">{{ responseError }}</p>
   <ul :class="[page ? 'block mt-0' : 'flex flex-wrap gap-4 mt-10']">
     <UICard v-for="post in posts" :key="post.id" :class="[page && 'mb-4']">
       <h3 class="uppercase text-Green font-bold leading-14 text-3xl">
@@ -17,6 +18,14 @@
 </template>
 
 <script setup lang="ts">
+import { IPiniaLikeInfo, ILikeResponseErrorFromDB } from '@/interfaces/like';
+
 const { page, posts } = defineProps(['page', 'posts']);
-const { handleLike, message, likes } = useLike();
+const { handleLike, message, likes: storedLikes } = useLike();
+const { data, error } = await useFetch<IPiniaLikeInfo | ILikeResponseErrorFromDB>('/api/likes');
+const responseError = ref('');
+if (error) responseError.value = error.value?.data.message;
+let likes = reactive<IPiniaLikeInfo>({});
+likes = { ...storedLikes };
+if (data) likes = { ...data.value } as IPiniaLikeInfo;
 </script>
