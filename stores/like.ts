@@ -17,5 +17,8 @@ export const useStoreLike = defineStore('like', {
     addToLikes(likedPost: ILikeInfo) {
       this.likes[likedPost.postId] = likedPost.isLiked;
     },
+    addToLikesFromDB(likedPost: IPiniaLikeInfo) {
+      this.likes = { ...likedPost };
+    },
   },
 });

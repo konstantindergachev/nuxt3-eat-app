@@ -11,21 +11,13 @@
       <UIWhiteStar v-if="!likes[post.id]" @click="() => handleLike(post.id)" class="m-auto"
         >&#9734;</UIWhiteStar
       >
-      <UIBlackStar v-else @click="() => handleLike(posts.id)" class="m-auto">&#9733;</UIBlackStar>
+      <UIBlackStar v-else @click="() => handleLike(post.id)" class="m-auto">&#9733;</UIBlackStar>
       <p class="text-red-500 capitalize" v-if="message.postId === post.id">{{ message.text }}</p>
     </UICard>
   </ul>
 </template>
 
 <script setup lang="ts">
-import { IPiniaLikeInfo, ILikeResponseErrorFromDB } from '@/interfaces/like';
-
 const { page, posts } = defineProps(['page', 'posts']);
-const { handleLike, message, likes: storedLikes } = useLike();
-const { data, error } = await useFetch<IPiniaLikeInfo | ILikeResponseErrorFromDB>('/api/likes');
-const responseError = ref('');
-if (error) responseError.value = error.value?.data.message;
-let likes = reactive<IPiniaLikeInfo>({});
-likes = { ...storedLikes };
-if (data) likes = { ...data.value } as IPiniaLikeInfo;
+const { likes, handleLike, message, responseError } = await useLike();
 </script>

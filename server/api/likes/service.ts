@@ -20,6 +20,21 @@ export const createLikeService = async (
   return { postId: data?.post_id, isLiked: data?.is_liked };
 };
 
+export const updateLikeService = async (
+  body: ILikeInfo,
+  customerId: number
+): Promise<ILikeInfo> => {
+  const { data } = await db
+    .from('post_likes')
+    .update({ is_liked: body.isLiked })
+    .eq('customer_id', customerId)
+    .eq('post_id', body.postId)
+    .select('id, post_id, is_liked')
+    .single();
+
+  return { postId: data?.post_id, isLiked: data?.is_liked };
+};
+
 export const receiveLikeService = async (customerId: number): Promise<IPiniaLikeInfo> => {
   const dbResponse: PostgrestResponse<ILikeResponseFromDB> = await db
     .from('post_likes')
