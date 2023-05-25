@@ -8,13 +8,13 @@ export const useLike = async () => {
     isLiked: false,
     postId: 0,
   });
-  const message = reactive({
+  const errors = reactive({
     postId: 0,
-    text: '',
+    postLikeError: '',
+    commonLikeError: '',
   });
 
-  const responseError = ref('');
-  if (error) responseError.value = error.value?.data.message;
+  if (error) errors.commonLikeError = error.value?.data.message;
 
   const auth = useAuth();
   const storeLike = useStoreLike();
@@ -42,15 +42,14 @@ export const useLike = async () => {
 
       saveLike(_like);
     } else {
-      message.postId = postId;
-      message.text = 'You need to be an authorized.';
+      errors.postId = postId;
+      errors.postLikeError = 'You need to be an authorized.';
     }
   };
 
   return {
     likes: likes.value.likes,
     handleLike,
-    message,
-    responseError,
+    errors,
   };
 };

@@ -1,5 +1,5 @@
 <template>
-  <p class="text-red-500 capitalize" v-if="responseError">{{ responseError }}</p>
+  <p class="text-Green capitalize" v-if="errors.commonLikeError">{{ errors.commonLikeError }}</p>
   <ul :class="[page ? 'block mt-0' : 'flex flex-wrap gap-4 mt-10']">
     <UICard v-for="post in posts" :key="post.id" :class="[page && 'mb-4']">
       <h3 class="uppercase text-Green font-bold leading-14 text-3xl">
@@ -12,12 +12,14 @@
         >&#9734;</UIWhiteStar
       >
       <UIBlackStar v-else @click="() => handleLike(post.id)" class="m-auto">&#9733;</UIBlackStar>
-      <p class="text-red-500 capitalize" v-if="message.postId === post.id">{{ message.text }}</p>
+      <p class="text-red-500 capitalize" v-if="errors.postId === post.id">
+        {{ errors.postLikeError }}
+      </p>
     </UICard>
   </ul>
 </template>
 
 <script setup lang="ts">
 const { page, posts } = defineProps(['page', 'posts']);
-const { likes, handleLike, message, responseError } = await useLike();
+const { likes, handleLike, errors } = await useLike();
 </script>
