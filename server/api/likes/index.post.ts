@@ -9,9 +9,9 @@ export default defineEventHandler(async (event) => {
 
   if (likes[body.postId]) {
     return (await updateLikeService(body, Number(customerId))) as ILikeInfo;
-  } else if (!likes[body.postId]) {
-    return (await updateLikeService(body, Number(customerId))) as ILikeInfo;
   } else if (likes[body.postId] === undefined) {
     return createLikeService(body, Number(customerId));
+  } else if (!likes[body.postId]) {
+    return (await updateLikeService(body, Number(customerId))) as ILikeInfo;
   }
 });
