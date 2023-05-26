@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia';
-import { IPiniaLikeInfo, ILikeInfo } from '@/interfaces/like';
+import { IPostLikeStore, IPostLike } from '@/interfaces/postlike';
 
-const likes: IPiniaLikeInfo = {};
-export const useStoreLike = defineStore('like', {
+const postLikes: IPostLikeStore = {};
+export const usePostLikeStore = defineStore('like', {
   state: () => {
     return {
-      likes,
+      postLikes,
     };
   },
   getters: {
@@ -14,11 +14,11 @@ export const useStoreLike = defineStore('like', {
     },
   },
   actions: {
-    addToLikes(likedPost: ILikeInfo) {
-      this.likes[likedPost.postId] = likedPost.isLiked;
+    addToLikes(likedPost: IPostLike) {
+      this.postLikes[likedPost.postId] = likedPost.isLiked;
     },
-    addToLikesFromDB(likedPost: IPiniaLikeInfo) {
-      this.likes = { ...likedPost };
+    addToLikesFromDB(likedPost: IPostLikeStore) {
+      this.postLikes = { ...likedPost };
     },
   },
 });

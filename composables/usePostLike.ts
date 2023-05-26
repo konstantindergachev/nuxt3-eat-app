@@ -1,8 +1,8 @@
-import { useStoreLike } from '@/stores/like';
-import { ILikeInfo, IPiniaLikeInfo, ILikeResponseErrorFromDB } from '@/interfaces/like';
+import { usePostLikeStore } from '@/stores/like';
+import { IPostLike, IPostLikeStore, IPostLikeResponseError } from '@/interfaces/postlike';
 
-export const useLike = async () => {
-  const { data, error } = await useFetch<IPiniaLikeInfo | ILikeResponseErrorFromDB>('/api/likes');
+export const usePostLike = async () => {
+  const { data, error } = await useFetch<IPostLikeStore | IPostLikeResponseError>('/api/likes');
 
   const _like = reactive({
     isLiked: false,
@@ -17,17 +17,17 @@ export const useLike = async () => {
   if (error) errors.commonLikeError = error.value?.data.message;
 
   const auth = useAuth();
-  const storeLike = useStoreLike();
+  const storeLike = usePostLikeStore();
 
   if (data) {
-    const likesFromDB = data.value as IPiniaLikeInfo;
+    const likesFromDB = data.value as IPostLikeStore;
     storeLike.addToLikesFromDB(likesFromDB);
   }
 
   const likes = computed(() => storeLike.getLikes);
 
-  const saveLike = async (likeInfo: ILikeInfo) => {
-    const response: ILikeInfo = await $fetch('/api/likes', {
+  const saveLike = async (likeInfo: IPostLike) => {
+    const response: IPostLike = await $fetch('/api/likes', {
       method: 'post',
       body: JSON.stringify(likeInfo),
     });
@@ -37,8 +37,8 @@ export const useLike = async () => {
   const handleLike = (postId: number) => {
     if (auth.value.isAuthenticated && postId) {
       _like.postId = postId;
-      _like.isLiked = likes.value.likes[postId];
-      _like.isLiked = likes.value.likes[postId] ? false : true;
+      _like.isLiked = likes.value.postLikes[postId];
+      _like.isLiked = likes.value.postLikes[postId] ? false : true;
 
       saveLike(_like);
     } else {
@@ -48,7 +48,7 @@ export const useLike = async () => {
   };
 
   return {
-    likes: likes.value.likes,
+    likes: likes.value.postLikes,
     handleLike,
     errors,
   };

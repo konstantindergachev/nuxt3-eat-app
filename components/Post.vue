@@ -21,5 +21,5 @@
 
 <script setup lang="ts">
 const { page, posts } = defineProps(['page', 'posts']);
-const { likes, handleLike, errors } = await useLike();
+const { likes, handleLike, errors } = await usePostLike();
 </script>

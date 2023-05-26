@@ -1,8 +1,8 @@
 import { receiveLikeService } from './service';
-import { ILikeResponseErrorFromDB, IPiniaLikeInfo } from '@/interfaces/like';
+import { IPostLikeResponseError, IPostLikeStore } from '@/interfaces/postlike';
 
 export default defineEventHandler(
-  async (event): Promise<IPiniaLikeInfo | ILikeResponseErrorFromDB> => {
+  async (event): Promise<IPostLikeStore | IPostLikeResponseError> => {
     const customerId = getCookie(event, 'id');
     try {
       return receiveLikeService(Number(customerId));
