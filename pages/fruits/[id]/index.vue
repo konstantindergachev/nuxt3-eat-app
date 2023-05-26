@@ -6,6 +6,9 @@
 
     <h1 class="text-center mt-20 uppercase">Fruit</h1>
     <UICard v-if="fruit">
+      <p class="text-Green capitalize" v-if="errors.commonLikeError">
+        {{ errors.commonLikeError }}
+      </p>
       <UIImage :imgSrc="fruit.img" :imgName="fruit.name" className="flex justify-center" />
       <UITitle>{{ fruit.name }}</UITitle>
       <UIText>{{ fruit.description }}</UIText>
@@ -15,17 +18,10 @@
           <span class="opacity-70">{{ moneyFormat('en-US', 'USD', fruit.price!) }}</span>
         </p>
         <div v-if="auth.isAuthenticated">
-          <UIButton
-            type="button"
-            v-if="fruit.popular"
-            class="text-2xl"
-            :onClick="() => addToFavorite(false)"
+          <UIWhiteStar v-if="!likes[fruit.id!]" @click="() => handleLike(fruit.id!)"
+            >&#9734;</UIWhiteStar
           >
-            <span class="text-Yellow">&#128153;</span>
-          </UIButton>
-          <UIButton type="button" v-else class="text-2xl" :onClick="() => addToFavorite(true)">
-            <span class="opacity-70">&#9825;</span>
-          </UIButton>
+          <UIBlackStar v-else @click="() => handleLike(fruit.id!)">&#9733;</UIBlackStar>
         </div>
       </div>
       <UIButton type="button" class="btn btn-shape justify-self-center" :onClick="addToBasket">{{
@@ -54,12 +50,5 @@ const addToBasket = () => {
   if (data.value) storeBasket.addToBasket(productToBasket);
 };
 
-const addToFavorite = async (isFavorite: boolean) => {
-  fruit.popular = isFavorite;
-  const response: IFruit = await $fetch('/api/fruit', {
-    method: 'put',
-    body: { ...data.value, popular: !data.value?.popular },
-  });
-  fruit = response;
-};
+const { likes, handleLike, errors } = await useFruitLike();
 </script>
