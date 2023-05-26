@@ -2,7 +2,9 @@ import { usePostLikeStore } from '@/stores/like';
 import { IPostLike, IPostLikeStore, IPostLikeResponseError } from '@/interfaces/postlike';
 
 export const usePostLike = async () => {
-  const { data, error } = await useFetch<IPostLikeStore | IPostLikeResponseError>('/api/likes');
+  const { data, error } = await useFetch<IPostLikeStore | IPostLikeResponseError>(
+    '/api/likes/posts'
+  );
 
   const _like = reactive({
     isLiked: false,
@@ -27,7 +29,7 @@ export const usePostLike = async () => {
   const likes = computed(() => storeLike.getLikes);
 
   const saveLike = async (likeInfo: IPostLike) => {
-    const response: IPostLike = await $fetch('/api/likes', {
+    const response: IPostLike = await $fetch('/api/likes/posts', {
       method: 'post',
       body: JSON.stringify(likeInfo),
     });
