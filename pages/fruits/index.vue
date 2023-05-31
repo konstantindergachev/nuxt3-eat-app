@@ -1,5 +1,5 @@
 <template>
-  <section v-if="data">
+  <section v-if="data" class="flex flex-col">
     <Head>
       <Title>EatApp - Fruits</Title>
     </Head>
@@ -17,7 +17,9 @@
         </div>
       </UICard>
     </div>
-    <UIButton type="button" class="btn mt-10" :onClick="getMore">{{ 'more' }}</UIButton>
+    <UIButton v-if="!isEmpty" type="button" class="btn mt-10 self-end" :onClick="getMore">{{
+      'more'
+    }}</UIButton>
   </section>
   <section v-else class="flex justify-center items-center mt-10"><UILoader /></section>
 </template>
@@ -33,6 +35,7 @@ if (data.value) {
 }
 
 const fruits = computed(() => storeFruit.getFruits);
+const isEmpty = ref(false);
 
 const getMore = async () => {
   const data = await $fetch('/api/fruits', {
@@ -41,5 +44,9 @@ const getMore = async () => {
   });
 
   storeFruit.addFruits([...fruits.value, ...data]);
+
+  if (!data.length) {
+    isEmpty.value = true;
+  }
 };
 </script>
