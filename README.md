@@ -1,11 +1,12 @@
 # nuxt3-eat-app
 
-The nuxt3-eat-app is an example of a full-stack application developed with the Nuxt3 JavaScript framework, Pinia store, Supabase DB and Cloudinary store for image APIs.
+The nuxt3-eat-app is an example of a full-stack application developed with the Nuxt3 JavaScript framework, Pinia store, Supabase DB, Cloudinary store for image APIs and Tailwind for application styling.
 
 - Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
 - Look at the [pinia store documentation](https://pinia.vuejs.org/core-concepts/) to learn more.
 - Look at the [supabase database documentation](https://supabase.com/docs) to learn more.
 - Look at the [cloudinary store documentation](https://cloudinary.com/documentation) to learn more.
+- Look at the [tailwind css framework documentation](https://tailwindcss.com/docs/installation) to learn more.
 
 ## Step 1: Quick start
 
