@@ -23,11 +23,11 @@ import { IRecommendation } from '@/interfaces/recommendation';
 import { IDelivery } from '@/interfaces/delivery';
 import { INewsletter } from '@/interfaces/newsletter';
 
-const { data: banner } = await useLazyFetch<IBanner>('/api/banner');
-const { data: recommendation } = await useLazyFetch<IRecommendation>('/api/recommendation');
-const { data: delivery } = await useLazyFetch<IDelivery>('/api/delivery');
-const { data: newsletter } = await useLazyFetch<INewsletter>('/api/newsletter');
+const { data: banner } = await useFetch<IBanner>('/api/banner');
+const { data: recommendation } = await useFetch<IRecommendation>('/api/recommendation');
+const { data: delivery } = await useFetch<IDelivery>('/api/delivery');
+const { data: newsletter } = await useFetch<INewsletter>('/api/newsletter');
 
-const { data } = await useLazyFetch<IFruit[]>('/api/fruits/top');
+const { data } = await useFetch<IFruit[]>('/api/fruits/top');
 const topThreeProducts = data.value?.filter((product, idx) => idx <= 2 && product);
 </script>

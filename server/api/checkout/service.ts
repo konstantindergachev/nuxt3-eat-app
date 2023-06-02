@@ -13,7 +13,7 @@ export const checkoutService = async (body: ICheckoutOrder, id: number): Promise
     .insert([
       {
         customer_id: userData.id,
-        ship_fullname: `${body.info.firstname} ${body.info.lastname}`,
+        ship_fullname: `${body.info.addresseeFirstname} ${body.info.addresseeLastname}`,
         ship_phone: body.info.phone,
         ship_address: body.info.deliveryAddress,
         ship_city: body.info.deliveryCity,
