@@ -7,11 +7,14 @@ export const orderService = async (id: number): Promise<IOrder[] | string> => {
     .from('orders')
     .select(`*, order_details(*, fruits(name))`)
     .eq('customer_id', id);
+  console.log(rawOrder);
 
-  if (!rawOrder.data) {
-    throw new Error(`Sorry! You don't have any orders yet.`);
+  if (rawOrder.error) {
+    throw new Error(`Sorry! We're fixing the problem.`);
   }
-
+  if (!rawOrder.data.length) {
+    throw new Error(`You don't have any orders yet.`);
+  }
   return orderCreator(rawOrder.data);
 };
 
