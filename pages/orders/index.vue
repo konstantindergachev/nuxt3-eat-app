@@ -79,5 +79,5 @@ definePageMeta({
 
 const { moneyFormat, dateFormat } = useUtilities();
 
-const { data } = await useFetch<IOrder[]>('/api/orders', { lazy: true });
+const { data } = await useFetch<IOrder[]>('/api/orders');
 </script>
