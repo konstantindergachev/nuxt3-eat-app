@@ -9,7 +9,8 @@
 
     <div class="w-full space-y-8 pt-6 md:pt-24">
       <h1 class="text-center text-Black text-3xl font-bold leading-14">Orders</h1>
-      <div class="w-full">
+      <p v-if="typeof data === 'string'" class="text-center text-Green capitalize">{{ data }}</p>
+      <div v-else class="w-full">
         <ul class="flex gap-5 flex-wrap">
           <li v-for="order in data" :key="order.id" class="text-left shadow-md my-10 p-5">
             <p class="leading-14">
