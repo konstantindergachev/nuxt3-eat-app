@@ -1,3 +1,4 @@
+import { getCookie } from 'h3';
 import { ICheckoutOrder } from '@/interfaces/checkout';
 import { checkoutService } from './service';
 

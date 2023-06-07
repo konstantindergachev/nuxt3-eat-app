@@ -1,3 +1,4 @@
+import { setCookie } from 'h3';
 import { signupService } from './service';
 import { ISignup } from '@/interfaces/signup';
 import { ICookieOptions } from '@/interfaces/cookies';

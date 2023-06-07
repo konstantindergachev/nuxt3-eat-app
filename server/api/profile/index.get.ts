@@ -1,3 +1,4 @@
+import { getCookie } from 'h3';
 import { receiveProfileService } from './service';
 import { IReceiveProfileFromDB } from '@/interfaces/profile';
 

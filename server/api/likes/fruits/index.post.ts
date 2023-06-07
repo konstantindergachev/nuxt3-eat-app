@@ -1,3 +1,4 @@
+import { getCookie } from 'h3';
 import { receiveLikeService, createLikeService, updateLikeService } from './service';
 import { IFruitLike } from '@/interfaces/fruitlike';
 

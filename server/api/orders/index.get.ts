@@ -1,3 +1,4 @@
+import { getCookie } from 'h3';
 import { orderService } from './service';
 import { IOrder } from '@/interfaces/orders';
 

@@ -1,3 +1,4 @@
+import { getCookie } from 'h3';
 import { destroyCloudinaryService } from './service';
 
 export default defineEventHandler(async (event) => {
