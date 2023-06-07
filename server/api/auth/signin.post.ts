@@ -1,4 +1,3 @@
-import { setCookie } from 'h3';
 import { signinService } from './service';
 import { ISignin } from '@/interfaces/signin';
 import { ICookieOptions } from '@/interfaces/cookies';

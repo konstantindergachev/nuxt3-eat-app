@@ -1,4 +1,3 @@
-import { getCookie } from 'h3';
 import { receiveLikeService } from './service';
 import { IPostLikeResponseError, IPostLikeStore } from '@/interfaces/postlike';
 

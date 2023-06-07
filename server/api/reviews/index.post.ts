@@ -1,4 +1,3 @@
-import { getCookie } from 'h3';
 import { createReviewService } from './service';
 
 export default defineEventHandler(async (event) => {
