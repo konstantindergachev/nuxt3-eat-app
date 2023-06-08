@@ -1,5 +1,6 @@
 import { usePostLikeStore } from '@/stores/like';
 import { IPostLike, IPostLikeStore, IPostLikeResponseError } from '@/interfaces/postlike';
+import { UNAUTHORIZED } from '@/stub/constants';
 
 export const usePostLike = async () => {
   const { data, error } = await useFetch<IPostLikeStore | IPostLikeResponseError>(
@@ -45,7 +46,7 @@ export const usePostLike = async () => {
       saveLike(_like);
     } else {
       errors.postId = postId;
-      errors.postLikeError = 'You need to be an authorized.';
+      errors.postLikeError = UNAUTHORIZED;
     }
   };
 

@@ -1,5 +1,6 @@
 import { orderService } from './service';
 import { IOrder } from '@/interfaces/orders';
+import { SOMETHING_WENT_WRONT } from '@/stub/constants';
 
 export default defineEventHandler(async (event): Promise<IOrder[] | string> => {
   const id = getCookie(event, 'id');
@@ -9,7 +10,7 @@ export default defineEventHandler(async (event): Promise<IOrder[] | string> => {
     if (error instanceof Error) {
       return error.message;
     } else {
-      return 'Something went wrong. please try later.';
+      return SOMETHING_WENT_WRONT;
     }
   }
 });

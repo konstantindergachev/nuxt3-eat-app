@@ -1,11 +1,12 @@
 import { db } from '@/server/db/clientDB';
 import { ICheckoutOrder } from '@/interfaces/checkout';
 import { IBasket } from '@/interfaces/fruits';
+import { NOT_CUSTOMER, ORDER_CREATED } from '@/stub/constants';
 
 export const checkoutService = async (body: ICheckoutOrder, id: number): Promise<string> => {
   const { data: userData } = await db.from('customers').select('id').eq('id', id).single();
   if (!userData) {
-    return `This customer doesn't exist!`;
+    return NOT_CUSTOMER;
   }
 
   const { data } = await db
@@ -35,5 +36,5 @@ export const checkoutService = async (body: ICheckoutOrder, id: number): Promise
     ]);
   });
 
-  return 'The order is successful created!';
+  return ORDER_CREATED;
 };

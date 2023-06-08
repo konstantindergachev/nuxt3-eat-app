@@ -2,6 +2,7 @@ import crypto from 'crypto';
 import { db } from '@/server/db/clientDB';
 import { IRawSignin } from '@/interfaces/signin';
 import { ISignup } from '@/interfaces/signup';
+import { NOT_CUSTOMER, SOMETHING_WENT_WRONT } from '@/stub/constants';
 
 const { CUSTOMER_PASSWORD_SECRET } = process.env;
 
@@ -15,10 +16,10 @@ export const signinService = async (password: string): Promise<IRawSignin> => {
     .single();
 
   if (!data) {
-    throw new Error(`Something went wrong. We're fixing the problem. Try later. Thank you.`);
+    throw new Error(SOMETHING_WENT_WRONT);
   }
   if (data.password !== hashedPassword) {
-    throw new Error('No such customer!');
+    throw new Error(NOT_CUSTOMER);
   }
   return data;
 };
@@ -41,7 +42,7 @@ export const signupService = async (body: ISignup): Promise<IRawSignin> => {
     .single();
 
   if (newCustomer.error) {
-    throw new Error(`Something went wrong. We're fixing the problem. Try later. Thank you.`);
+    throw new Error(SOMETHING_WENT_WRONT);
   }
   return await signinService(body.password);
 };

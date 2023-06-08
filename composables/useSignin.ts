@@ -2,6 +2,7 @@ import { ISignin, ISigninErrors } from '@/interfaces/signin';
 import Input from '@/components/UI/Input.vue';
 import { useStoreProfile } from '@/stores/profile';
 import { signinSchema } from '@/validation/signin.validation';
+import { NOT_ACCOUNT, UNEXPECTED } from '@/stub/constants';
 
 export const useSignin = () => {
   const form = reactive<ISignin>({
@@ -48,7 +49,7 @@ export const useSignin = () => {
       if (error instanceof Error) {
         errors[field] = error.message;
       } else {
-        errors[field] = 'Unexpected error';
+        errors[field] = UNEXPECTED;
       }
     }
   };
@@ -82,7 +83,7 @@ export const useSignin = () => {
       form.password = '';
     } catch (error) {
       if (error instanceof Error) {
-        errors.request = `Sorry! You don't have any account yet.`;
+        errors.request = NOT_ACCOUNT;
       }
     }
   };

@@ -3,6 +3,7 @@ import Input from '@/components/UI/Input.vue';
 import TextArea from '@/components/UI/TextArea.vue';
 import { useStorePost } from '@/stores/post.js';
 import { postSchema } from '@/validation/post.validation';
+import { UNEXPECTED } from '@/stub/constants';
 
 export const usePost = () => {
   const form = reactive<IReview>({
@@ -62,7 +63,7 @@ export const usePost = () => {
       if (error instanceof Error) {
         errors[field] = error.message;
       } else {
-        errors[field] = 'Unexpected error';
+        errors[field] = UNEXPECTED;
       }
     }
   };

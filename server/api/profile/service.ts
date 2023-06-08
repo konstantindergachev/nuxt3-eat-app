@@ -5,6 +5,7 @@ import {
   IUpdateProfile,
   IUpdateProfileDBResponse,
 } from '@/interfaces/profile';
+import { NOT_PROFILE_ADD_DATA } from '@/stub/constants';
 
 const { CUSTOMER_PASSWORD_SECRET } = process.env;
 
@@ -70,7 +71,7 @@ export const receiveProfileService = async (
     .single();
 
   if (!data) {
-    throw new Error(`You don't have any additional profile data yet`);
+    throw new Error(NOT_PROFILE_ADD_DATA);
   }
   return data as IReceiveProfileFromDB;
 };

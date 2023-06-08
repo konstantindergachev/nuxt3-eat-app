@@ -1,4 +1,5 @@
 import { useStoreProfile } from '@/stores/profile';
+import { UNEXPECTED } from '@/stub/constants';
 
 export const useImageUpload = () => {
   const imageFile = ref();
@@ -39,7 +40,7 @@ export const useImageUpload = () => {
       if (error instanceof Error) {
         imageError.value = error.message;
       } else {
-        imageError.value = 'Unexpected error';
+        imageError.value = UNEXPECTED;
       }
     }
   };

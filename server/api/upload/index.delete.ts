@@ -1,4 +1,5 @@
 import { destroyCloudinaryService } from './service';
+import { UNEXPECTED } from '@/stub/constants';
 
 export default defineEventHandler(async (event) => {
   try {
@@ -9,7 +10,7 @@ export default defineEventHandler(async (event) => {
     if (error instanceof Error) {
       console.error({ error: error.message });
     } else {
-      console.error({ error: 'Unexpectide server error' });
+      console.error({ error: UNEXPECTED });
     }
   }
 });

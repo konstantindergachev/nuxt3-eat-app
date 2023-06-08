@@ -1,6 +1,7 @@
 import { db } from '@/server/db/clientDB';
 import { PostgrestResponse } from '@supabase/supabase-js';
 import { IOrder, IRawOrder, IOrderDetails } from '@/interfaces/orders';
+import { NOT_ORDER, SOMETHING_WENT_WRONT } from '@/stub/constants';
 
 export const orderService = async (id: number): Promise<IOrder[] | string> => {
   const rawOrder: PostgrestResponse<IRawOrder> = await db
@@ -9,10 +10,10 @@ export const orderService = async (id: number): Promise<IOrder[] | string> => {
     .eq('customer_id', id);
 
   if (rawOrder.error) {
-    throw new Error(`Sorry! We're fixing the problem.`);
+    throw new Error(SOMETHING_WENT_WRONT);
   }
   if (!rawOrder.data.length) {
-    throw new Error(`You don't have any orders yet.`);
+    throw new Error(NOT_ORDER);
   }
   return orderCreator(rawOrder.data);
 };
