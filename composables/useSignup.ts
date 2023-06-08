@@ -1,6 +1,7 @@
 import { ISignup, ISignupErrors } from '@/interfaces/signup';
 import Input from '@/components/UI/Input.vue';
 import { signupSchema } from '@/validation/signup.validation';
+import { UNEXPECTED } from '@/stub/constants';
 
 export const useSignup = () => {
   const form = reactive<ISignup>({
@@ -73,7 +74,7 @@ export const useSignup = () => {
       if (error instanceof Error) {
         errors[field] = error.message;
       } else {
-        errors[field] = 'Unexpected error';
+        errors[field] = UNEXPECTED;
       }
     }
   };

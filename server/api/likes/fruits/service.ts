@@ -1,6 +1,7 @@
 import { db } from '@/server/db/clientDB';
 import { PostgrestResponse } from '@supabase/supabase-js';
 import { IFruitLike, IFruitLikeResponse, IFruitLikeStore } from '@/interfaces/fruitlike';
+import { LIKES_UNAUTHORIZED } from '@/stub/constants';
 
 export const createLikeService = async (
   body: IFruitLike,
@@ -42,7 +43,7 @@ export const receiveLikeService = async (customerId: number): Promise<IFruitLike
     .eq('customer_id', customerId);
 
   if (!dbResponse.data) {
-    throw new Error(`If you want to see you're fruit likes, you need to be an authorized.`);
+    throw new Error(LIKES_UNAUTHORIZED);
   }
 
   const likes = dbResponse.data as IFruitLikeResponse[];

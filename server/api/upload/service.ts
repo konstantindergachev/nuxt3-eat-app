@@ -2,6 +2,7 @@ import { rm } from 'fs/promises';
 import cloudinary from 'cloudinary';
 import { db } from '@/server/db/clientDB';
 import { receiveProfileService } from '@/server/api/profile/service';
+import { NOT_CLOUDINARY } from '@/stub/constants';
 
 const { CLOUD_NAME, API_KEY, API_SECRET } = process.env;
 
@@ -37,7 +38,7 @@ export const uploadCloudinaryService = async (customerId: number, url: string | 
       };
     } else {
       return {
-        error: 'Cloudinary store error',
+        error: NOT_CLOUDINARY,
         imgUrl: cloudinaryResponse?.url,
         imgId: cloudinaryResponse?.public_id,
       };
@@ -71,7 +72,7 @@ export const destroyCloudinaryService = async (
     if (error instanceof Error) {
       return { error: error.message };
     } else {
-      return { error: 'Cloudinary store error' };
+      return { error: NOT_CLOUDINARY };
     }
   }
 };

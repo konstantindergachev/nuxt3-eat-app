@@ -7,6 +7,7 @@ import {
 import Input from '@/components/UI/Input.vue';
 import { checkoutSchema } from '@/validation/checkout.validation';
 import { useStoreBasket } from '@/stores/basket';
+import { UNEXPECTED } from '@/stub/constants';
 
 export const useCheckout = () => {
   const storeBasket = useStoreBasket();
@@ -181,7 +182,7 @@ export const useCheckout = () => {
       if (error instanceof Error) {
         errors[field] = error.message;
       } else {
-        errors[field] = 'Unexpected error';
+        errors[field] = UNEXPECTED;
       }
     }
   };

@@ -2,6 +2,7 @@ import { mkdir, stat } from 'fs/promises';
 import { join } from 'path';
 import formidable, { Files } from 'formidable';
 import { uploadCloudinaryService } from './service';
+import { UNEXPECTED } from '@/stub/constants';
 
 export default defineEventHandler(async (event) => {
   const customerId = getCookie(event, 'id');
@@ -20,7 +21,7 @@ export default defineEventHandler(async (event) => {
     if (error instanceof Error) {
       console.error({ error: error.message });
     } else {
-      console.error({ error: 'Unexpectide server error' });
+      console.error({ error: UNEXPECTED });
     }
   }
 });

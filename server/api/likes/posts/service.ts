@@ -1,6 +1,7 @@
 import { db } from '@/server/db/clientDB';
 import { PostgrestResponse } from '@supabase/supabase-js';
 import { IPostLike, IPostLikeResponse, IPostLikeStore } from '@/interfaces/postlike';
+import { POST_UNAUTHORIZED } from '@/stub/constants';
 
 export const createLikeService = async (
   body: IPostLike,
@@ -42,7 +43,7 @@ export const receiveLikeService = async (customerId: number): Promise<IPostLikeS
     .eq('customer_id', customerId);
 
   if (!dbResponse.data) {
-    throw new Error(`If you want to see you're post likes, you need to be an authorized.`);
+    throw new Error(POST_UNAUTHORIZED);
   }
 
   const likes = dbResponse.data as IPostLikeResponse[];

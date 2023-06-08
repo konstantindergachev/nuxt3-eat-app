@@ -2,6 +2,7 @@ import { IUpdateProfile, IUpdateProfileErrors, IReceiveProfileFromDB } from '@/i
 import Input from '@/components/UI/Input.vue';
 import { useStoreProfile } from '@/stores/profile';
 import { updateProfileSchema } from '@/validation/updateprofile.validation';
+import { UNEXPECTED } from '@/stub/constants';
 
 export const useProfile = async () => {
   const { data } = await useFetch<IReceiveProfileFromDB>('/api/profile');
@@ -136,7 +137,7 @@ export const useProfile = async () => {
       if (error instanceof Error) {
         errors[field] = error.message;
       } else {
-        errors[field] = 'Unexpected error';
+        errors[field] = UNEXPECTED;
       }
     }
   };
