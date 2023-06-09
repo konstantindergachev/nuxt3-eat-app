@@ -8,6 +8,8 @@ The nuxt3-eat-app is an example of a full-stack application developed with the N
 - Look at the [cloudinary store documentation](https://cloudinary.com/documentation) to learn more.
 - Look at the [tailwind css framework documentation](https://tailwindcss.com/docs/installation) to learn more.
 
+[Go to application](https://nuxt3-eat-app.vercel.app/)
+
 ## Step 1: Quick start
 
 ```bash
