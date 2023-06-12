@@ -40,8 +40,6 @@
   </div>
 </template>
 <script setup>
-import { onBeforeUnmount, onMounted, ref } from 'vue';
-import { computed } from '@vue/reactivity';
 import CarouselControls from './CarouselControls.vue';
 import CarouselIndicators from './CarouselIndicators.vue';
 
