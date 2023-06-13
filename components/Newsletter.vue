@@ -13,38 +13,23 @@
       <p class="max-w-xl text-Black opacity-70 text-center md:text-left">
         {{ description }}
       </p>
+      <p class="text-Green capitalize" v-if="message">{{ message }}</p>
+      <p class="text-red-500 capitalize" v-else-if="errors.request">{{ errors.request }}</p>
       <div class="w-full">
-        <form @submit.prevent="handleNewsletter">
-          <UIInput
-            type="email"
-            name="user_email"
-            placeholder="Enter your mail"
-            class="shadow-lg border rounded-lg p-2"
-            @update:modelValue="getEmail"
-            :modelValue="form.email"
-          />
-          <UIButton type="submit" class="btn rounded-md justify-self-center lg:ml-4">{{
-            'send'
-          }}</UIButton>
-        </form>
+        <TheForm :onSubmit="handleSubmit" :inputs="inputs" :validate="validate" />
       </div>
     </div>
   </section>
 </template>
 <script setup lang="ts">
-import { INewsletter, INewsletterForm } from '@/interfaces/newsletter';
+import { INewsletter } from '@/interfaces/newsletter';
+import { useNewsletter } from '@/composables/useNewsletter';
 
 const { title, description }: INewsletter = defineProps(['title', 'description']);
-const form = reactive<INewsletterForm>({
-  email: '',
+
+const { handleSubmit, inputs, message, validate, errors, timeoutId } = useNewsletter();
+
+onUnmounted(() => {
+  clearTimeout(timeoutId.value);
 });
-
-const getEmail = (value: string) => {
-  form.email = value;
-};
-
-const handleNewsletter = async () => {
-  await $fetch('/api/newsletter', { method: 'post', body: { email: form.email } });
-  form.email = '';
-};
 </script>

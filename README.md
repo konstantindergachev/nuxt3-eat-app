@@ -37,6 +37,10 @@ CUSTOMER_PASSWORD_SECRET=<your password hashing secret word>
 CLOUD_NAME=<your cloudinary store name>
 API_KEY=<your cloudinary api key>
 API_SECRET=<your cloudinary api secret>
+
+VITE_EMAIL_PUBLIC_KEY=<your emailjs public key>
+VITE_EMAIL_SERVICE_ID=<your emailjs service id>
+VITE_EMAIL_TEMPLATE_ID=<your emailjs template id>
 ```
 
 ## Step 4: Start the app in the development mode

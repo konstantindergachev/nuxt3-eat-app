@@ -13,6 +13,7 @@
     "nuxt": "3.0.0"
   },
   "dependencies": {
+    "@emailjs/browser": "3.11.0",
     "@pinia/nuxt": "0.4.6",
     "@supabase/supabase-js": "2.5.0",
     "cloudinary": "1.36.4",
