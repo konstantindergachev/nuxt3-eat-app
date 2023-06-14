@@ -1,8 +1,8 @@
-import { ISignin, ISigninErrors } from '@/interfaces/signin';
-import Input from '@/components/UI/Input.vue';
-import { useStoreProfile } from '@/stores/profile';
-import { signinSchema } from '@/validation/signin.validation';
-import { NOT_ACCOUNT, UNEXPECTED } from '@/stub/constants';
+import { ISignin, ISigninErrors } from '~~/interfaces/signin';
+import Input from '~~/components/UI/Input.vue';
+import { useStoreProfile } from '~~/stores/profile';
+import { signinSchema } from '~~/validation/signin.validation';
+import { NOT_ACCOUNT, UNEXPECTED } from '~~/stub/constants';
 
 export const useSignin = () => {
   const form = reactive<ISignin>({

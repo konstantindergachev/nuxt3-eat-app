@@ -1,5 +1,5 @@
-import { db } from '@/server/db/clientDB';
-import { IFruit } from '@/interfaces/fruits';
+import { db } from '~~/server/db/clientDB';
+import { IFruit } from '~~/interfaces/fruits';
 
 export const fruitsService = async (fruitsLength: number): Promise<IFruit[]> => {
   const offset = 0;

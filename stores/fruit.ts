@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { IFruit } from '@/interfaces/fruits';
+import { IFruit } from '~~/interfaces/fruits';
 
 export const useStoreFruit = defineStore('fruit', {
   state: () => {

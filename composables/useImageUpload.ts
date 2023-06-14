@@ -1,5 +1,5 @@
-import { useStoreProfile } from '@/stores/profile';
-import { UNEXPECTED } from '@/stub/constants';
+import { useStoreProfile } from '~~/stores/profile';
+import { UNEXPECTED } from '~~/stub/constants';
 
 export const useImageUpload = () => {
   const imageFile = ref();

@@ -32,7 +32,7 @@
   <section v-else class="flex justify-center items-center mt-10"><UILoader /></section>
 </template>
 <script setup lang="ts">
-import { ITerms } from '@/interfaces/terms';
+import { ITerms } from '~~/interfaces/terms';
 
 const { data } = await useFetch<ITerms[]>('/api/terms', { lazy: true });
 </script>

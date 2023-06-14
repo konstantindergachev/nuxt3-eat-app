@@ -36,7 +36,7 @@
   <section v-else class="flex justify-center items-center mt-10"><UILoader /></section>
 </template>
 <script setup lang="ts">
-import { IAbout } from '@/interfaces/about';
+import { IAbout } from '~~/interfaces/about';
 
 const { data } = await useFetch<IAbout>('/api/about', { lazy: true });
 </script>

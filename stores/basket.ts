@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
-import { basket } from '@/stub/basket';
-import { IBasket } from '@/interfaces/fruits';
+import { basket } from '~~/stub/basket';
+import { IBasket } from '~~/interfaces/fruits';
 
 export const useStoreBasket = defineStore('basket', {
   state: () => {

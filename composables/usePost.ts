@@ -1,9 +1,9 @@
-import { IReview, IReviewErrors, IReviewResponse } from '@/interfaces/review';
-import Input from '@/components/UI/Input.vue';
-import TextArea from '@/components/UI/TextArea.vue';
-import { useStorePost } from '@/stores/post.js';
-import { postSchema } from '@/validation/post.validation';
-import { UNEXPECTED } from '@/stub/constants';
+import { IReview, IReviewErrors, IReviewResponse } from '~~/interfaces/review';
+import Input from '~~/components/UI/Input.vue';
+import TextArea from '~~/components/UI/TextArea.vue';
+import { useStorePost } from '~~/stores/post.js';
+import { postSchema } from '~~/validation/post.validation';
+import { UNEXPECTED } from '~~/stub/constants';
 
 export const usePost = () => {
   const form = reactive<IReview>({

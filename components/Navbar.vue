@@ -11,7 +11,7 @@
   </nav>
 </template>
 <script setup lang="ts">
-import { INavigation } from '@/interfaces/navigation';
+import { INavigation } from '~~/interfaces/navigation';
 
 const navigation: INavigation[] = [
   { id: '1', path: '/fruits', title: 'fruits' },

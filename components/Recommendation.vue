@@ -37,7 +37,7 @@
   </section>
 </template>
 <script setup lang="ts">
-import { IRecommendation } from '@/interfaces/recommendation';
+import { IRecommendation } from '~~/interfaces/recommendation';
 
 const { title, titleImg, description, img, characteristic }: IRecommendation = defineProps([
   'title',

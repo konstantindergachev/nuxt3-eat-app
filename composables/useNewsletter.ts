@@ -1,8 +1,8 @@
 import emailjs from '@emailjs/browser';
-import Input from '@/components/UI/Input.vue';
-import { INewsletterForm, INewsletterFormError } from '@/interfaces/newsletter';
-import { newsletterSchema } from '@/validation/newsletter.validation';
-import { NEWSLETTER_MESSAGE, SOMETHING_WENT_WRONT, UNEXPECTED } from '@/stub/constants';
+import Input from '~~/components/UI/Input.vue';
+import { INewsletterForm, INewsletterFormError } from '~~/interfaces/newsletter';
+import { newsletterSchema } from '~~/validation/newsletter.validation';
+import { NEWSLETTER_MESSAGE, SOMETHING_WENT_WRONT, UNEXPECTED } from '~~/stub/constants';
 
 export const useNewsletter = () => {
   const form = reactive<INewsletterForm>({

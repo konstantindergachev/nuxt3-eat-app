@@ -1,6 +1,6 @@
-import { usePostLikeStore } from '@/stores/like';
-import { IPostLike, IPostLikeStore, IPostLikeResponseError } from '@/interfaces/postlike';
-import { UNAUTHORIZED } from '@/stub/constants';
+import { usePostLikeStore } from '~~/stores/like';
+import { IPostLike, IPostLikeStore, IPostLikeResponseError } from '~~/interfaces/postlike';
+import { UNAUTHORIZED } from '~~/stub/constants';
 
 export const usePostLike = async () => {
   const { data, error } = await useFetch<IPostLikeStore | IPostLikeResponseError>(

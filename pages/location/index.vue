@@ -35,7 +35,7 @@
   <section v-else class="flex justify-center items-center mt-10"><UILoader /></section>
 </template>
 <script setup lang="ts">
-import { ILocation } from '@/interfaces/location';
+import { ILocation } from '~~/interfaces/location';
 
 const { data } = await useFetch<ILocation>('/api/location', { lazy: true });
 </script>

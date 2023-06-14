@@ -1,5 +1,5 @@
-import { db } from '@/server/db/clientDB';
-import { ISlide, IReview } from '@/interfaces/review';
+import { db } from '~~/server/db/clientDB';
+import { ISlide, IReview } from '~~/interfaces/review';
 
 export const reviewsService = async (): Promise<ISlide[]> => {
   const { data } = await db.from('reviews').select();

@@ -1,8 +1,8 @@
-import { IUpdateProfile, IUpdateProfileErrors, IReceiveProfileFromDB } from '@/interfaces/profile';
-import Input from '@/components/UI/Input.vue';
-import { useStoreProfile } from '@/stores/profile';
-import { updateProfileSchema } from '@/validation/updateprofile.validation';
-import { UNEXPECTED } from '@/stub/constants';
+import { IUpdateProfile, IUpdateProfileErrors, IReceiveProfileFromDB } from '~~/interfaces/profile';
+import Input from '~~/components/UI/Input.vue';
+import { useStoreProfile } from '~~/stores/profile';
+import { updateProfileSchema } from '~~/validation/updateprofile.validation';
+import { UNEXPECTED } from '~~/stub/constants';
 
 export const useProfile = async () => {
   const { data } = await useFetch<IReceiveProfileFromDB>('/api/profile');

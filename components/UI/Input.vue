@@ -11,7 +11,7 @@
   />
 </template>
 <script setup lang="ts">
-import { IInput } from '@/interfaces/input';
+import { IInput } from '~~/interfaces/input';
 
 const { type, name, placeholder, className, modelValue, onValidate }: IInput = defineProps([
   'type',

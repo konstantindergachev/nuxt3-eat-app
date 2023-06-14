@@ -1,6 +1,6 @@
 import { receiveLikeService } from './service';
-import { IFruitLikeResponseError, IFruitLikeStore } from '@/interfaces/fruitlike';
-import { NOT_LIKES } from '@/stub/constants';
+import { IFruitLikeResponseError, IFruitLikeStore } from '~~/interfaces/fruitlike';
+import { NOT_LIKES } from '~~/stub/constants';
 
 export default defineEventHandler(
   async (event): Promise<IFruitLikeStore | IFruitLikeResponseError> => {

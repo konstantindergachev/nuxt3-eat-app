@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { usePost } from '@/composables/usePost';
+import { usePost } from '~~/composables/usePost';
 
 const { inputs, validate, handleSubmit, errors } = usePost();
 </script>

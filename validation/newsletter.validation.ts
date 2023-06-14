@@ -1,5 +1,5 @@
 import { string, object } from 'yup';
-import { MESSAGES } from '@/validation/newsletter.constants';
+import { MESSAGES } from '~~/validation/newsletter.constants';
 
 const trimString = string().trim();
 

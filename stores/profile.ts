@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { TUpdateProfile } from '@/interfaces/profile';
+import { TUpdateProfile } from '~~/interfaces/profile';
 
 export const useStoreProfile = defineStore('profile', {
   state: () => {

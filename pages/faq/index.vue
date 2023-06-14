@@ -40,7 +40,7 @@
   <section v-else class="flex justify-center items-center mt-10"><UILoader /></section>
 </template>
 <script setup lang="ts">
-import { IFAQ } from '@/interfaces/faq';
+import { IFAQ } from '~~/interfaces/faq';
 
 const { data } = await useFetch<IFAQ[]>('/api/faq', { lazy: true });
 const openedAnswers = reactive<number[]>([]);

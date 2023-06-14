@@ -1,4 +1,4 @@
-import { ICookieProp, ICookieOptions } from '@/interfaces/cookies';
+import { ICookieProp, ICookieOptions } from '~~/interfaces/cookies';
 
 export const useUtilities = () => {
   const moneyFormat = (locale: string, countryCurrency: string, money: number): string => {

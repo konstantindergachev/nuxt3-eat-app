@@ -18,8 +18,8 @@
   </section>
 </template>
 <script setup lang="ts">
-import { ISlide, IPost } from '@/interfaces/review';
-import { useStorePost } from '@/stores/post';
+import { ISlide, IPost } from '~~/interfaces/review';
+import { useStorePost } from '~~/stores/post';
 
 const { data } = await useFetch<{ reviews: ISlide[]; posts: IPost[] }>('/api/reviews');
 

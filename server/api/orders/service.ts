@@ -1,7 +1,7 @@
-import { db } from '@/server/db/clientDB';
 import { PostgrestResponse } from '@supabase/supabase-js';
-import { IOrder, IRawOrder, IOrderDetails } from '@/interfaces/orders';
-import { NOT_ORDER, SOMETHING_WENT_WRONT } from '@/stub/constants';
+import { db } from '~~/server/db/clientDB';
+import { IOrder, IRawOrder, IOrderDetails } from '~~/interfaces/orders';
+import { NOT_ORDER, SOMETHING_WENT_WRONT } from '~~/stub/constants';
 
 export const orderService = async (id: number): Promise<IOrder[] | string> => {
   const rawOrder: PostgrestResponse<IRawOrder> = await db
