@@ -1,5 +1,5 @@
-import { ICheckoutOrder } from '@/interfaces/checkout';
 import { checkoutService } from './service';
+import { ICheckoutOrder } from '~~/interfaces/checkout';
 
 export default defineEventHandler(async (event): Promise<string> => {
   const body: ICheckoutOrder = await readBody(event);

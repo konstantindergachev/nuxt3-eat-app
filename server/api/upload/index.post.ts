@@ -2,7 +2,7 @@ import { mkdir, stat } from 'fs/promises';
 import { join } from 'path';
 import formidable, { Files } from 'formidable';
 import { uploadCloudinaryService } from './service';
-import { UNEXPECTED } from '@/stub/constants';
+import { UNEXPECTED } from '~~/stub/constants';
 
 export default defineEventHandler(async (event) => {
   const customerId = getCookie(event, 'id');

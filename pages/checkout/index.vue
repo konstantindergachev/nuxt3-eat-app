@@ -37,7 +37,7 @@
   </section>
 </template>
 <script setup lang="ts">
-import { useCheckout } from '@/composables/useCheckout';
+import { useCheckout } from '~~/composables/useCheckout';
 const { handleSubmit, inputs, validate, errors, products, totalPrice } = useCheckout();
 const { moneyFormat } = useUtilities();
 </script>

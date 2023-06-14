@@ -29,7 +29,7 @@
   <section v-else class="flex justify-center items-center mt-10"><UILoader /></section>
 </template>
 <script setup lang="ts">
-import { IPrivacy } from '@/interfaces/privacy';
+import { IPrivacy } from '~~/interfaces/privacy';
 
 const { data } = await useFetch<IPrivacy[]>('/api/privacy', { lazy: true });
 </script>

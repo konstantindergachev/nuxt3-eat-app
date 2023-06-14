@@ -1,5 +1,5 @@
-import { ISlide, IPost } from '@/interfaces/review';
 import { reviewsService, postsService } from './service';
+import { ISlide, IPost } from '~~/interfaces/review';
 
 export default defineEventHandler(async (event): Promise<{ reviews: ISlide[]; posts: IPost[] }> => {
   const reviewsPromise = reviewsService();

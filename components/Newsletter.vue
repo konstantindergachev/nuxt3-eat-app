@@ -22,8 +22,8 @@
   </section>
 </template>
 <script setup lang="ts">
-import { INewsletter } from '@/interfaces/newsletter';
-import { useNewsletter } from '@/composables/useNewsletter';
+import { INewsletter } from '~~/interfaces/newsletter';
+import { useNewsletter } from '~~/composables/useNewsletter';
 
 const { title, description }: INewsletter = defineProps(['title', 'description']);
 

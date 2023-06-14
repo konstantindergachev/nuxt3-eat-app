@@ -1,5 +1,5 @@
-import { IFruit } from '@/interfaces/fruits';
 import { fruitService } from './service';
+import { IFruit } from '~~/interfaces/fruits';
 
 export default defineEventHandler(async (event): Promise<IFruit | string> => {
   const query = getQuery(event);

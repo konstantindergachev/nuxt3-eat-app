@@ -70,8 +70,8 @@
   <section v-else class="flex justify-center items-center mt-10"><UILoader /></section>
 </template>
 <script setup lang="ts">
-import { IOrder } from '@/interfaces/orders';
-import { useUtilities } from '@/composables/useUtilities';
+import { IOrder } from '~~/interfaces/orders';
+import { useUtilities } from '~~/composables/useUtilities';
 
 definePageMeta({
   layout: 'profile',

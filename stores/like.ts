@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
-import { IPostLikeStore, IPostLike } from '@/interfaces/postlike';
-import { IFruitLikeStore, IFruitLike } from '@/interfaces/fruitlike';
+import { IPostLikeStore, IPostLike } from '~~/interfaces/postlike';
+import { IFruitLikeStore, IFruitLike } from '~~/interfaces/fruitlike';
 
 const postLikes: IPostLikeStore = {};
 export const usePostLikeStore = defineStore('like', {

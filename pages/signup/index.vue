@@ -19,7 +19,7 @@
   </section>
 </template>
 <script setup lang="ts">
-import { useSignup } from '@/composables/useSignup';
+import { useSignup } from '~~/composables/useSignup';
 
 const { handleSubmit, inputs, validate, errors } = useSignup();
 </script>

@@ -30,7 +30,7 @@
   </header>
 </template>
 <script setup>
-import { useStoreBasket } from '@/stores/basket';
+import { useStoreBasket } from '~~/stores/basket';
 
 const route = useRoute();
 const router = useRouter();

@@ -24,8 +24,8 @@
   <section v-else class="flex justify-center items-center mt-10"><UILoader /></section>
 </template>
 <script setup lang="ts">
-import { IFruit } from '@/interfaces/fruits';
-import { useStoreFruit } from '@/stores/fruit';
+import { IFruit } from '~~/interfaces/fruits';
+import { useStoreFruit } from '~~/stores/fruit';
 
 const { data } = await useFetch<IFruit[]>('/api/fruits');
 

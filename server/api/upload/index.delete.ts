@@ -1,5 +1,5 @@
 import { destroyCloudinaryService } from './service';
-import { UNEXPECTED } from '@/stub/constants';
+import { UNEXPECTED } from '~~/stub/constants';
 
 export default defineEventHandler(async (event) => {
   try {

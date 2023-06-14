@@ -49,8 +49,8 @@
   </section>
 </template>
 <script setup lang="ts">
-import { useStoreBasket } from '@/stores/basket';
-import { useUtilities } from '@/composables/useUtilities';
+import { useStoreBasket } from '~~/stores/basket';
+import { useUtilities } from '~~/composables/useUtilities';
 
 definePageMeta({
   middleware: ['auth'],

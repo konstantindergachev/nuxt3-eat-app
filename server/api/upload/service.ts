@@ -1,8 +1,8 @@
 import { rm } from 'fs/promises';
 import cloudinary from 'cloudinary';
-import { db } from '@/server/db/clientDB';
-import { receiveProfileService } from '@/server/api/profile/service';
-import { NOT_CLOUDINARY } from '@/stub/constants';
+import { db } from '~~/server/db/clientDB';
+import { receiveProfileService } from '~~/server/api/profile/service';
+import { NOT_CLOUDINARY } from '~~/stub/constants';
 
 const { CLOUD_NAME, API_KEY, API_SECRET } = process.env;
 

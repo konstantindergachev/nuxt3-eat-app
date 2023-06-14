@@ -1,6 +1,6 @@
 import { receiveLikeService } from './service';
-import { IPostLikeResponseError, IPostLikeStore } from '@/interfaces/postlike';
-import { NOT_LIKES } from '@/stub/constants';
+import { IPostLikeResponseError, IPostLikeStore } from '~~/interfaces/postlike';
+import { NOT_LIKES } from '~~/stub/constants';
 
 export default defineEventHandler(
   async (event): Promise<IPostLikeStore | IPostLikeResponseError> => {

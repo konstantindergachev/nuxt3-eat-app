@@ -1,5 +1,5 @@
 import { receiveLikeService, createLikeService, updateLikeService } from './service';
-import { IPostLike } from '@/interfaces/postlike';
+import { IPostLike } from '~~/interfaces/postlike';
 
 export default defineEventHandler(async (event) => {
   const body: IPostLike = await readBody(event);

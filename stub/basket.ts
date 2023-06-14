@@ -1,3 +1,3 @@
-import { IBasket } from '@/interfaces/fruits';
+import { IBasket } from '~~/interfaces/fruits';
 
 export const basket: IBasket[] = [];

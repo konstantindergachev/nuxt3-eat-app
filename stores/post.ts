@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { IReview, IPost } from '@/interfaces/review';
+import { IReview, IPost } from '~~/interfaces/review';
 
 export const useStorePost = defineStore('post', {
   state: () => {

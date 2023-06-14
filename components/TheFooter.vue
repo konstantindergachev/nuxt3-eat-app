@@ -53,7 +53,7 @@
   </footer>
 </template>
 <script setup lang="ts">
-import { ISocial } from '@/interfaces/socials';
+import { ISocial } from '~~/interfaces/socials';
 
 const { data } = await useFetch<ISocial[]>('/api/socials');
 </script>

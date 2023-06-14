@@ -17,11 +17,11 @@
   <Newsletter :title="newsletter?.title" :description="newsletter?.description" />
 </template>
 <script setup lang="ts">
-import { IBanner } from '@/interfaces/thebanner';
-import { IFruit } from '@/interfaces/fruits';
-import { IRecommendation } from '@/interfaces/recommendation';
-import { IDelivery } from '@/interfaces/delivery';
-import { INewsletter } from '@/interfaces/newsletter';
+import { IBanner } from '~~/interfaces/thebanner';
+import { IFruit } from '~~/interfaces/fruits';
+import { IRecommendation } from '~~/interfaces/recommendation';
+import { IDelivery } from '~~/interfaces/delivery';
+import { INewsletter } from '~~/interfaces/newsletter';
 
 const { data: banner } = await useFetch<IBanner>('/api/banner');
 const { data: recommendation } = await useFetch<IRecommendation>('/api/recommendation');

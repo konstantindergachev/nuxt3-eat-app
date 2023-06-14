@@ -31,7 +31,7 @@
   <section v-else class="flex justify-center items-center mt-10"><UILoader /></section>
 </template>
 <script setup lang="ts">
-import { IReturnRefund } from '@/interfaces/return';
+import { IReturnRefund } from '~~/interfaces/return';
 
 const { data } = await useFetch<IReturnRefund[]>('/api/return', { lazy: true });
 </script>

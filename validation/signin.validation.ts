@@ -1,6 +1,6 @@
 import { string, object } from 'yup';
 
-import { CHARCOUNT, MESSAGES } from '@/validation/signin.constants';
+import { CHARCOUNT, MESSAGES } from '~~/validation/signin.constants';
 
 const trimString = string().trim();
 

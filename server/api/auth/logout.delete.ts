@@ -1,4 +1,4 @@
-import { LOG_OUT_SUCCESS } from '@/stub/constants';
+import { LOG_OUT_SUCCESS } from '~~/stub/constants';
 
 export default defineEventHandler((event) => {
   deleteCookie(event, 'id');

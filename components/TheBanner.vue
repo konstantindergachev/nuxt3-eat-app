@@ -21,7 +21,7 @@
   </section>
 </template>
 <script setup lang="ts">
-import { IBanner } from '@/interfaces/thebanner';
+import { IBanner } from '~~/interfaces/thebanner';
 const { title, subtitle, description, img }: IBanner = defineProps([
   'title',
   'subtitle',

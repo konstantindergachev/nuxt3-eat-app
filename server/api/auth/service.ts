@@ -1,8 +1,8 @@
 import crypto from 'crypto';
-import { db } from '@/server/db/clientDB';
-import { IRawSignin } from '@/interfaces/signin';
-import { ISignup } from '@/interfaces/signup';
-import { NOT_CUSTOMER, SOMETHING_WENT_WRONT } from '@/stub/constants';
+import { db } from '~~/server/db/clientDB';
+import { IRawSignin } from '~~/interfaces/signin';
+import { ISignup } from '~~/interfaces/signup';
+import { NOT_CUSTOMER, SOMETHING_WENT_WRONT } from '~~/stub/constants';
 
 const { CUSTOMER_PASSWORD_SECRET } = process.env;
 

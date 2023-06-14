@@ -1,7 +1,7 @@
-import { db } from '@/server/db/clientDB';
 import { PostgrestResponse } from '@supabase/supabase-js';
-import { IFruitLike, IFruitLikeResponse, IFruitLikeStore } from '@/interfaces/fruitlike';
-import { LIKES_UNAUTHORIZED } from '@/stub/constants';
+import { db } from '~~/server/db/clientDB';
+import { IFruitLike, IFruitLikeResponse, IFruitLikeStore } from '~~/interfaces/fruitlike';
+import { LIKES_UNAUTHORIZED } from '~~/stub/constants';
 
 export const createLikeService = async (
   body: IFruitLike,

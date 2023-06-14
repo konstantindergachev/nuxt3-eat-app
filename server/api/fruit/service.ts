@@ -1,6 +1,6 @@
-import { db } from '@/server/db/clientDB';
-import { IFruit } from '@/interfaces/fruits';
-import { FRUIT_NOT_FOUND } from '@@/stub/constants';
+import { db } from '~~/server/db/clientDB';
+import { IFruit } from '~~/interfaces/fruits';
+import { FRUIT_NOT_FOUND } from '~~/stub/constants';
 
 export const fruitService = async (fruitId: number): Promise<IFruit | string> => {
   const { data } = await db.from('fruits').select().eq('id', fruitId);

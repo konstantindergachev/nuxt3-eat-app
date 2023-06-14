@@ -1,5 +1,5 @@
 import { receiveLikeService, createLikeService, updateLikeService } from './service';
-import { IFruitLike } from '@/interfaces/fruitlike';
+import { IFruitLike } from '~~/interfaces/fruitlike';
 
 export default defineEventHandler(async (event) => {
   const body: IFruitLike = await readBody(event);

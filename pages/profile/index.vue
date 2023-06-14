@@ -34,8 +34,8 @@
   </section>
 </template>
 <script setup lang="ts">
-import { useProfile } from '@/composables/useProfile';
-import { useStoreProfile } from '@/stores/profile';
+import { useProfile } from '~~/composables/useProfile';
+import { useStoreProfile } from '~~/stores/profile';
 definePageMeta({
   layout: 'profile',
   middleware: ['auth'],

@@ -1,7 +1,7 @@
 import { signupService } from './service';
-import { ISignup } from '@/interfaces/signup';
-import { ICookieOptions } from '@/interfaces/cookies';
-import { useUtilities } from '@/composables/useUtilities';
+import { ISignup } from '~~/interfaces/signup';
+import { ICookieOptions } from '~~/interfaces/cookies';
+import { useUtilities } from '~~/composables/useUtilities';
 
 export default defineEventHandler(async (event) => {
   try {

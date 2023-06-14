@@ -32,9 +32,9 @@
 </template>
 
 <script setup lang="ts">
-import { IFruit } from '@/interfaces/fruits';
-import { useUtilities } from '@/composables/useUtilities';
-import { useStoreBasket } from '@/stores/basket';
+import { IFruit } from '~~/interfaces/fruits';
+import { useUtilities } from '~~/composables/useUtilities';
+import { useStoreBasket } from '~~/stores/basket';
 
 const { moneyFormat } = useUtilities();
 const route = useRoute();

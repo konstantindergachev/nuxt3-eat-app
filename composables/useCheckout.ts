@@ -3,11 +3,11 @@ import {
   ICheckoutErrors,
   ICheckoutOrder,
   ICheckoutProduct,
-} from '@/interfaces/checkout';
-import Input from '@/components/UI/Input.vue';
-import { checkoutSchema } from '@/validation/checkout.validation';
-import { useStoreBasket } from '@/stores/basket';
-import { UNEXPECTED } from '@/stub/constants';
+} from '~~/interfaces/checkout';
+import Input from '~~/components/UI/Input.vue';
+import { checkoutSchema } from '~~/validation/checkout.validation';
+import { useStoreBasket } from '~~/stores/basket';
+import { UNEXPECTED } from '~~/stub/constants';
 
 export const useCheckout = () => {
   const storeBasket = useStoreBasket();

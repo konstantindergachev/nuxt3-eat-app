@@ -1,11 +1,11 @@
 import crypto from 'crypto';
-import { db } from '@/server/db/clientDB';
+import { db } from '~~/server/db/clientDB';
 import {
   IReceiveProfileFromDB,
   IUpdateProfile,
   IUpdateProfileDBResponse,
-} from '@/interfaces/profile';
-import { NOT_PROFILE_ADD_DATA } from '@/stub/constants';
+} from '~~/interfaces/profile';
+import { NOT_PROFILE_ADD_DATA } from '~~/stub/constants';
 
 const { CUSTOMER_PASSWORD_SECRET } = process.env;
 

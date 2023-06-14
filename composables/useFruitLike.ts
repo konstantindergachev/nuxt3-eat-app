@@ -1,6 +1,6 @@
-import { useFruitLikeStore } from '@/stores/like';
-import { IFruitLike, IFruitLikeStore, IFruitLikeResponseError } from '@/interfaces/fruitlike';
-import { UNAUTHORIZED } from '@/stub/constants';
+import { useFruitLikeStore } from '~~/stores/like';
+import { IFruitLike, IFruitLikeStore, IFruitLikeResponseError } from '~~/interfaces/fruitlike';
+import { UNAUTHORIZED } from '~~/stub/constants';
 
 export const useFruitLike = async () => {
   const { data, error } = await useFetch<IFruitLikeStore | IFruitLikeResponseError>(

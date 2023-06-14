@@ -17,7 +17,7 @@
   </section>
 </template>
 <script setup lang="ts">
-import { useSignin } from '@/composables/useSignin';
+import { useSignin } from '~~/composables/useSignin';
 
 const { handleSubmit, inputs, validate, errors } = useSignin();
 </script>

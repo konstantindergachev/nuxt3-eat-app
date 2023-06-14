@@ -1,7 +1,7 @@
-import { ISignup, ISignupErrors } from '@/interfaces/signup';
-import Input from '@/components/UI/Input.vue';
-import { signupSchema } from '@/validation/signup.validation';
-import { UNEXPECTED } from '@/stub/constants';
+import { ISignup, ISignupErrors } from '~~/interfaces/signup';
+import Input from '~~/components/UI/Input.vue';
+import { signupSchema } from '~~/validation/signup.validation';
+import { UNEXPECTED } from '~~/stub/constants';
 
 export const useSignup = () => {
   const form = reactive<ISignup>({
