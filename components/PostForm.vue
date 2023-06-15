@@ -1,7 +1,5 @@
 <template>
-  <p class="text-Green capitalize" v-if="!!errors.request">
-    {{ errors.request }}
-  </p>
+  <UIPopUp v-if="!!errors.request" :message="errors.request" error="error" />
   <TheForm
     :onSubmit="handleSubmit"
     :inputs="inputs"

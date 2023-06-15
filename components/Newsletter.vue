@@ -13,8 +13,7 @@
       <p class="max-w-xl text-Black opacity-70 text-center md:text-left">
         {{ description }}
       </p>
-      <p class="text-Green capitalize" v-if="message">{{ message }}</p>
-      <p class="text-red-500 capitalize" v-else-if="errors.request">{{ errors.request }}</p>
+      <UIPopUp v-if="message || errors.request" :message="message" :error="errors.request" />
       <div class="w-full">
         <TheForm :onSubmit="handleSubmit" :inputs="inputs" :validate="validate" />
       </div>

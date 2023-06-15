@@ -11,8 +11,7 @@
         {{ description }}
       </p>
       <div class="space-x-10">
-        <UIButton className="btn btn-shape">{{ 'add to cart' }}</UIButton>
-        <UIButton className="btn-outline btn-shape">{{ 'learn more' }}</UIButton>
+        <UIButton className="btn btn-shape" path="/about">{{ 'learn more' }}</UIButton>
       </div>
     </div>
     <div class="w-full lg:w-6/12">
