@@ -10,9 +10,7 @@
     >
       <h1 class="text-center text-Black text-3xl font-bold leading-14 lg:col-span-full">Profile</h1>
       <div class="grid">
-        <p class="text-center text-red-500 capitalize" v-if="errors.request && !profile.image">
-          {{ errors.request }}
-        </p>
+        <UIPopUp v-if="errors.request && !profile.image" :message="errors.request" error="error" />
         <TheForm
           :onSubmit="handleSubmit"
           :inputs="inputs"

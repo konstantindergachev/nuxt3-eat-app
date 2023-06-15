@@ -1,5 +1,5 @@
 <template>
-  <p class="text-Green capitalize" v-if="errors.commonLikeError">{{ errors.commonLikeError }}</p>
+  <UIPopUp v-if="errors.commonLikeError" :message="errors.commonLikeError" error="error" />
   <ul :class="[page ? 'block mt-0' : 'flex flex-wrap gap-4 mt-10']">
     <UICard v-for="post in posts" :key="post.id" :class="[page && 'mb-4']">
       <h3 class="uppercase text-Green font-bold leading-14 text-3xl">
@@ -12,9 +12,7 @@
         >&#9734;</UIWhiteStar
       >
       <UIBlackStar v-else @click="() => handleLike(post.id)" class="m-auto">&#9733;</UIBlackStar>
-      <p class="text-red-500 capitalize" v-if="errors.postId === post.id">
-        {{ errors.postLikeError }}
-      </p>
+      <UIPopUp v-if="errors.postId === post.id" :message="errors.postLikeError" error="error" />
     </UICard>
   </ul>
 </template>

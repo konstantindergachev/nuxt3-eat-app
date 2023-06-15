@@ -6,9 +6,7 @@
 
     <h1 class="text-center mt-20 uppercase">Fruit</h1>
     <UICard v-if="fruit">
-      <p class="text-Green capitalize" v-if="errors.commonLikeError">
-        {{ errors.commonLikeError }}
-      </p>
+      <UIPopUp v-if="errors.commonLikeError" :message="errors.commonLikeError" error="error" />
       <UIImage :imgSrc="fruit.img" :imgName="fruit.name" className="flex justify-center" />
       <UITitle>{{ fruit.name }}</UITitle>
       <UIText>{{ fruit.description }}</UIText>
