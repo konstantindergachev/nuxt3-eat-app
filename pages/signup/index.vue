@@ -3,7 +3,7 @@
     <Head><Title>EatApp - Nuxtjs</Title></Head>
     <h1 class="text-center mt-10 mb-10 uppercase">Sign up</h1>
     <UIPopUp v-if="!!errors.request" :message="errors.request" error="error" />
-    <TheForm
+    <AppForm
       :onSubmit="handleSubmit"
       :inputs="inputs"
       :validate="validate"

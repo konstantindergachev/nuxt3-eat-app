@@ -6,8 +6,8 @@
         alt="logo"
       />
     </NuxtLink>
-    <PrivateNavbar v-if="auth.isAuthenticated" />
-    <Navbar v-else />
+    <ThePrivateNavbar v-if="auth.isAuthenticated" />
+    <TheNavbar v-else />
     <div class="relative mt-5 lg:mt-0">
       <div v-if="auth.isAuthenticated" class="flex items-center">
         <NuxtLink to="/basket" class="z-10"

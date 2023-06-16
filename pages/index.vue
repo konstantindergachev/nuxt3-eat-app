@@ -1,23 +1,23 @@
 <template>
-  <TheBanner
+  <AppBanner
     :title="banner?.title"
     :subtitle="banner?.subtitle"
     :description="banner?.description"
     :img="banner?.img"
   />
-  <Recommendation
+  <AppRecommendation
     :title="recommendation?.title"
     :titleImg="recommendation?.titleImg"
     :description="recommendation?.description"
     :img="recommendation?.img"
     :characteristic="recommendation?.characteristic"
   />
-  <Delivery :delivery="delivery" />
-  <TheTop :topThreeProducts="topThreeProducts" />
-  <Newsletter :title="newsletter?.title" :description="newsletter?.description" />
+  <AppDelivery :delivery="delivery" />
+  <AppTopThree :topThreeProducts="topThreeProducts" />
+  <AppNewsletter :title="newsletter?.title" :description="newsletter?.description" />
 </template>
 <script setup lang="ts">
-import { IBanner } from '~~/interfaces/thebanner';
+import { IBanner } from '~~/interfaces/banner';
 import { IFruit } from '~~/interfaces/fruits';
 import { IRecommendation } from '~~/interfaces/recommendation';
 import { IDelivery } from '~~/interfaces/delivery';

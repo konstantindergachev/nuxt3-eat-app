@@ -3,7 +3,7 @@
     <Head>
       <Title>EatApp - review</Title>
     </Head>
-    <Carousel :slides="data?.reviews" :interval="3000" controls indicators />
+    <AppCarousel :slides="data?.reviews" :interval="3000" controls indicators />
   </section>
   <UIButton
     v-if="auth.isAuthenticated"
@@ -13,8 +13,8 @@
     >{{ 'create post' }}</UIButton
   >
   <section>
-    <LazyPostForm v-if="page === 'post'" />
-    <Post :page="page" :posts="storedPosts" />
+    <LazyAppPostForm v-if="page === 'post'" />
+    <AppPost :page="page" :posts="storedPosts" />
   </section>
 </template>
 <script setup lang="ts">

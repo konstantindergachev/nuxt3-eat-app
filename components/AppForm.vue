@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="onSubmit" :class="className">
-    <TheFormItem v-for="input in inputs" :key="input.name" :input="input" :validate="validate" />
+    <AppFormItem v-for="input in inputs" :key="input.name" :input="input" :validate="validate" />
     <UIButton type="submit" class="btn rounded-md justify-self-center lg:ml-4">{{
       'send'
     }}</UIButton>
