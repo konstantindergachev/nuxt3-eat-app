@@ -15,7 +15,7 @@
       </p>
       <UIPopUp v-if="message || errors.request" :message="message" :error="errors.request" />
       <div class="w-full">
-        <TheForm :onSubmit="handleSubmit" :inputs="inputs" :validate="validate" />
+        <AppForm :onSubmit="handleSubmit" :inputs="inputs" :validate="validate" />
       </div>
     </div>
   </section>

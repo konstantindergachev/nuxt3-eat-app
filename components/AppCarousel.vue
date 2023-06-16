@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-center max-w-screen-xl">
     <div class="relative overflow-hidden w-full h-[50rem]">
-      <CarouselIndicators
+      <AppCarouselIndicators
         v-if="indicators"
         :total="slidesTotal"
         :currentIndex="currentSlide"
@@ -35,14 +35,11 @@
         </transition>
       </div>
 
-      <CarouselControls @prev="prev" @next="next" v-if="controls" />
+      <AppCarouselControls @prev="prev" @next="next" v-if="controls" />
     </div>
   </div>
 </template>
 <script setup>
-import CarouselControls from './CarouselControls.vue';
-import CarouselIndicators from './CarouselIndicators.vue';
-
 const emits = defineEmits(['mouseenter', 'mouseout']);
 
 const { slides, interval } = defineProps({

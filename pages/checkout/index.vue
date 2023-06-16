@@ -11,7 +11,7 @@
     </h1>
 
     <UIPopUp v-if="!!errors.request" :message="errors.request" error="error" />
-    <TheForm
+    <AppForm
       :onSubmit="handleSubmit"
       :inputs="inputs"
       :validate="validate"

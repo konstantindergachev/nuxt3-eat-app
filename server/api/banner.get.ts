@@ -1,4 +1,4 @@
-import { IBanner } from '~~/interfaces/thebanner';
+import { IBanner } from '~~/interfaces/banner';
 import { banner } from '~~/stub/thebanner';
 
 export default defineEventHandler((event): IBanner | string => {

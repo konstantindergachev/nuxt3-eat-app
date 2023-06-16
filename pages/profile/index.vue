@@ -11,7 +11,7 @@
       <h1 class="text-center text-Black text-3xl font-bold leading-14 lg:col-span-full">Profile</h1>
       <div class="grid">
         <UIPopUp v-if="errors.request && !profile.image" :message="errors.request" error="error" />
-        <TheForm
+        <AppForm
           :onSubmit="handleSubmit"
           :inputs="inputs"
           :validate="validate"
