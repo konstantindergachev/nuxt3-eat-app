@@ -43,9 +43,9 @@ export const useProfile = async () => {
   });
 
   if (typeof data.value === 'string') {
-    const profile = computed(() => storeProfile.getProfile);
-    form.fullname = profile.value.fullname;
-    form.email = profile.value.email;
+    const profile = storeProfile.$state;
+    form.fullname = profile.fullname;
+    form.email = profile.email;
     errors.request = data.value;
   }
 
@@ -142,7 +142,7 @@ export const useProfile = async () => {
     }
   };
 
-  const profile = computed(() => storeProfile.getProfile);
+  const profile = storeProfile.$state;
 
   const handleSubmit = async () => {
     try {

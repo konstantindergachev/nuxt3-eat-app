@@ -13,7 +13,7 @@
       <p class="max-w-xl text-Black opacity-70 text-center md:text-left">
         {{ description }}
       </p>
-      <UIPopUp v-if="message || errors.request" :message="message" :error="errors.request" />
+      <UIPopUp v-if="message || errors.request" :message="message" :error="error" />
       <div class="w-full">
         <AppForm :onSubmit="handleSubmit" :inputs="inputs" :validate="validate" />
       </div>
@@ -30,5 +30,10 @@ const { handleSubmit, inputs, message, validate, errors, timeoutId } = useNewsle
 
 onUnmounted(() => {
   clearTimeout(timeoutId.value);
+});
+
+const error = ref<string>('');
+onUpdated(() => {
+  error.value = errors.request;
 });
 </script>

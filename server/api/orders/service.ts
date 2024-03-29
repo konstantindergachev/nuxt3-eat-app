@@ -8,7 +8,6 @@ export const orderService = async (id: number): Promise<IOrder[] | string> => {
     .from('orders')
     .select(`*, order_details(*, fruits(name))`)
     .eq('customer_id', id);
-
   if (rawOrder.error) {
     throw new Error(SOMETHING_WENT_WRONT);
   }
@@ -45,13 +44,12 @@ const orderCreator = (rawOrder: IRawOrder[]): IOrder[] => {
 
     const order = {
       id: item.id,
-      created_at: item.order_date,
+      created_at: item.created_at,
       total,
       products,
       shipment,
       user,
     };
-
     return order;
   });
 };

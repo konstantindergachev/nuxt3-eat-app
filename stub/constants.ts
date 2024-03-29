@@ -15,3 +15,8 @@ export const NOT_PROFILE_ADD_DATA = `You don't have any additional profile data 
 export const NOT_CLOUDINARY = 'Cloudinary store error';
 
 export const NEWSLETTER_MESSAGE = 'Your message was delivered successfully.';
+export const NOT_LIKES_DB = `This app has no likes storage`;
+
+export const MAIL_TITLE = 'Hello from the Eat App';
+export const MAIL_DESCRIPTION = 'Thank you for your subscribtion.';
+export const MAIL_SIGNATURE = 'The best regards!';

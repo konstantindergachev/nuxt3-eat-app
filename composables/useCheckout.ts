@@ -66,7 +66,7 @@ export const useCheckout = () => {
       type: 'text',
       name: 'lastname',
       placeholder: 'Doe',
-      getValue: computed(() => form.addresseeLastname),
+      getValue: computed(() => form.lastname),
       setValue: (value: string) => {
         form.lastname = value;
       },

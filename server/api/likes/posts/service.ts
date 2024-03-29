@@ -1,7 +1,7 @@
 import { PostgrestResponse } from '@supabase/supabase-js';
 import { db } from '~~/server/db/clientDB';
 import { IPostLike, IPostLikeResponse, IPostLikeStore } from '~~/interfaces/postlike';
-import { POST_UNAUTHORIZED } from '~~/stub/constants';
+import { POST_UNAUTHORIZED, NOT_LIKES_DB } from '~~/stub/constants';
 
 export const createLikeService = async (
   body: IPostLike,
@@ -41,6 +41,10 @@ export const receiveLikeService = async (customerId: number): Promise<IPostLikeS
     .from('post_likes')
     .select('post_id, is_liked')
     .eq('customer_id', customerId);
+
+  if (dbResponse.status === 404) {
+    throw new Error(NOT_LIKES_DB);
+  }
 
   if (!dbResponse.data) {
     throw new Error(POST_UNAUTHORIZED);

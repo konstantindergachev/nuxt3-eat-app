@@ -1,3 +1,3 @@
 <template>
-  <span class="w-fit text-Yellow text-3xl mb-4 hover:cursor-pointer"><slot /></span>
+  <span class="w-fit text-Yellow text-3xl hover:cursor-pointer"><slot /></span>
 </template>

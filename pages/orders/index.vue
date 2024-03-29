@@ -7,9 +7,9 @@
       <Title>EatApp - Orders</Title>
     </Head>
 
-    <div class="w-full space-y-8 pt-6 md:pt-24">
+    <div class="grid w-full space-y-8 pt-6 md:pt-24">
       <h1 class="text-center text-Black text-3xl font-bold leading-14">Orders</h1>
-      <p v-if="typeof data === 'string'" class="text-center text-Green capitalize">{{ data }}</p>
+      <UIPopUp v-if="typeof data === 'string'" :message="data" />
       <div v-else class="w-full">
         <ul class="flex gap-5 flex-wrap">
           <li v-for="order in data" :key="order.id" class="text-left shadow-md my-10 p-5">

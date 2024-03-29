@@ -3,7 +3,7 @@
     class="m-auto shadow-lg border rounded-lg text-center p-2"
     :class="error ? 'text-red-500' : 'text-Green'"
   >
-    <p>{{ message }}</p>
+    <p>{{ message ? message : error }}</p>
   </section>
 </template>
 <script setup lang="ts">

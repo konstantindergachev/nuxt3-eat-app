@@ -1,13 +1,13 @@
 import { PostgrestResponse } from '@supabase/supabase-js';
 import { db } from '~~/server/db/clientDB';
 import { IFruitLike, IFruitLikeResponse, IFruitLikeStore } from '~~/interfaces/fruitlike';
-import { LIKES_UNAUTHORIZED } from '~~/stub/constants';
+import { LIKES_UNAUTHORIZED, NOT_LIKES } from '~~/stub/constants';
 
 export const createLikeService = async (
   body: IFruitLike,
   customerId: number
 ): Promise<IFruitLike> => {
-  const { data } = await db
+  const { data, error } = await db
     .from('fruit_likes')
     .insert([
       {
@@ -44,6 +44,9 @@ export const receiveLikeService = async (customerId: number): Promise<IFruitLike
 
   if (!dbResponse.data) {
     throw new Error(LIKES_UNAUTHORIZED);
+  }
+  if (dbResponse.data.length === 0) {
+    throw new Error(NOT_LIKES);
   }
 
   const likes = dbResponse.data as IFruitLikeResponse[];
