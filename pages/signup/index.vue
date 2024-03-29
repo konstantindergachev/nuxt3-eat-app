@@ -1,6 +1,6 @@
 <template>
   <section class="mx-auto">
-    <Head><Title>EatApp - Nuxtjs</Title></Head>
+    <Head><Title>EatApp - Signup</Title></Head>
     <h1 class="text-center mt-10 mb-10 uppercase">Sign up</h1>
     <UIPopUp v-if="!!errors.request" :message="errors.request" error="error" />
     <AppForm

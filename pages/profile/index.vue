@@ -5,12 +5,12 @@
     </Head>
 
     <div
-      class="w-full space-y-8 pt-6 md:pt-24 lg:grid lg:auto-rows-auto lg:gap-5"
+      class="w-full pt-6 md:pt-24 lg:grid lg:auto-rows-auto lg:gap-5"
       :class="profile.image ? 'lg:grid-cols-2' : 'lg:grid-cols-1'"
     >
       <h1 class="text-center text-Black text-3xl font-bold leading-14 lg:col-span-full">Profile</h1>
       <div class="grid">
-        <UIPopUp v-if="errors.request && !profile.image" :message="errors.request" error="error" />
+        <UIPopUp v-if="errors.request" :message="errors.request" error="error" class="mb-5" />
         <AppForm
           :onSubmit="handleSubmit"
           :inputs="inputs"
@@ -45,7 +45,7 @@ const storeProfile = useStoreProfile();
 const remove = async (imageId: string) => {
   await $fetch('/api/upload', {
     method: 'delete',
-    body: imageId,
+    body: JSON.stringify({ imageId }),
   });
 
   storeProfile.removeImageFromProfile();

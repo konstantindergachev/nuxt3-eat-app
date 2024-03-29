@@ -7,7 +7,7 @@
     <h1 class="text-center mt-20 uppercase">Fruit</h1>
     <UICard v-if="fruit">
       <UIPopUp v-if="errors.commonLikeError" :message="errors.commonLikeError" error="error" />
-      <UIImage :imgSrc="fruit.img" :imgName="fruit.name" className="flex justify-center" />
+      <UIImage :imgSrc="fruit.img" :imgName="fruit.name" className="flex justify-center mt-5" />
       <UITitle>{{ fruit.name }}</UITitle>
       <UIText>{{ fruit.description }}</UIText>
       <div class="flex items-center justify-evenly mb-10">
@@ -39,7 +39,6 @@ const route = useRoute();
 
 const { data } = await useFetch<IFruit>(() => `/api/fruit?fruitId=${route.params.id}`);
 let fruit: IFruit = reactive({ ...data.value });
-
 const auth = useAuth();
 
 const storeBasket = useStoreBasket();

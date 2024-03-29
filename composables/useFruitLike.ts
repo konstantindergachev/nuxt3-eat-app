@@ -1,33 +1,27 @@
 import { useFruitLikeStore } from '~~/stores/like';
 import { IFruitLike, IFruitLikeStore, IFruitLikeResponseError } from '~~/interfaces/fruitlike';
-import { UNAUTHORIZED } from '~~/stub/constants';
 
 export const useFruitLike = async () => {
   const { data, error } = await useFetch<IFruitLikeStore | IFruitLikeResponseError>(
     '/api/likes/fruits'
   );
 
-  const _like = reactive({
+  const storeLike = useFruitLikeStore();
+
+  const _like = reactive<IFruitLike>({
     isLiked: false,
     fruitId: 0,
   });
   const errors = reactive({
-    postId: 0,
-    postLikeError: '',
+    fruitId: 0,
+    fruitLikeError: '',
     commonLikeError: '',
   });
 
   if (error) errors.commonLikeError = error.value?.data.message;
 
-  const auth = useAuth();
-  const storeLike = useFruitLikeStore();
-
-  if (data) {
-    const likesFromDB = data.value as IFruitLikeStore;
-    storeLike.addToLikesFromDB(likesFromDB);
-  }
-
-  const likes = computed(() => storeLike.getLikes);
+  // @ts-ignore
+  const likes: IFruitLikeStore = data.value ? data.value : {};
 
   const saveLike = async (likeInfo: IFruitLike) => {
     const response: IFruitLike = await $fetch('/api/likes/fruits', {
@@ -35,23 +29,25 @@ export const useFruitLike = async () => {
       body: JSON.stringify(likeInfo),
     });
 
-    storeLike.addToLikes({ fruitId: response.fruitId, isLiked: response.isLiked });
+    const { fruitId, isLiked } = response;
+    likes[fruitId] = isLiked;
+    storeLike.addToLikesFromDB(likes);
   };
-  const handleLike = (postId: number) => {
-    if (auth.value.isAuthenticated && postId) {
-      _like.fruitId = postId;
-      _like.isLiked = likes.value.fruitLikes[postId];
-      _like.isLiked = likes.value.fruitLikes[postId] ? false : true;
-
+  let handleLike = (fruitId: number) => {
+    if (Object.keys(storeLike.$state.fruitLikes).length !== 0) {
+      _like.fruitId = fruitId;
+      _like.isLiked = !storeLike.$state.fruitLikes[fruitId];
       saveLike(_like);
     } else {
-      errors.postId = postId;
-      errors.postLikeError = UNAUTHORIZED;
+      _like.fruitId = fruitId;
+      // @ts-ignore
+      _like.isLiked = data.value ? !data.value[fruitId] : true;
+      saveLike(_like);
     }
   };
 
   return {
-    likes: likes.value.fruitLikes,
+    likes,
     handleLike,
     errors,
   };

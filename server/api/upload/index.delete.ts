@@ -3,9 +3,9 @@ import { UNEXPECTED } from '~~/stub/constants';
 
 export default defineEventHandler(async (event) => {
   try {
-    const body = await readBody(event);
+    const body: { imageId: string } = await readBody(event);
     const customerId = getCookie(event, 'id');
-    return await destroyCloudinaryService(Number(customerId), body);
+    return await destroyCloudinaryService(Number(customerId), body.imageId);
   } catch (error) {
     if (error instanceof Error) {
       console.error({ error: error.message });

@@ -6,7 +6,11 @@
       <UIBlackStar class="mx-auto"> &#9733; &#9733; &#9733; &#9733; &#9733; </UIBlackStar>
       <UISubtitle> {{ moneyFormat('en-US', 'USD', prod.price) }} kg </UISubtitle>
       <UIText>{{ prod.description }}</UIText>
-      <UIButton className="btn btn-shape justify-self-center self-center">{{ 'buy now' }}</UIButton>
+      <UIButton
+        className="btn btn-shape justify-self-center self-center"
+        :path="`/fruits/${prod.id}`"
+        >{{ 'buy now' }}</UIButton
+      >
     </UICard>
   </section>
 </template>

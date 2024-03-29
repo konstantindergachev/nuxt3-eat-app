@@ -3,7 +3,7 @@ import { IPostLikeStore, IPostLike } from '~~/interfaces/postlike';
 import { IFruitLikeStore, IFruitLike } from '~~/interfaces/fruitlike';
 
 const postLikes: IPostLikeStore = {};
-export const usePostLikeStore = defineStore('like', {
+export const usePostLikeStore = defineStore('postLike', {
   state: () => {
     return {
       postLikes,
@@ -24,8 +24,8 @@ export const usePostLikeStore = defineStore('like', {
   },
 });
 
-const fruitLikes: IPostLikeStore = {};
-export const useFruitLikeStore = defineStore('like', {
+const fruitLikes: IFruitLikeStore = {};
+export const useFruitLikeStore = defineStore('fruitLike', {
   state: () => {
     return {
       fruitLikes,

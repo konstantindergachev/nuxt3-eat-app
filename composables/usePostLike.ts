@@ -1,11 +1,12 @@
 import { usePostLikeStore } from '~~/stores/like';
 import { IPostLike, IPostLikeStore, IPostLikeResponseError } from '~~/interfaces/postlike';
-import { UNAUTHORIZED } from '~~/stub/constants';
 
 export const usePostLike = async () => {
   const { data, error } = await useFetch<IPostLikeStore | IPostLikeResponseError>(
     '/api/likes/posts'
   );
+
+  const storeLike = usePostLikeStore();
 
   const _like = reactive({
     isLiked: false,
@@ -19,39 +20,37 @@ export const usePostLike = async () => {
 
   if (error) errors.commonLikeError = error.value?.data.message;
 
-  const auth = useAuth();
-  const storeLike = usePostLikeStore();
-
-  if (data) {
-    const likesFromDB = data.value as IPostLikeStore;
-    storeLike.addToLikesFromDB(likesFromDB);
+  if (data.value?.error) {
+    errors.commonLikeError = data.value.error as string; //error is here
   }
 
-  const likes = computed(() => storeLike.getLikes);
+  //@ts-ignore
+  const likes: IPostLikeStore = data.value ? data.value : {};
 
   const saveLike = async (likeInfo: IPostLike) => {
     const response: IPostLike = await $fetch('/api/likes/posts', {
       method: 'post',
       body: JSON.stringify(likeInfo),
     });
-
-    storeLike.addToLikes({ postId: response.postId, isLiked: response.isLiked });
+    const { postId, isLiked } = response;
+    likes[postId] = isLiked;
+    storeLike.addToLikesFromDB(likes);
   };
   const handleLike = (postId: number) => {
-    if (auth.value.isAuthenticated && postId) {
+    if (Object.keys(storeLike.$state.postLikes).length !== 0) {
       _like.postId = postId;
-      _like.isLiked = likes.value.postLikes[postId];
-      _like.isLiked = likes.value.postLikes[postId] ? false : true;
-
+      _like.isLiked = !storeLike.$state.postLikes[postId];
       saveLike(_like);
     } else {
-      errors.postId = postId;
-      errors.postLikeError = UNAUTHORIZED;
+      _like.postId = postId;
+      //@ts-ignore
+      _like.isLiked = data.value ? !data.value[postId] : true;
+      saveLike(_like);
     }
   };
 
   return {
-    likes: likes.value.postLikes,
+    likes,
     handleLike,
     errors,
   };

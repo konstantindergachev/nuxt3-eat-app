@@ -1,8 +1,12 @@
-import emailjs from '@emailjs/browser';
 import Input from '~~/components/UI/Input.vue';
-import { INewsletterForm, INewsletterFormError } from '~~/interfaces/newsletter';
+import {
+  INewsletterForm,
+  INewsletterFormError,
+  INewsletterResponse,
+  TNewsletterResponse,
+} from '~~/interfaces/newsletter';
 import { newsletterSchema } from '~~/validation/newsletter.validation';
-import { NEWSLETTER_MESSAGE, SOMETHING_WENT_WRONT, UNEXPECTED } from '~~/stub/constants';
+import { SOMETHING_WENT_WRONT, UNEXPECTED } from '~~/stub/constants';
 
 export const useNewsletter = () => {
   const form = reactive<INewsletterForm>({
@@ -31,35 +35,24 @@ export const useNewsletter = () => {
   const message = ref('');
   let timeoutId = ref(0);
 
-  const SERVICE_ID = import.meta.env.VITE_EMAIL_SERVICE_ID as string;
-  const TEMPLATE_ID = import.meta.env.VITE_EMAIL_TEMPLATE_ID as string;
-  const PUBLIC_KEY = import.meta.env.VITE_EMAIL_PUBLIC_KEY as string;
-
   const handleSubmit = async () => {
-    try {
-      const result = await emailjs.send(SERVICE_ID, TEMPLATE_ID, form, PUBLIC_KEY);
-      if (result.text) {
-        message.value = NEWSLETTER_MESSAGE;
-        form.email = '';
+    const response: TNewsletterResponse<INewsletterResponse> = await $fetch('/api/newsletter', {
+      method: 'post',
+      body: form,
+    });
 
-        timeoutId.value = window.setTimeout(() => {
-          message.value = '';
-        }, 5000);
-      }
-    } catch (err) {
-      if (err instanceof Error) {
-        errors.request = SOMETHING_WENT_WRONT;
+    if ('error' in response) {
+      errors.request = response.error;
+      timeoutId.value = window.setTimeout(() => {
+        errors.request = '';
+      }, 5000);
+    } else {
+      message.value = response.message;
+      form.email = '';
 
-        timeoutId.value = window.setTimeout(() => {
-          errors.request = '';
-        }, 5000);
-      } else {
-        errors.request = UNEXPECTED;
-
-        timeoutId.value = window.setTimeout(() => {
-          errors.request = '';
-        }, 5000);
-      }
+      timeoutId.value = window.setTimeout(() => {
+        message.value = '';
+      }, 5000);
     }
   };
 

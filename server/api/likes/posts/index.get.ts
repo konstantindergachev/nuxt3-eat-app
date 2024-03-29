@@ -6,7 +6,7 @@ export default defineEventHandler(
   async (event): Promise<IPostLikeStore | IPostLikeResponseError> => {
     const customerId = getCookie(event, 'id');
     try {
-      return receiveLikeService(Number(customerId));
+      return await receiveLikeService(Number(customerId));
     } catch (error) {
       if (error instanceof Error) {
         return { error: error.message };

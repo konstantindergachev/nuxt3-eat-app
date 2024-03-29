@@ -18,7 +18,7 @@ export const uploadCloudinaryService = async (customerId: number, url: string | 
   try {
     if (typeof url === 'string') {
       cloudinary.v2.url;
-      cloudinaryResponse = await cloudinary.v2.uploader.upload(url);
+      cloudinaryResponse = await cloudinary.v2.uploader.upload(url, { folder: 'profile' });
       const { public_id, url: imgUrl } = cloudinaryResponse;
       await receiveProfileService(customerId);
       await uploadImageProfileService(customerId, imgUrl, public_id);

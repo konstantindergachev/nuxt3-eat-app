@@ -49,6 +49,6 @@ export interface IRawOrder {
   ship_address: string;
   ship_city: string;
   ship_country: string;
-  order_date: string;
+  created_at: string;
   order_details: IOrderDetails[];
 }
