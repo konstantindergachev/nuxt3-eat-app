@@ -22,13 +22,14 @@ export const useUtilities = () => {
   };
 
   const getCookieOptions = ({ isHttpOnly }: ICookieProp): ICookieOptions => {
+    const { FRONTEND_DOMAIN } = process.env;
     return {
       httpOnly: isHttpOnly,
       path: '/',
       expires: getExpiresDate(),
       sameSite: 'none',
       secure: true,
-      domain: '',
+      domain: FRONTEND_DOMAIN,
     };
   };
 
