@@ -22,13 +22,13 @@ export const useUtilities = () => {
   };
 
   const getCookieOptions = ({ isHttpOnly }: ICookieProp): ICookieOptions => {
-    const date = new Date();
-    date.setTime(date.getTime() + 1 * 1 * 60 * 60 * 1000);
-
     return {
       httpOnly: isHttpOnly,
       path: '/',
-      expires: date,
+      expires: getExpiresDate(),
+      sameSite: 'none',
+      secure: true,
+      domain: '',
     };
   };
 
@@ -37,4 +37,10 @@ export const useUtilities = () => {
     dateFormat,
     getCookieOptions,
   };
+};
+
+const getExpiresDate = () => {
+  const date = new Date();
+  date.setTime(date.getTime() + 1 * 1 * 60 * 60 * 1000);
+  return date;
 };

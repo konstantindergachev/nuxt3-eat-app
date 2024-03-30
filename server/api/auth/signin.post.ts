@@ -9,9 +9,6 @@ export default defineEventHandler(async (event) => {
 
     const customer = await signinService(body.password);
 
-    const date = new Date();
-    date.setTime(date.getTime() + 60 * 1000);
-
     const { getCookieOptions } = useUtilities();
     const httpOnlyCookie: ICookieOptions = getCookieOptions({ isHttpOnly: true });
     const globalCookie: ICookieOptions = getCookieOptions({ isHttpOnly: false });
