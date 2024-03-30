@@ -10,7 +10,6 @@
       Checkout
     </h1>
 
-    <UIPopUp v-if="!!errors.request" :message="errors.request" error="error" />
     <AppForm
       :onSubmit="handleSubmit"
       :inputs="inputs"
@@ -18,7 +17,13 @@
       className="grid max-w-xl"
     />
 
-    <div class="h-fit shadow-lg border rounded-lg p-4">
+    <div class="h-fit shadow-lg border rounded-lg p-4 relative">
+      <UIPopUp
+        v-if="message || errors.request"
+        :message="message"
+        :error="error"
+        class="absolute bg-white w-full mt-40 -ml-4"
+      />
       <div v-for="prod in products" :key="prod.id" class="mb-4">
         <h2 class="underline capitalize">{{ prod.name }}:</h2>
         <h3 class="indent-10">
@@ -36,6 +41,11 @@
 </template>
 <script setup lang="ts">
 import { useCheckout } from '~~/composables/useCheckout';
-const { handleSubmit, inputs, validate, errors, products, totalPrice } = useCheckout();
+const { handleSubmit, inputs, validate, errors, message, products, totalPrice } = useCheckout();
 const { moneyFormat } = useUtilities();
+
+const error = ref<string>('');
+onUpdated(() => {
+  error.value = errors.request;
+});
 </script>

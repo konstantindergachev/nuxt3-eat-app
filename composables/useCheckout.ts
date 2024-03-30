@@ -48,13 +48,14 @@ export const useCheckout = () => {
     deliveryCountry: '',
     deliveryCity: '',
     deliveryPostalCode: '',
+    request: '',
   });
 
   const inputs = [
     {
       type: 'text',
       name: 'firstname',
-      placeholder: 'John',
+      placeholder: 'Your firstname',
       getValue: computed(() => form.firstname),
       setValue: (value: string) => {
         form.firstname = value;
@@ -65,7 +66,7 @@ export const useCheckout = () => {
     {
       type: 'text',
       name: 'lastname',
-      placeholder: 'Doe',
+      placeholder: 'Your lastname',
       getValue: computed(() => form.lastname),
       setValue: (value: string) => {
         form.lastname = value;
@@ -76,7 +77,7 @@ export const useCheckout = () => {
     {
       type: 'email',
       name: 'notificationEmail',
-      placeholder: 'test@test.com',
+      placeholder: 'Notification email',
       getValue: computed(() => form.notificationEmail),
       setValue: (value: string) => {
         form.notificationEmail = value;
@@ -87,7 +88,7 @@ export const useCheckout = () => {
     {
       type: 'text',
       name: 'phone',
-      placeholder: '011 222 3344',
+      placeholder: 'Notification phone number',
       getValue: computed(() => form.phone),
       setValue: (value: string) => {
         form.phone = value;
@@ -98,7 +99,7 @@ export const useCheckout = () => {
     {
       type: 'text',
       name: 'address',
-      placeholder: 'The Test 1 Str.',
+      placeholder: 'Notification address: The Test 1 Str.',
       getValue: computed(() => form.address),
       setValue: (value: string) => {
         form.address = value;
@@ -109,7 +110,7 @@ export const useCheckout = () => {
     {
       type: 'text',
       name: 'addresseeFirstname',
-      placeholder: 'Jill',
+      placeholder: 'Delivery firstname',
       getValue: computed(() => form.addresseeFirstname),
       setValue: (value: string) => {
         form.addresseeFirstname = value;
@@ -120,7 +121,7 @@ export const useCheckout = () => {
     {
       type: 'text',
       name: 'addresseeLastname',
-      placeholder: 'Doe',
+      placeholder: 'Delivery lastname',
       getValue: computed(() => form.addresseeLastname),
       setValue: (value: string) => {
         form.addresseeLastname = value;
@@ -131,7 +132,7 @@ export const useCheckout = () => {
     {
       type: 'text',
       name: 'deliveryAddress',
-      placeholder: 'The Test 2 Str.',
+      placeholder: 'Delivery address: The Test 2 Str.',
       getValue: computed(() => form.deliveryAddress),
       setValue: (value: string) => {
         form.deliveryAddress = value;
@@ -142,7 +143,7 @@ export const useCheckout = () => {
     {
       type: 'text',
       name: 'deliveryCountry',
-      placeholder: 'Eng',
+      placeholder: 'Delivery country: Eng',
       getValue: computed(() => form.deliveryCountry),
       setValue: (value: string) => {
         form.deliveryCountry = value;
@@ -153,7 +154,7 @@ export const useCheckout = () => {
     {
       type: 'text',
       name: 'deliveryCity',
-      placeholder: 'London',
+      placeholder: 'Delivery city: London',
       getValue: computed(() => form.deliveryCity),
       setValue: (value: string) => {
         form.deliveryCity = value;
@@ -164,7 +165,7 @@ export const useCheckout = () => {
     {
       type: 'text',
       name: 'deliveryPostalCode',
-      placeholder: '0000',
+      placeholder: 'Delivery postal code: 0000',
       getValue: computed(() => form.deliveryPostalCode),
       setValue: (value: string) => {
         form.deliveryPostalCode = value;
@@ -187,16 +188,20 @@ export const useCheckout = () => {
     }
   };
 
+  const message = ref<string>('');
+  let timeoutId = ref(0);
+
   const handleSubmit = async () => {
     const order: ICheckoutOrder = {
       info: form,
       basket: { products: products.value, total: totalPrice.value },
     };
 
-    await $fetch('/api/checkout', {
+    const response = await $fetch('/api/checkout', {
       method: 'post',
       body: order,
     });
+    message.value = response;
 
     form.firstname = '';
     form.lastname = '';
@@ -209,6 +214,10 @@ export const useCheckout = () => {
     form.deliveryCountry = '';
     form.deliveryCity = '';
     form.deliveryPostalCode = '';
+
+    timeoutId.value = window.setTimeout(() => {
+      message.value = '';
+    }, 5000);
   };
 
   return {
@@ -216,6 +225,7 @@ export const useCheckout = () => {
     inputs,
     validate,
     errors,
+    message,
     products,
     totalPrice,
   };

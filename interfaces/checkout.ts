@@ -13,7 +13,7 @@ export interface ICheckoutForm {
 }
 
 export interface ICheckoutErrors extends ICheckoutForm {
-  request?: string;
+  request: string;
 }
 
 export interface ICheckoutProduct {
