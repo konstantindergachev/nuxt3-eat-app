@@ -6,6 +6,7 @@ import {
   IUpdateProfileDBResponse,
 } from '~~/interfaces/profile';
 import { NOT_PROFILE_ADD_DATA } from '~~/stub/constants';
+import { PostgrestResponseSuccess } from '@supabase/postgrest-js';
 
 const { CUSTOMER_PASSWORD_SECRET } = process.env;
 
@@ -61,19 +62,17 @@ const updateCustomer = async (
   return { status: dbResponse.status, statusText: dbResponse.statusText };
 };
 
-export const receiveProfileService = async (
-  customerId: number
-): Promise<IReceiveProfileFromDB | string> => {
-  const { data } = await db
+export const receiveProfileService = async (customerId: number): Promise<IReceiveProfileFromDB> => {
+  const { data } = (await db
     .from('profiles')
     .select('id, city, country, img, img_id, customers(firstname, lastname, email)')
     .eq('customer_id', customerId)
-    .single();
+    .single()) as PostgrestResponseSuccess<IReceiveProfileFromDB>;
 
   if (!data) {
     throw new Error(NOT_PROFILE_ADD_DATA);
   }
-  return data as IReceiveProfileFromDB;
+  return data;
 };
 
 const getHashedPassword = (password: string): string => {
