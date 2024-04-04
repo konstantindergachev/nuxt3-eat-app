@@ -27,7 +27,7 @@ export const useUtilities = () => {
       httpOnly: isHttpOnly,
       path: '/',
       expires: getExpiresDate(),
-      sameSite: 'none',
+      sameSite: 'strict',
       secure: true,
       domain: FRONTEND_DOMAIN,
     };
