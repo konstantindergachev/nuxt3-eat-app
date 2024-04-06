@@ -1,5 +1,5 @@
 <template>
-  <section class="mx-auto">
+  <section class="m-auto">
     <Head><Title>EatApp - Signin</Title></Head>
     <h1 class="text-center my-10 uppercase">Sign in</h1>
     <UIPopUp v-if="!!errors.request" :message="errors.request" error="error" />
